@@ -17,8 +17,6 @@ var positive = false
 
 
 func change_rotation(x, y ,z):
-	#transform.basis = Basis()
-	#camera_3d.transform.basis = Basis()
 	rotation.x = 0
 	rotation.y = 0
 	rotation.z = 0
@@ -173,13 +171,13 @@ func _physics_process(delta):
 			velocity.y = direction.y * SPEED
 			velocity.x = direction.x * SPEED
 	else:
-		if current_pull == 0: # X
+		if current_pull == 0 and is_on_wall(): # X
 			velocity.y = 0
 			velocity.z = 0
-		elif current_pull == 1: # Y
+		elif current_pull == 1 and (is_on_floor() or is_on_ceiling()): # Y
 			velocity.x = 0
 			velocity.z = 0
-		elif current_pull == 2: # Z
+		elif current_pull == 2 and is_on_wall(): # Z
 			velocity.y = 0
 			velocity.x = 0
 			
