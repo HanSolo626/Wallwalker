@@ -17,8 +17,11 @@ var positive = false
 
 
 func change_rotation(x, y ,z):
-	transform.basis = Basis()
-	camera_3d.transform.basis = Basis()
+	#transform.basis = Basis()
+	#camera_3d.transform.basis = Basis()
+	rotation.x = 0
+	rotation.y = 0
+	rotation.z = 0
 	rotate_x(deg_to_rad(x))
 	rotate_y(deg_to_rad(y))
 	rotate_z(deg_to_rad(z))
@@ -38,37 +41,37 @@ func change_gravity(raycast_object):
 	# x = 0
 	# y = 1
 	# z = 2
-	if block.x - face.x < 0:
+	if block.x - face.x < 0 and (current_pull != 0 or positive != false):
 		print("left")
 		current_pull = 0
 		positive = false
 		change_rotation(0, 0, -90)
 		
-	elif block.x - face.x > 0:
+	elif block.x - face.x > 0 and (current_pull != 0 or positive != true):
 		print("right")
 		current_pull = 0
 		positive = true
 		change_rotation(0, 0, 90)
 		
-	elif block.y - face.y < 0:
+	elif block.y - face.y < 0 and (current_pull != 1 or positive != false):
 		print("down")
 		current_pull = 1
 		positive = false
 		change_rotation(0, 0, 0)
 		
-	elif block.y - face.y > 0:
+	elif block.y - face.y > 0 and (current_pull != 1 or positive != true):
 		print("up")
 		current_pull = 1
 		positive = true
 		change_rotation(180, 0, 0)
 		
-	elif block.z - face.z < 0:
+	elif block.z - face.z < 0 and (current_pull != 2 or positive != false):
 		print("backward")
 		current_pull = 2
 		positive = false
 		change_rotation(90, 0, 0)
 		
-	elif block.z - face.z > 0:
+	elif block.z - face.z > 0 and (current_pull != 2 or positive != true):
 		print("forward")
 		current_pull = 2
 		positive = true
