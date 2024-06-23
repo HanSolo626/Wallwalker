@@ -13,7 +13,6 @@ height = 4.0
 [sub_resource type="BoxMesh" id="BoxMesh_yyh1i"]
 
 [node name="Player" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_4q30t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -32,3 +31,7 @@ target_position = Vector3(0, 0, -10)
 [node name="stick" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 3, 0, 0.414206, -1.24505)
 mesh = SubResource("BoxMesh_yyh1i")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+visible = false
+light_energy = 15.0

@@ -10,7 +10,8 @@ const CAMERA_ROTATION_SPEED = 50
 var gravity = 24.0
 var sensitivity = 0.002
 var current_pull = 1
-var positive = false
+var positive = true
+var dir_str = "ceiling"
 
 var x_to_set = 0.0
 var y_to_set = 0.0
@@ -18,6 +19,59 @@ var z_to_set = 0.0
 var x_updates = 0
 var y_updates = 0
 var z_updates = 0
+
+
+# Camera angle data
+const CAMERA_ANGLES = {
+	"floor":{
+		"up":[180, null, 0],
+		"down":null,
+		"left":[null, null, -90],
+		"right":[null, null, 90],
+		"forward":[-90, null, null],
+		"backward":[90, null, null]
+	},
+	"ceiling":{
+		"up":null,
+		"down":[0, null, null],
+		"left":[null, null, -90],
+		"right":[null, null, 90],
+		"forward":[90, null, null],
+		"backward":[-90, null, null]
+	},
+	"left wall":{
+		"up":[],
+		"down":[],
+		"left":null,
+		"right":[],
+		"forward":[],
+		"backward":[]
+	},
+	"right wall":{
+		"up":[],
+		"down":[],
+		"left":[],
+		"right":null,
+		"forward":[],
+		"backward":[]
+	},
+	"forward wall":{
+		"up":[],
+		"down":[],
+		"left":[],
+		"right":[],
+		"forward":null,
+		"backward":[]
+	},
+	"backward wall":{
+		"up":[],
+		"down":[],
+		"left":[],
+		"right":[],
+		"forward":[],
+		"backward":null
+	},
+}
 
 
 
@@ -56,11 +110,14 @@ func update_rotation():
 	
 
 
-func change_rotation(x, y ,z):
+func change_rotation(data):
 	# get difference
 	#set_top_level(true)
 	#transform.basis = Basis()
 	#set_top_level(false)
+	var x = data[0]
+	var y = data[1]
+	var z = data[2]
 	
 
 	if x == null:
@@ -122,37 +179,43 @@ func change_gravity(raycast_object):
 		print("left")
 		current_pull = 0
 		positive = false
-		change_rotation(null, null, -90)
+		change_rotation(CAMERA_ANGLES[dir_str]["left"])
+		dir_str = "left wall"
 		
 	elif block.x - face.x > 0 and (current_pull != 0 or positive != true):
 		print("right")
 		current_pull = 0
 		positive = true
-		change_rotation(null, 0, 90)
+		change_rotation(CAMERA_ANGLES[dir_str]["right"])
+		dir_str = "right wall"
 		
 	elif block.y - face.y < 0 and (current_pull != 1 or positive != false):
 		print("down")
 		current_pull = 1
 		positive = false
-		change_rotation(0, null, null)
+		change_rotation(CAMERA_ANGLES[dir_str]["down"])
+		dir_str = "floor"
 		
 	elif block.y - face.y > 0 and (current_pull != 1 or positive != true):
 		print("up")
 		current_pull = 1
 		positive = true
-		change_rotation(180, null, null)
+		change_rotation(CAMERA_ANGLES[dir_str]["up"])
+		dir_str = "ceiling"
 		
 	elif block.z - face.z < 0 and (current_pull != 2 or positive != false):
 		print("backward")
 		current_pull = 2
 		positive = false
-		change_rotation(90, null, null)
+		change_rotation(CAMERA_ANGLES[dir_str]["backward"])
+		dir_str = "backward wall"
 		
 	elif block.z - face.z > 0 and (current_pull != 2 or positive != true):
 		print("forward")
 		current_pull = 2
 		positive = true
-		change_rotation(-90, null, null)
+		change_rotation(CAMERA_ANGLES[dir_str]["forward"])
+		dir_str = "forward wall"
 		
 
 
@@ -161,6 +224,7 @@ func _ready(): # setup
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	set_top_level(false)
+	change_rotation(CAMERA_ANGLES["floor"]["up"])
 	
 	
 func _input(event):
