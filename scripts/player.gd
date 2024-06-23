@@ -10,8 +10,8 @@ const CAMERA_ROTATION_SPEED = 50
 var gravity = 24.0
 var sensitivity = 0.002
 var current_pull = 1
-var positive = true
-var dir_str = "ceiling"
+var positive = false
+var dir_str = "floor"
 
 var x_to_set = 0.0
 var y_to_set = 0.0
@@ -40,12 +40,12 @@ const CAMERA_ANGLES = {
 		"backward":[-90, null, null]
 	},
 	"left wall":{
-		"up":[],
-		"down":[],
+		"up":[null, null, 0],
+		"down":[null, null, 180],
 		"left":null,
-		"right":[],
-		"forward":[],
-		"backward":[]
+		"right":[null, null, 90],
+		"forward":[null, -90, null],
+		"backward":[null, -90, null]
 	},
 	"right wall":{
 		"up":[],
@@ -129,31 +129,31 @@ func change_rotation(data):
 			else: 
 				x_to_set = -rotation.z / CAMERA_ROTATION_SPEED
 		else:
-			x_to_set = (deg_to_rad(abs(x)) - rotation.x) * (x / abs(x)) / CAMERA_ROTATION_SPEED
+			x_to_set = (deg_to_rad(abs(x)) - abs(rotation.x)) * (x / abs(x)) / CAMERA_ROTATION_SPEED
 		x_updates = CAMERA_ROTATION_SPEED
 	
 	if y == null:
 		pass
 	else:
 		if y == 0:
-			if rotation.y < 0:
-				y_to_set = rotation.y / CAMERA_ROTATION_SPEED
+			if rotation.z < 0:
+				y_to_set = rotation.z / CAMERA_ROTATION_SPEED
 			else:
-				y_to_set = -rotation.y / CAMERA_ROTATION_SPEED
+				y_to_set = -rotation.z / CAMERA_ROTATION_SPEED
 		else:
-			y_to_set = (deg_to_rad(abs(y)) - rotation.y) * (y / abs(y)) / CAMERA_ROTATION_SPEED
+			y_to_set = (deg_to_rad(abs(y)) - abs(rotation.y)) * (y / abs(y)) / CAMERA_ROTATION_SPEED
 		y_updates = CAMERA_ROTATION_SPEED
 	
 	if z == null:
 		pass
 	else:
 		if z == 0:
-			if rotation.z < 0:
-				z_to_set = rotation.z / CAMERA_ROTATION_SPEED
+			if rotation.x < 0:
+				z_to_set = rotation.x / CAMERA_ROTATION_SPEED
 			else:
-				z_to_set = -rotation.z / CAMERA_ROTATION_SPEED
+				z_to_set = -rotation.x / CAMERA_ROTATION_SPEED
 		else:
-			z_to_set = (deg_to_rad(abs(z)) - rotation.z) * (z / abs(z)) / CAMERA_ROTATION_SPEED
+			z_to_set = (deg_to_rad(abs(z)) - abs(rotation.z)) * (z / abs(z)) / CAMERA_ROTATION_SPEED
 		z_updates = CAMERA_ROTATION_SPEED
 		
 		
@@ -224,7 +224,7 @@ func _ready(): # setup
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	set_top_level(false)
-	change_rotation(CAMERA_ANGLES["floor"]["up"])
+	#change_rotation(CAMERA_ANGLES["left wall"]["left"])
 	
 	
 func _input(event):
