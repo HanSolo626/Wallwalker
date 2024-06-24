@@ -52,23 +52,23 @@ const CAMERA_ANGLES = {
 		"down":[null, null, -90],
 		"left":[null, 180, null],
 		"right":null,
-		"forward":[],
-		"backward":[]
+		"forward":[null, -90, null],
+		"backward":[null, 90, null]
 	},
 	"forward wall":{
 		"up":[-90, null, null],
 		"down":[90, null, null],
-		"left":[],
-		"right":[],
+		"left":[null, -90, null],
+		"right":[null, 90, null],
 		"forward":null,
-		"backward":[]
+		"backward":[null, 180, null]
 	},
 	"backward wall":{
 		"up":[90, null, null],
 		"down":[-90, null, null],
-		"left":[],
-		"right":[],
-		"forward":[],
+		"left":[null, 90, null],
+		"right":[null, -90, null],
+		"forward":[null, 180, null],
 		"backward":null
 	},
 }
