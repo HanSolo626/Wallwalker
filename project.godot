@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-config/name="GodotCraft"
+config/name="Wallwalker"
+config/description="A development version of Wallwalker
+"
+config/version="0.1"
 run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/show_image=false
+config/icon="res://logo.png"
 
 [display]
 
