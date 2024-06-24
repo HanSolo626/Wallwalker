@@ -33,5 +33,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 3, 0, 0.414206, -1.24505)
 mesh = SubResource("BoxMesh_yyh1i")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-visible = false
 light_energy = 15.0
+light_indirect_energy = 16.0
+omni_range = 2506.79
+omni_shadow_mode = 0

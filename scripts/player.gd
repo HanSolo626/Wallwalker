@@ -34,38 +34,38 @@ const CAMERA_ANGLES = {
 	"ceiling":{
 		"up":null,
 		"down":[0, null, null],
-		"left":[null, null, -90],
-		"right":[null, null, 90],
+		"left":[null, null, 90],
+		"right":[null, null, -90],
 		"forward":[90, null, null],
 		"backward":[-90, null, null]
 	},
 	"left wall":{
-		"up":[null, null, 0],
-		"down":[null, null, 180],
+		"up":[null, null, -90],
+		"down":[null, null, 90],
 		"left":null,
-		"right":[null, null, 90],
-		"forward":[null, -90, null],
+		"right":[null, 180, null],
+		"forward":[null, 90, null],
 		"backward":[null, -90, null]
 	},
 	"right wall":{
-		"up":[],
-		"down":[],
-		"left":[],
+		"up":[null, null, 90],
+		"down":[null, null, -90],
+		"left":[null, 180, null],
 		"right":null,
 		"forward":[],
 		"backward":[]
 	},
 	"forward wall":{
-		"up":[],
-		"down":[],
+		"up":[-90, null, null],
+		"down":[90, null, null],
 		"left":[],
 		"right":[],
 		"forward":null,
 		"backward":[]
 	},
 	"backward wall":{
-		"up":[],
-		"down":[],
+		"up":[90, null, null],
+		"down":[-90, null, null],
 		"left":[],
 		"right":[],
 		"forward":[],
@@ -129,7 +129,7 @@ func change_rotation(data):
 			else: 
 				x_to_set = -rotation.z / CAMERA_ROTATION_SPEED
 		else:
-			x_to_set = (deg_to_rad(abs(x)) - abs(rotation.x)) * (x / abs(x)) / CAMERA_ROTATION_SPEED
+			x_to_set = deg_to_rad(x) / CAMERA_ROTATION_SPEED
 		x_updates = CAMERA_ROTATION_SPEED
 	
 	if y == null:
@@ -141,7 +141,7 @@ func change_rotation(data):
 			else:
 				y_to_set = -rotation.z / CAMERA_ROTATION_SPEED
 		else:
-			y_to_set = (deg_to_rad(abs(y)) - abs(rotation.y)) * (y / abs(y)) / CAMERA_ROTATION_SPEED
+			y_to_set = deg_to_rad(y) / CAMERA_ROTATION_SPEED
 		y_updates = CAMERA_ROTATION_SPEED
 	
 	if z == null:
@@ -153,7 +153,7 @@ func change_rotation(data):
 			else:
 				z_to_set = -rotation.x / CAMERA_ROTATION_SPEED
 		else:
-			z_to_set = (deg_to_rad(abs(z)) - abs(rotation.z)) * (z / abs(z)) / CAMERA_ROTATION_SPEED
+			z_to_set = deg_to_rad(z) / CAMERA_ROTATION_SPEED
 		z_updates = CAMERA_ROTATION_SPEED
 		
 		
