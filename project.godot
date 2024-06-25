@@ -14,7 +14,7 @@ config/name="Wallwalker"
 config/description="A development version of Wallwalker
 "
 config/version="0.1"
-run/main_scene="res://scenes/world.tscn"
+run/main_scene="res://scenes/main menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://logo.png"
