@@ -335,11 +335,9 @@ func _physics_process(delta):
 	#			change_gravity(ray_cast_3d)
 				#ray_cast_3d.get_collider().destroy_block(ray_cast_3d.get_collision_point() - ray_cast_3d.get_collision_normal())
 				
-	if Input.is_action_just_pressed("left click"):
+	if Input.is_action_just_pressed("right click"):
 		if ray_cast_3d.is_colliding():
-			if ray_cast_3d.get_collider().has_method("place_block") and not (
-				is_on_ceiling() or is_on_floor() or is_on_wall()
-				):
+			if ray_cast_3d.get_collider().has_method("place_block"):
 				change_gravity(ray_cast_3d)
 				#ray_cast_3d.get_collider().place_block(ray_cast_3d.get_collision_point() + 
 				#ray_cast_3d.get_collision_normal(), 0)
