@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://nufqsu6ppn36"]
 
-[ext_resource type="Texture2D" path="res://wall walker title.png" id="1_1bk6d"]
+[ext_resource type="Texture2D" uid="uid://budv8vuqw2ed" path="res://wall walker title.png" id="1_1bk6d"]
 [ext_resource type="Script" path="res://scripts/main menu.gd" id="1_05555"]
 
 [node name="Control" type="Control"]

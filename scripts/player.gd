@@ -77,7 +77,7 @@ const CAMERA_ANGLES = {
 
 @onready var camera_3d = $Camera3D
 @onready var ray_cast_3d = $Camera3D/RayCast3D
-@onready var gridmap = preload("res://scripts/GridMap.gd").new()
+@onready var gridmap = preload("res://scripts/Dungeon.gd").new()
 @onready var collision_shape_3d = $CollisionShape3D
 @onready var body = $Body
 @onready var stick = $stick
