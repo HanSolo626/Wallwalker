@@ -73,14 +73,39 @@ const CAMERA_ANGLES = {
 	},
 }
 
+var MAP_KEY = {
+			"blank tile":0,
+			"room tile":1,
+			"corridor tile":2,
+			"door tile":3,
+			"wall tile":4,
+			"stair tile":5,
+		}
 
+@onready var gn = preload("res://scripts/Generator.gd").new(
+	10,
+	4,
+	35,
+	1,
+	7,
+	12,
+	4,
+	8,
+	5,
+	3,
+	0,
+	MAP_KEY
+)
+@onready var dungeon = preload("res://scripts/Dungeon.gd").new(
+	"Zelda", "The_Legend_of", gn.DUNGEON).save("The_Legend_of_Zelda", "")
 
 @onready var camera_3d = $Camera3D
 @onready var ray_cast_3d = $Camera3D/RayCast3D
-@onready var gridmap = preload("res://scripts/Dungeon.gd").new()
 @onready var collision_shape_3d = $CollisionShape3D
 @onready var body = $Body
 @onready var stick = $stick
+var gridmap
+
 
 
 func set_top_level(t):
@@ -341,6 +366,7 @@ func _physics_process(delta):
 				change_gravity(ray_cast_3d)
 				#ray_cast_3d.get_collider().place_block(ray_cast_3d.get_collision_point() + 
 				#ray_cast_3d.get_collision_normal(), 0)
+
 				
 	update_rotation()
 	
