@@ -36,6 +36,9 @@ func _init(
 	var a = point1
 	var b = point2
 	
+	random = RandomNumberGenerator.new()
+	random.randomize()
+	
 	POINT1 = point1
 	POINT2 = point2
 	
@@ -218,7 +221,7 @@ func plot_corridor(
 			elif ending_direction == 1 or ending_direction == 3:
 				chance = 0
 		else:
-			chance = random.randi(0, 1) # Decide to do X, then Y, or Y, then X.
+			chance = random.randi_range(0, 1) # Decide to do X, then Y, or Y, then X.
 			
 		var a
 		if chance == 0:

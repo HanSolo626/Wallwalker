@@ -73,39 +73,13 @@ const CAMERA_ANGLES = {
 	},
 }
 
-var MAP_KEY = {
-			"blank tile":0,
-			"room tile":1,
-			"corridor tile":2,
-			"door tile":3,
-			"wall tile":4,
-			"stair tile":5,
-		}
-
-@onready var gn = preload("res://scripts/Generator.gd").new(
-	10,
-	4,
-	35,
-	1,
-	7,
-	12,
-	4,
-	8,
-	5,
-	3,
-	0,
-	MAP_KEY
-)
-@onready var dungeon = preload("res://scripts/Dungeon.gd").new(
-	"Zelda", "The_Legend_of", gn.DUNGEON).save("The_Legend_of_Zelda", "")
 
 @onready var camera_3d = $Camera3D
 @onready var ray_cast_3d = $Camera3D/RayCast3D
 @onready var collision_shape_3d = $CollisionShape3D
 @onready var body = $Body
 @onready var stick = $stick
-var gridmap
-
+@onready var gridmap = $"../DungeonGridMap"
 
 
 func set_top_level(t):
@@ -251,6 +225,8 @@ func _ready(): # setup
 	set_top_level(false)
 	#change_rotation(CAMERA_ANGLES["left wall"]["left"])
 	
+	transform.origin = gridmap.get_player_start_location()
+	
 	
 func _input(event):
 	# Mouse input
@@ -354,18 +330,13 @@ func _physics_process(delta):
 		
 		
 	# handle mouse clicks
-	#if Input.is_action_just_pressed("right click"):
-	#	if ray_cast_3d.is_colliding():
-	#		if ray_cast_3d.get_collider().has_method("destroy_block"):
-	#			change_gravity(ray_cast_3d)
-				#ray_cast_3d.get_collider().destroy_block(ray_cast_3d.get_collision_point() - ray_cast_3d.get_collision_normal())
+	
 				
 	if Input.is_action_just_pressed("right click"):
 		if ray_cast_3d.is_colliding():
-			if ray_cast_3d.get_collider().has_method("place_block"):
+			if ray_cast_3d.get_collider().has_method("is_block"):
 				change_gravity(ray_cast_3d)
-				#ray_cast_3d.get_collider().place_block(ray_cast_3d.get_collision_point() + 
-				#ray_cast_3d.get_collision_normal(), 0)
+				
 
 				
 	update_rotation()

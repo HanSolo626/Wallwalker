@@ -16,6 +16,7 @@ var walls
 var WALL_AREA_POINTS
 var wall_status
 var STAIRWELL_AREA_POINTS
+var mod_num = 0
 
 var random
 

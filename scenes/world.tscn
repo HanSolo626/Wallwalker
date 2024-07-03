@@ -2,7 +2,7 @@
 
 [ext_resource type="MeshLibrary" uid="uid://bxq5la48bj54c" path="res://resources/blocks.tres" id="2_5wdna"]
 [ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="2_84cls"]
-[ext_resource type="Script" path="res://scripts/Dungeon.gd" id="2_nkx2u"]
+[ext_resource type="Script" path="res://scripts/DungeonGridMap.gd" id="3_dskgd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d783x"]
 sky_top_color = Color(0.448753, 0.446873, 0.455253, 1)
@@ -76,6 +76,6 @@ grow_vertical = 2
 scale = Vector2(10, 8)
 text = "+"
 
-[node name="Dungeon" type="GridMap" parent="."]
+[node name="DungeonGridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("2_5wdna")
-script = ExtResource("2_nkx2u")
+script = ExtResource("3_dskgd")

@@ -203,6 +203,7 @@ func build_level():
 				corridors.append(new_c)
 				a.append(new_c.get_midpoint())
 				
+				
 		mid_point_list.append(a.duplicate(true))
 		a.clear()
 		ring.erase(ring[len(ring)-1])
@@ -235,6 +236,7 @@ func build_level():
 	for corridor in corridors:
 		for point in corridor.AREA_POINTS:
 			tile_map[point[1]][point[0]] = MAP_KEY["corridor tile"]
+			
 			
 	for corridor in simple_corridors:
 		for point in corridor.AREA_POINTS:

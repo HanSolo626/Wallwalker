@@ -332,6 +332,7 @@ func plot_corridor(
 			for x in range(point[0], point[0] + thickness):
 				if [x, y] not in updated_area_points:
 					updated_area_points.append([x, y])
+				
 					
 	# Shave off the first and last row/column
 	
@@ -358,13 +359,13 @@ func plot_corridor(
 	area_points = updated_area_points.duplicate(true)
 	
 	# Check if colliding with room
-	for point in area_points:
-		if TILE_MAP_REF[point[1]][point[0]] == MAP_KEY["room tile"] or TILE_MAP_REF[point[1]][point[0]] == MAP_KEY["wall tile"]:
-			ROOM1.wall_status[START_DIR] = false
-			ROOM2.wall_status[END_DIR] = false
-			STARTING_POINT = null
-			END_POINT = null
-			return []
+	#for point in area_points:
+	#	if TILE_MAP_REF[point[1]][point[0]] == MAP_KEY["room tile"] or TILE_MAP_REF[point[1]][point[0]] == MAP_KEY["wall tile"]:
+	#		ROOM1.wall_status[START_DIR] = false
+	#		ROOM2.wall_status[END_DIR] = false
+	#		STARTING_POINT = null
+	#		END_POINT = null
+	#		return []
 			
 	# Get imaginary box.
 	BOX = compute_imaginary_box()

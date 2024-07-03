@@ -51,5 +51,10 @@ func structure_tile_maps(tile_maps: Array):
 		
 	return tile_maps
 	
+func get_level(level_num):
+	for level in LEVEL_DATA:
+		if level["num"] == level_num:
+			return level
+	
 	
 
