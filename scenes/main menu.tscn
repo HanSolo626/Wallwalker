@@ -38,9 +38,9 @@ text = "Play"
 layout_mode = 2
 text = "Exit"
 
-[node name="WallWalkerTitle" type="Sprite2D" parent="."]
-position = Vector2(963, 311)
-scale = Vector2(1.52328, 1.52328)
+[node name="WallWalkerTitle" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(186, -122)
+scale = Vector2(0.617516, 0.617516)
 texture = ExtResource("1_1bk6d")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Load Dungeon" to="." method="_on_load_dungeon_pressed"]

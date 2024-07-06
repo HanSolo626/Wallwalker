@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://d0udkcrdxrxmj"]
 
-[ext_resource type="MeshLibrary" uid="uid://bxq5la48bj54c" path="res://resources/blocks.tres" id="2_5wdna"]
 [ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="2_84cls"]
+[ext_resource type="MeshLibrary" uid="uid://dq7b3hldj18ag" path="res://resources/MeshLibraries/test_blocks.tres" id="2_igqmq"]
 [ext_resource type="Script" path="res://scripts/DungeonGridMap.gd" id="3_dskgd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d783x"]
@@ -77,5 +77,5 @@ scale = Vector2(10, 8)
 text = "+"
 
 [node name="DungeonGridMap" type="GridMap" parent="."]
-mesh_library = ExtResource("2_5wdna")
+mesh_library = ExtResource("2_igqmq")
 script = ExtResource("3_dskgd")

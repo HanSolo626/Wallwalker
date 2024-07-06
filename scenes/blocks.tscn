@@ -1,8 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1dllk1gxichx"]
+[gd_scene load_steps=6 format=3 uid="uid://c1dllk1gxichx"]
 
 [ext_resource type="PackedScene" uid="uid://bvskt2ovhntwx" path="res://scenes/diamond_brick_2.tscn" id="1_6pigo"]
+[ext_resource type="PackedScene" uid="uid://bk2tscemvqa1u" path="res://resources/test_blocks/pink_test_block.glb" id="2_2gnp5"]
+[ext_resource type="PackedScene" uid="uid://jejlyeb7ykhe" path="res://resources/test_blocks/red_test_block.glb" id="3_4pcia"]
+[ext_resource type="PackedScene" uid="uid://bfbxdiqr5gx4n" path="res://resources/test_blocks/green_test_block.glb" id="4_pkl61"]
+[ext_resource type="PackedScene" uid="uid://bp6ovko5a31en" path="res://resources/test_blocks/blue_test_block.glb" id="5_usoua"]
 
 [node name="Blocks" type="Node3D"]
 
 [node name="diamond brick2" parent="." instance=ExtResource("1_6pigo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00041461, 0, 0.0909996)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.42555, 0, 0.0909996)
+
+[node name="green_test_block" parent="." instance=ExtResource("4_pkl61")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.322928, 9.53674e-07, -5.45141)
+
+[node name="red_test_block" parent="." instance=ExtResource("3_4pcia")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.40677, -2.43473, -4.79874)
+
+[node name="pink_test_block" parent="." instance=ExtResource("2_2gnp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25936, 0, -6.58504)
+
+[node name="blue_test_block" parent="." instance=ExtResource("5_usoua")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.55229, 0, 0.592585)

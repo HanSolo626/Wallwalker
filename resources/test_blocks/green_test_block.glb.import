@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c1tkwncmij76h"
-path="res://.godot/imported/diamond brick2.glb-2d7b4d1ebd84d8ed9336c023507a4ce3.scn"
+uid="uid://bfbxdiqr5gx4n"
+path="res://.godot/imported/green_test_block.glb-5ddd84c9e49aa3b94d3e8ed43237c04f.scn"
 
 [deps]
 
-source_file="res://resources/diamond brick2.glb"
-dest_files=["res://.godot/imported/diamond brick2.glb-2d7b4d1ebd84d8ed9336c023507a4ce3.scn"]
+source_file="res://resources/test_blocks/green_test_block.glb"
+dest_files=["res://.godot/imported/green_test_block.glb-5ddd84c9e49aa3b94d3e8ed43237c04f.scn"]
 
 [params]
 

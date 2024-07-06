@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3yuhwx5ok45y"]
+
+[ext_resource type="PackedScene" uid="uid://bp6ovko5a31en" path="res://resources/test_blocks/blue_test_block.glb" id="1_xjbud"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0iqvr"]
+
+[node name="blue_test_block" instance=ExtResource("1_xjbud")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Blue" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Blue/StaticBody3D" index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_0iqvr")

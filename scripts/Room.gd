@@ -163,7 +163,8 @@ func get_wall_points(wall, corner_list: Array):
 			wall_points.append([start[0], r])
 			
 	wall_points.erase(start)
-	#wall_points.erase(corner_list[wall+1])
+	if len(wall_points) < 4:
+		wall_points.erase(corner_list[wall+1])
 	
 	return wall_points
 

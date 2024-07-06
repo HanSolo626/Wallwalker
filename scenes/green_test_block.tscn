@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c515fx0jniw2n"]
+
+[ext_resource type="PackedScene" uid="uid://bfbxdiqr5gx4n" path="res://resources/test_blocks/green_test_block.glb" id="1_iisik"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0iqvr"]
+
+[node name="green_test_block" instance=ExtResource("1_iisik")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Green" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Green/StaticBody3D" index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_0iqvr")

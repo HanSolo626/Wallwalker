@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lyy75od8lg54"
-path.s3tc="res://.godot/imported/diamond brick2_block _material.png-c92ffbae193ea9eab8c22174f8c12088.s3tc.ctex"
+uid="uid://ok8dtbyslb74"
+path.s3tc="res://.godot/imported/green_test_block_Material Base Color.png-508b22a6b3169ce01c1ac7c210d66fca.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "87b499b0148ab44787848d41b191ab52"
+"md5": "f3941baf0d2f24e53c3eab26192278d5"
 }
 
 [deps]
 
-source_file="res://resources/diamond brick2_block _material.png"
-dest_files=["res://.godot/imported/diamond brick2_block _material.png-c92ffbae193ea9eab8c22174f8c12088.s3tc.ctex"]
+source_file="res://resources/test_blocks/green_test_block_Material Base Color.png"
+dest_files=["res://.godot/imported/green_test_block_Material Base Color.png-508b22a6b3169ce01c1ac7c210d66fca.s3tc.ctex"]
 
 [params]
 

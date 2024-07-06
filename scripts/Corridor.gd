@@ -20,6 +20,9 @@ var THICKNESS
 var MID_POINTS
 var AREA_POINTS
 
+var START_DOOR
+var END_DOOR
+
 var random
 var Room = preload("res://scripts/Room.gd")
 
@@ -62,19 +65,19 @@ func _init(
 		
 	# account for room size
 	if a_right:
-		a = [a[0] + len(room1.NORTH_WALL), a[1]]
-		b = [b[0] - len(room2.NORTH_WALL), b[1]]
+		a = [a[0] + len(room1.NORTH_WALL)+2, a[1]]
+		b = [b[0] - len(room2.NORTH_WALL)+2, b[1]]
 	else:
-		a = [a[0] - len(room1.NORTH_WALL), a[1]]
-		b = [b[0] + len(room2.NORTH_WALL), b[1]]
+		a = [a[0] - len(room1.NORTH_WALL)+2, a[1]]
+		b = [b[0] + len(room2.NORTH_WALL)+2, b[1]]
 		
 	# NOTE irregularity here
 	if a_above:
-		a = [a[0], b[1] - len(room1.WEST_WALL)]
-		b = [b[0], b[1] + len(room2.WEST_WALL)]
+		a = [a[0], b[1] - len(room1.WEST_WALL)+2]
+		b = [b[0], b[1] + len(room2.WEST_WALL)+2]
 	else:
-		a = [a[0], b[1] + len(room1.WEST_WALL)]
-		b = [b[0], b[1] - len(room2.WEST_WALL)]
+		a = [a[0], b[1] + len(room1.WEST_WALL)+2]
+		b = [b[0], b[1] - len(room2.WEST_WALL)+2]
 		
 	# KEY: 0=north 1=east 2=south 3=west
 	if a_above:
@@ -222,8 +225,8 @@ func plot_corridor(
 	var org_end = end
 	var org_start = start
 	
-	var h = floor(thickness / 2)
-	var why = ceil(thickness / 2)
+	var h = floor(float(thickness) / 2)
+	var why = ceil(float(thickness) / 2)
 	
 	# ensure thickness is odd
 	if thickness % 2 == 0:
@@ -232,21 +235,36 @@ func plot_corridor(
 	# Offset start and end coordinates
 	if starting_direction == 0: # North
 		start = add_to_tuple(start, 1, -why)
+		START_DOOR = add_to_tuple(start.duplicate(), 1, h+1)
+		
 	elif starting_direction == 1: # East
 		start = add_to_tuple(start, 0, why)
+		START_DOOR = add_to_tuple(start.duplicate(), 0, h-3) # NOTE
+		
 	elif starting_direction == 2: # South
 		start = add_to_tuple(start, 1, why)
+		START_DOOR = add_to_tuple(start.duplicate(), 1, h-3)
+		
 	elif starting_direction == 3: # West
 		start = add_to_tuple(start, 0, -why)
+		START_DOOR = add_to_tuple(start.duplicate(), 0, h+1)
+		
 		
 	if ending_direction == 0: # North
 		end = add_to_tuple(end, 1, -why)
+		END_DOOR = add_to_tuple(end.duplicate(), 1, h+1)
+		
 	elif ending_direction == 1: # East
 		end = add_to_tuple(end, 0, why)
+		END_DOOR = add_to_tuple(end.duplicate(), 0, h-3)
+		
 	elif ending_direction == 2: # South
 		end = add_to_tuple(end, 1, why)
+		END_DOOR = add_to_tuple(end.duplicate(), 1, h+1)
+		
 	elif ending_direction == 3: # West
 		end = add_to_tuple(end, 0, -why)
+		END_DOOR = add_to_tuple(end.duplicate(), 0, h+1)
 		
 	START_POINT_OFFSET = start
 	END_POINT_OFFSET = end
@@ -334,38 +352,38 @@ func plot_corridor(
 					updated_area_points.append([x, y])
 				
 					
-	# Shave off the first and last row/column
-	
-	updated_area_points.erase([org_start[0], org_start[1]])
-	updated_area_points.erase([org_end[0], org_end[1]])
-	
-	if starting_direction == 0 or starting_direction == 2:
-		
-		for x in range(org_start[0] - h, org_start[0] + h + 1):
-			updated_area_points.erase([x, org_start[1]])
-			
-		for x in range(org_end[0] - h, org_end[0] + h + 1):
-			updated_area_points.erase([x, org_end[1]])
-			
-	else:
-		
-		for x in range(org_start[1] - h, org_start[1] + h + 1):
-			updated_area_points.erase([org_start[0], x])
-			
-		for x in range(org_end[1], org_end[1] + h + 1):
-			updated_area_points.erase([org_end[0], x])
+	## Shave off the first and last row/column
+	#
+	#updated_area_points.erase([org_start[0], org_start[1]])
+	#updated_area_points.erase([org_end[0], org_end[1]])
+	#
+	#if starting_direction == 0 or starting_direction == 2:
+	#	
+	#	for x in range(org_start[0] - h, org_start[0] + h + 1):
+	#		updated_area_points.erase([x, org_start[1]])
+	#		
+	#	for x in range(org_end[0] - h, org_end[0] + h + 1):
+	#		updated_area_points.erase([x, org_end[1]])
+	#		
+	#else:
+	#	
+	#	for x in range(org_start[1] - h, org_start[1] + h + 1):
+	#		updated_area_points.erase([org_start[0], x])
+	#		
+	#	for x in range(org_end[1], org_end[1] + h + 1):
+	#		updated_area_points.erase([org_end[0], x])
 			
 	
 	area_points = updated_area_points.duplicate(true)
 	
 	# Check if colliding with room
-	#for point in area_points:
-	#	if TILE_MAP_REF[point[1]][point[0]] == MAP_KEY["room tile"] or TILE_MAP_REF[point[1]][point[0]] == MAP_KEY["wall tile"]:
-	#		ROOM1.wall_status[START_DIR] = false
-	#		ROOM2.wall_status[END_DIR] = false
-	#		STARTING_POINT = null
-	#		END_POINT = null
-	#		return []
+	for point in area_points:
+		if TILE_MAP_REF[point[1]][point[0]] == MAP_KEY["room tile"] or TILE_MAP_REF[point[1]][point[0]] == MAP_KEY["wall tile"]:
+			ROOM1.wall_status[START_DIR] = false
+			ROOM2.wall_status[END_DIR] = false
+			#STARTING_POINT = null
+			#END_POINT = null
+			#return []
 			
 	# Get imaginary box.
 	BOX = compute_imaginary_box()

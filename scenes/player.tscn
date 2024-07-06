@@ -25,7 +25,7 @@ mesh = SubResource("CapsuleMesh_53i5u")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53324, 0.103362)
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, -0.110323)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 999, 0, 0, -0.110323)
 target_position = Vector3(0, 0, -10)
 
 [node name="stick" type="MeshInstance3D" parent="."]

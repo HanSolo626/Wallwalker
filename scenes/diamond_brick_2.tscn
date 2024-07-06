@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bvskt2ovhntwx"]
 
-[ext_resource type="PackedScene" uid="uid://c1tkwncmij76h" path="res://resources/diamond brick2.glb" id="1_geq1b"]
+[ext_resource type="PackedScene" uid="uid://c1tkwncmij76h" path="res://resources/test_blocks/diamond brick2.glb" id="1_geq1b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j5jeb"]
 

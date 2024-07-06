@@ -161,8 +161,8 @@ func plot_corridor(
 	var org_end = end
 	var org_start = start
 	
-	var h = floor(thickness / 2)
-	var why = ceil(thickness / 2)
+	var h = floor(float(thickness) / 2)
+	var why = ceil(float(thickness) / 2)
 	
 	# ensure thickness is odd
 	if thickness % 2 == 0:
@@ -274,26 +274,26 @@ func plot_corridor(
 					
 	# Shave off the first and last row/column
 	
-	updated_area_points.erase([org_start[0], org_start[1]])
-	updated_area_points.erase([org_end[0], org_end[1]])
-	
-	if starting_direction == 0 or starting_direction == 2:
-		
-		for x in range(org_start[0] - h, org_start[0] + h + 1):
-			updated_area_points.erase([x, org_start[1]])
-			
-		for x in range(org_end[0] - h, org_end[0] + h + 1):
-			updated_area_points.erase([x, org_end[1]])
-			
-	else:
-		
-		for x in range(org_start[1] - h, org_start[1] + h + 1):
-			updated_area_points.erase([org_start[0], x])
-			
-		for x in range(org_end[1], org_end[1] + h + 1):
-			updated_area_points.erase([org_end[0], x])
-			
-	
+	#updated_area_points.erase([org_start[0], org_start[1]])
+	#updated_area_points.erase([org_end[0], org_end[1]])
+	#
+	#if starting_direction == 0 or starting_direction == 2:
+	#	
+	#	for x in range(org_start[0] - h, org_start[0] + h + 1):
+	#		updated_area_points.erase([x, org_start[1]])
+	#		
+	#	for x in range(org_end[0] - h, org_end[0] + h + 1):
+	#		updated_area_points.erase([x, org_end[1]])
+	#		
+	#else:
+	#	
+	#	for x in range(org_start[1] - h, org_start[1] + h + 1):
+	#		updated_area_points.erase([org_start[0], x])
+	#		
+	#	for x in range(org_end[1], org_end[1] + h + 1):
+	#		updated_area_points.erase([org_end[0], x])
+	#		
+	#
 	area_points = updated_area_points.duplicate(true)
 	
 	# Check if colliding with room

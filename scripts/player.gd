@@ -1,14 +1,14 @@
 extends CharacterBody3D
 
 
-const SPEED = 8.0
+const SPEED = 12.0
 const JUMP_VELOCITY = 12
 # the smaller this value, the faster it goes
 const CAMERA_ROTATION_SPEED = 50
 
 # Get the gravity from the project settings to be synced with RigidBody nodes. (nope!)
 var gravity = 24.0
-var sensitivity = 0.002
+var sensitivity = 0.0015
 var current_pull = 1
 var positive = false
 var dir_str = "floor"
@@ -228,6 +228,7 @@ func _ready(): # setup
 	transform.origin = gridmap.get_player_start_location()
 	
 	
+	
 func _input(event):
 	# Mouse input
 	if event is InputEventMouseMotion and is_rotating() == false:
@@ -334,7 +335,7 @@ func _physics_process(delta):
 				
 	if Input.is_action_just_pressed("right click"):
 		if ray_cast_3d.is_colliding():
-			if ray_cast_3d.get_collider().has_method("is_block"):
+			if ray_cast_3d.get_collider().has_method("is_block") and is_rotating() == false:
 				change_gravity(ray_cast_3d)
 				
 

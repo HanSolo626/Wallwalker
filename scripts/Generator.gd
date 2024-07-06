@@ -248,8 +248,8 @@ func build_level():
 				tile_map[point[1]][point[0]] = MAP_KEY["stair tile"]
 				
 	for corridor in corridors:
-		var start = corridor.STARTING_POINT
-		var end = corridor.END_POINT
+		var start = corridor.START_DOOR
+		var end = corridor.END_DOOR
 		tile_map[start[1]][start[0]] = MAP_KEY["door tile"]
 		tile_map[end[1]][end[0]] = MAP_KEY["door tile"]
 		
@@ -287,7 +287,7 @@ func build_level():
 			k = 0
 		corridor.AREA_POINTS.append([end[0] + o, end[1] +  k])
 		tile_map[end[1]+k][end[0]+o] = MAP_KEY["corridor tile"]
-		
+		 
 	var level = {
 		"tile_map":tile_map,
 		"start":UP_ROOM,
@@ -323,7 +323,7 @@ func find_center_ring_points(
 	random.randomize()
 	
 	var points = []
-	var increment = 360 / room_count
+	var increment = 360.0 / room_count
 	
 	for x in range(room_count):
 		var t = 0
