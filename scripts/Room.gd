@@ -100,9 +100,9 @@ func get_wall_area():
 	
 func get_random_wall_point(wall_num):
 	# Keep corridor thickness in mind when setting this
-	var limit = 2
+	var limit = 4
 	wall_status[wall_num] = true
-	var door = walls[wall_num][random.randi_range(1, len(walls[wall_num]) - limit )]
+	var door = walls[wall_num][random.randi_range(limit, len(walls[wall_num]) - limit)]
 	return door
 	
 

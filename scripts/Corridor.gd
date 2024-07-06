@@ -21,7 +21,10 @@ var MID_POINTS
 var AREA_POINTS
 
 var START_DOOR
+var START_DOOR_POINTS
 var END_DOOR
+var END_DOOR_POINTS
+var door_radius = 1
 
 var random
 var Room = preload("res://scripts/Room.gd")
@@ -239,11 +242,11 @@ func plot_corridor(
 		
 	elif starting_direction == 1: # East
 		start = add_to_tuple(start, 0, why)
-		START_DOOR = add_to_tuple(start.duplicate(), 0, h-3) # NOTE
+		START_DOOR = add_to_tuple(start.duplicate(), 0, h-thickness) # NOTE
 		
 	elif starting_direction == 2: # South
 		start = add_to_tuple(start, 1, why)
-		START_DOOR = add_to_tuple(start.duplicate(), 1, h-3)
+		START_DOOR = add_to_tuple(start.duplicate(), 1, h-thickness)
 		
 	elif starting_direction == 3: # West
 		start = add_to_tuple(start, 0, -why)
@@ -256,7 +259,7 @@ func plot_corridor(
 		
 	elif ending_direction == 1: # East
 		end = add_to_tuple(end, 0, why)
-		END_DOOR = add_to_tuple(end.duplicate(), 0, h-3)
+		END_DOOR = add_to_tuple(end.duplicate(), 0, h-thickness)
 		
 	elif ending_direction == 2: # South
 		end = add_to_tuple(end, 1, why)
@@ -265,6 +268,22 @@ func plot_corridor(
 	elif ending_direction == 3: # West
 		end = add_to_tuple(end, 0, -why)
 		END_DOOR = add_to_tuple(end.duplicate(), 0, h+1)
+		
+	# Get door area points
+	START_DOOR_POINTS = []
+	END_DOOR_POINTS = []
+	if starting_direction == 0 or starting_direction == 2:
+		for x in range(START_DOOR[0]-door_radius, START_DOOR[0]+door_radius+1):
+			START_DOOR_POINTS.append([x, START_DOOR[1]])
+	elif starting_direction == 1 or starting_direction == 3:
+		for y in range(START_DOOR[1]-door_radius, START_DOOR[1]+door_radius+1):
+			START_DOOR_POINTS.append([START_DOOR[0], y])
+	if ending_direction == 0 or ending_direction == 2:
+		for x in range(END_DOOR[0]-door_radius, END_DOOR[0]+door_radius+1):
+			END_DOOR_POINTS.append([x, END_DOOR[1]])
+	elif ending_direction == 1 or ending_direction == 3:
+		for y in range(END_DOOR[1]-door_radius, END_DOOR[1]+door_radius+1):
+			END_DOOR_POINTS.append([END_DOOR[0], y])
 		
 	START_POINT_OFFSET = start
 	END_POINT_OFFSET = end
@@ -381,9 +400,9 @@ func plot_corridor(
 		if TILE_MAP_REF[point[1]][point[0]] == MAP_KEY["room tile"] or TILE_MAP_REF[point[1]][point[0]] == MAP_KEY["wall tile"]:
 			ROOM1.wall_status[START_DIR] = false
 			ROOM2.wall_status[END_DIR] = false
-			#STARTING_POINT = null
-			#END_POINT = null
-			#return []
+			STARTING_POINT = null
+			END_POINT = null
+			return []
 			
 	# Get imaginary box.
 	BOX = compute_imaginary_box()

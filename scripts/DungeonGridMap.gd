@@ -14,14 +14,15 @@ var MAP_KEY = {
 var gn = preload("res://scripts/Generator.gd").new(
 	10,
 	4,
-	35,
-	1,
-	10,
-	10,
+	50,
+	3,
+	17,
+	27,
 	5,
 	8,
+	4,
 	5,
-	3,
+	5,
 	0,
 	MAP_KEY
 )
@@ -74,7 +75,14 @@ func _ready():
 	for c in range(current_level["ch"], current_level["rh"]):
 		for y in range(len(current_level["tile_map"])):
 			for x in range(len(current_level["tile_map"])):
-				if current_level["tile_map"][y][x] == MAP_KEY["corridor tile"]:
+				if current_level["tile_map"][y][x] == MAP_KEY["corridor tile"] or current_level["tile_map"][y][x] == MAP_KEY["door tile"]:
+					set_cell_item(Vector3i(x, c, y), 0)
+					
+	# Make ceiling for doors
+	for c in range(current_level["dh"], current_level["rh"]):
+		for y in range(len(current_level["tile_map"])):
+			for x in range(len(current_level["tile_map"])):
+				if current_level["tile_map"][y][x] == MAP_KEY["door tile"]:
 					set_cell_item(Vector3i(x, c, y), 0)
 					
 	# Make ceiling for rooms
@@ -82,6 +90,8 @@ func _ready():
 		for x in range(len(current_level["tile_map"])):
 			if current_level["tile_map"][y][x] == MAP_KEY["room tile"]:
 				set_cell_item(Vector3i(x, current_level["rh"], y), 0)
+				
+
 	
 
 

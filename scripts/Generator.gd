@@ -20,6 +20,7 @@ var SECONDARY_RING_ROOMS
 var SECONDARY_RING_CORRIDORS
 var UP_ROOM
 var DOWN_ROOM
+var DOOR_HEIGHT
 var DUNGEON
 
 var random
@@ -37,6 +38,7 @@ func _init(
 
 	corridor_height: int,
 	room_height: int,
+	door_height: int,
 
 	room_shift_limit: int,
 	corridor_thickness: int,
@@ -55,9 +57,11 @@ func _init(
 	
 	CORRIDOR_HEIGHT = corridor_height
 	ROOM_HEIGHT = room_height
+	DOOR_HEIGHT = door_height
 	ROOM_SHIFT_LIMIT = room_shift_limit
 	CENTER_RING_RADIUS = center_ring_radius
 	CORRIDOR_THICKNESS = corridor_thickness
+	
 	
 	if ring_tilt < 0 or ring_tilt > 45:
 		print("Ring tilt must be between 0 and 45, not this: "+str(ring_tilt))
@@ -219,16 +223,17 @@ func build_level():
 			var k = random.randi_range(0, 1)
 			s += k
 			l -= k
-			new_c = preload("res://scripts/SimpleCorridor.gd").new(
-				point,
-				mid_point_list[t+1][s],
-				CORRIDOR_THICKNESS,
-				[],
-				tile_map,
-				MAP_KEY
-			)
-			if not new_c.AREA_POINTS == []:
-				simple_corridors.append(new_c)
+			if mid_point_list[t+1].size() > s:
+				new_c = preload("res://scripts/SimpleCorridor.gd").new(
+					point,
+					mid_point_list[t+1][s],
+					CORRIDOR_THICKNESS,
+					[],
+					tile_map,
+					MAP_KEY
+				)
+				if not new_c.AREA_POINTS == []:
+					simple_corridors.append(new_c)
 			s += l
 			
 	# Apply data to tile map
@@ -250,8 +255,10 @@ func build_level():
 	for corridor in corridors:
 		var start = corridor.START_DOOR
 		var end = corridor.END_DOOR
-		tile_map[start[1]][start[0]] = MAP_KEY["door tile"]
-		tile_map[end[1]][end[0]] = MAP_KEY["door tile"]
+		for point in corridor.START_DOOR_POINTS:
+			tile_map[point[1]][point[0]] = MAP_KEY["door tile"]
+		for point in corridor.END_DOOR_POINTS:
+			tile_map[point[1]][point[0]] = MAP_KEY["door tile"]
 		
 		# fix null area in corridor around door
 		var f = corridor.STARTING_DIRECTION
@@ -293,7 +300,8 @@ func build_level():
 		"start":UP_ROOM,
 		"end":DOWN_ROOM,
 		"ch":CORRIDOR_HEIGHT,
-		"rh":ROOM_HEIGHT
+		"rh":ROOM_HEIGHT,
+		"dh":DOOR_HEIGHT
 	}
 	
 	return level
