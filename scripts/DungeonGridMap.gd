@@ -1,6 +1,7 @@
 extends GridMap
 
 var current_floor_num = 0
+var block_index_num = 1
 
 var MAP_KEY = {
 			"blank tile":0,
@@ -12,10 +13,10 @@ var MAP_KEY = {
 		}
 
 var gn = preload("res://scripts/Generator.gd").new(
-	10,
+	1,
 	4,
 	50,
-	3,
+	1,
 	17,
 	27,
 	5,
@@ -34,7 +35,7 @@ func is_block():
 	
 func get_player_start_location():
 	var a = dungeon.get_level(current_floor_num)["start"]
-	a = map_to_local(Vector3i(a[0], 1, a[1]))
+	a = map_to_local(Vector3i(a[0], 2, a[1]))
 	return a
 
 # Called when the node enters the scene tree for the first time.
@@ -45,51 +46,41 @@ func _ready():
 	for y in range(len(current_level["tile_map"])):
 		for x in range(len(current_level["tile_map"][y])):
 			if current_level["tile_map"][y][x] != MAP_KEY["blank tile"]:
-				set_cell_item(Vector3i(x, 0, y), 0)
-			#elif current_level["tile_map"][y][x] == MAP_KEY["room tile"]:
-			#	set_cell_item(Vector3i(x, 0, y), 1)
-			#elif current_level["tile_map"][y][x] == MAP_KEY["corridor tile"]:
-			#	set_cell_item(Vector3i(x, 0, y), 2)
-			#elif current_level["tile_map"][y][x] == MAP_KEY["door tile"]:
-			#	set_cell_item(Vector3i(x, 0, y), 3)
-			#elif current_level["tile_map"][y][x] == MAP_KEY["wall tile"]:
-			#	set_cell_item(Vector3i(x, 0, y), 4)
-			#elif current_level["tile_map"][y][x] == MAP_KEY["stair tile"]:
-			#	set_cell_item(Vector3i(x, 0, y), 0)
+				set_cell_item(Vector3i(x, 0, y), block_index_num)
 				
 	# Make room walls
 	for w in range(current_level["rh"]):
 		for y in range(len(current_level["tile_map"])):
 			for x in range(len(current_level["tile_map"])):
 				if current_level["tile_map"][y][x] == MAP_KEY["wall tile"]:
-					set_cell_item(Vector3i(x, w, y), 0)
+					set_cell_item(Vector3i(x, w, y), block_index_num)
 					
 	# Make corridor walls
 	for w in range(current_level["ch"]):
 		for y in range(len(current_level["tile_map"])):
 			for x in range(len(current_level["tile_map"])):
 				if current_level["tile_map"][y][x] == MAP_KEY["blank tile"]:
-					set_cell_item(Vector3i(x, w, y), 0)
+					set_cell_item(Vector3i(x, w, y), block_index_num)
 					
 	# Make ceiling for corridors
 	for c in range(current_level["ch"], current_level["rh"]):
 		for y in range(len(current_level["tile_map"])):
 			for x in range(len(current_level["tile_map"])):
 				if current_level["tile_map"][y][x] == MAP_KEY["corridor tile"] or current_level["tile_map"][y][x] == MAP_KEY["door tile"]:
-					set_cell_item(Vector3i(x, c, y), 0)
+					set_cell_item(Vector3i(x, c, y), block_index_num)
 					
 	# Make ceiling for doors
 	for c in range(current_level["dh"], current_level["rh"]):
 		for y in range(len(current_level["tile_map"])):
 			for x in range(len(current_level["tile_map"])):
 				if current_level["tile_map"][y][x] == MAP_KEY["door tile"]:
-					set_cell_item(Vector3i(x, c, y), 0)
+					set_cell_item(Vector3i(x, c, y), block_index_num)
 					
 	# Make ceiling for rooms
 	for y in range(len(current_level["tile_map"])):
 		for x in range(len(current_level["tile_map"])):
 			if current_level["tile_map"][y][x] == MAP_KEY["room tile"]:
-				set_cell_item(Vector3i(x, current_level["rh"], y), 0)
+				set_cell_item(Vector3i(x, current_level["rh"], y), block_index_num)
 				
 
 	

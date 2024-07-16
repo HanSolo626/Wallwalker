@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0udkcrdxrxmj"]
+[gd_scene load_steps=7 format=3 uid="uid://d0udkcrdxrxmj"]
 
 [ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="2_84cls"]
-[ext_resource type="MeshLibrary" uid="uid://dq7b3hldj18ag" path="res://resources/MeshLibraries/test_blocks.tres" id="2_igqmq"]
+[ext_resource type="MeshLibrary" uid="uid://c6i7bx2fx2rup" path="res://resources/MeshLibraries/sci_fi.tres" id="2_vx3nt"]
 [ext_resource type="Script" path="res://scripts/DungeonGridMap.gd" id="3_dskgd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d783x"]
@@ -14,22 +14,10 @@ ground_horizon_color = Color(0.645449, 0.611724, 0.743433, 1)
 sky_material = SubResource("ProceduralSkyMaterial_d783x")
 
 [sub_resource type="Environment" id="Environment_xrpqx"]
-background_mode = 2
 sky = SubResource("Sky_x4s61")
-tonemap_mode = 2
-glow_enabled = true
+ambient_light_source = 1
+reflected_light_source = 1
 volumetric_fog_density = 0.059
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_k47w2"]
-size = Vector3(550, 20, 550)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uo3k2"]
-transparency = 1
-albedo_color = Color(0.294118, 0.533333, 1, 0.556863)
-
-[sub_resource type="BoxMesh" id="BoxMesh_hcbjq"]
-material = SubResource("StandardMaterial3D_uo3k2")
-size = Vector3(550, 20, 550)
 
 [node name="World" type="Node3D"]
 
@@ -38,22 +26,11 @@ environment = SubResource("Environment_xrpqx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.29404, -0.819275, 0.49227, 0, 0.515038, 0.857167, -0.955793, 0.252042, -0.151442, 0, 0, 0)
+visible = false
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_84cls")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4285, 9.31947, 17.2521)
-
-[node name="Water" type="StaticBody3D" parent="."]
-visible = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Water"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.47, 0, 6.32242)
-shape = SubResource("BoxShape3D_k47w2")
-disabled = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Water"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.58275, 0)
-mesh = SubResource("BoxMesh_hcbjq")
 
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
@@ -77,5 +54,5 @@ scale = Vector2(10, 8)
 text = "+"
 
 [node name="DungeonGridMap" type="GridMap" parent="."]
-mesh_library = ExtResource("2_igqmq")
+mesh_library = ExtResource("2_vx3nt")
 script = ExtResource("3_dskgd")

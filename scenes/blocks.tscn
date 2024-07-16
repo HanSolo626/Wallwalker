@@ -1,24 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1dllk1gxichx"]
+[gd_scene load_steps=4 format=3 uid="uid://c1dllk1gxichx"]
 
-[ext_resource type="PackedScene" uid="uid://bvskt2ovhntwx" path="res://scenes/diamond_brick_2.tscn" id="1_6pigo"]
-[ext_resource type="PackedScene" uid="uid://bk2tscemvqa1u" path="res://resources/test_blocks/pink_test_block.glb" id="2_2gnp5"]
-[ext_resource type="PackedScene" uid="uid://jejlyeb7ykhe" path="res://resources/test_blocks/red_test_block.glb" id="3_4pcia"]
-[ext_resource type="PackedScene" uid="uid://bfbxdiqr5gx4n" path="res://resources/test_blocks/green_test_block.glb" id="4_pkl61"]
-[ext_resource type="PackedScene" uid="uid://bp6ovko5a31en" path="res://resources/test_blocks/blue_test_block.glb" id="5_usoua"]
+[ext_resource type="PackedScene" uid="uid://dvvh65df1uatn" path="res://scenes/sci_fi_floor_block.tscn" id="1_yp2pk"]
+[ext_resource type="PackedScene" uid="uid://bgfy10mkincj3" path="res://scenes/sci_fi_floor_block_2.tscn" id="2_x410w"]
+[ext_resource type="PackedScene" uid="uid://bjfcda5qqkvuo" path="res://scenes/black_metal_block.tscn" id="3_aflyc"]
 
 [node name="Blocks" type="Node3D"]
 
-[node name="diamond brick2" parent="." instance=ExtResource("1_6pigo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.42555, 0, 0.0909996)
+[node name="sci-fi_floor_block" parent="." instance=ExtResource("1_yp2pk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.236293, 0, 0.0593729)
 
-[node name="green_test_block" parent="." instance=ExtResource("4_pkl61")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.322928, 9.53674e-07, -5.45141)
+[node name="sci-fi_floor_block2" parent="." instance=ExtResource("2_x410w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.06329, 0, -0.0788722)
 
-[node name="red_test_block" parent="." instance=ExtResource("3_4pcia")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.40677, -2.43473, -4.79874)
-
-[node name="pink_test_block" parent="." instance=ExtResource("2_2gnp5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25936, 0, -6.58504)
-
-[node name="blue_test_block" parent="." instance=ExtResource("5_usoua")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.55229, 0, 0.592585)
+[node name="black_metal_block" parent="." instance=ExtResource("3_aflyc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.636526, 2.38419e-07, -3.0652)

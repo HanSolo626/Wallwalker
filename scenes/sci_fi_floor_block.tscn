@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvvh65df1uatn"]
+
+[ext_resource type="PackedScene" uid="uid://dey8gwhxlg041" path="res://resources/blocks/sci-fi_floor_block.glb" id="1_hm6kt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qgbbb"]
+
+[node name="sci-fi_floor_block" instance=ExtResource("1_hm6kt")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_qgbbb")

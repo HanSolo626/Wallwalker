@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjfcda5qqkvuo"]
+
+[ext_resource type="PackedScene" uid="uid://bnqf7k40cn75w" path="res://resources/blocks/black_metal_block.glb" id="1_83js0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n8cwa"]
+
+[node name="black_metal_block" instance=ExtResource("1_83js0")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="black_metal" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="black_metal/StaticBody3D" index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_n8cwa")

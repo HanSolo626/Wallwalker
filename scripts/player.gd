@@ -1,10 +1,11 @@
 extends CharacterBody3D
 
 
-const SPEED = 12.0
+const WALKING_SPEED = 8.0
+const SPRINT_SPEED = 15.0
 const JUMP_VELOCITY = 12
 # the smaller this value, the faster it goes
-const CAMERA_ROTATION_SPEED = 50
+const CAMERA_ROTATION_SPEED = 25
 
 # Get the gravity from the project settings to be synced with RigidBody nodes. (nope!)
 var gravity = 24.0
@@ -180,6 +181,8 @@ func change_gravity(raycast_object):
 		positive = false
 		change_rotation(CAMERA_ANGLES[dir_str]["left"])
 		dir_str = "left wall"
+		up_direction = Vector3.RIGHT
+		
 		
 	elif block.x - face.x > 0 and (current_pull != 0 or positive != true):
 		print("right")
@@ -187,6 +190,8 @@ func change_gravity(raycast_object):
 		positive = true
 		change_rotation(CAMERA_ANGLES[dir_str]["right"])
 		dir_str = "right wall"
+		up_direction = Vector3.LEFT
+		
 		
 	elif block.y - face.y < 0 and (current_pull != 1 or positive != false):
 		print("down")
@@ -194,6 +199,8 @@ func change_gravity(raycast_object):
 		positive = false
 		change_rotation(CAMERA_ANGLES[dir_str]["down"])
 		dir_str = "floor"
+		up_direction = Vector3.UP
+		
 		
 	elif block.y - face.y > 0 and (current_pull != 1 or positive != true):
 		print("up")
@@ -201,6 +208,8 @@ func change_gravity(raycast_object):
 		positive = true
 		change_rotation(CAMERA_ANGLES[dir_str]["up"])
 		dir_str = "ceiling"
+		up_direction = Vector3.DOWN
+		
 		
 	elif block.z - face.z < 0 and (current_pull != 2 or positive != false):
 		print("backward")
@@ -208,6 +217,8 @@ func change_gravity(raycast_object):
 		positive = false
 		change_rotation(CAMERA_ANGLES[dir_str]["backward"])
 		dir_str = "backward wall"
+		up_direction = Vector3.BACK
+		
 		
 	elif block.z - face.z > 0 and (current_pull != 2 or positive != true):
 		print("forward")
@@ -215,6 +226,8 @@ func change_gravity(raycast_object):
 		positive = true
 		change_rotation(CAMERA_ANGLES[dir_str]["forward"])
 		dir_str = "forward wall"
+		up_direction = Vector3.FORWARD
+		
 		
 
 
@@ -285,46 +298,51 @@ func _physics_process(delta):
 			velocity.z -= gravity * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall() or is_on_ceiling()):
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		if not positive:
 			if current_pull == 0: # X
 				velocity.x = JUMP_VELOCITY
 			elif current_pull == 1: # Y
 				velocity.y = JUMP_VELOCITY
-			elif current_pull == 2: # X
+			elif current_pull == 2: # z
 				velocity.z = JUMP_VELOCITY
 		else:
 			if current_pull == 0: # X
 				velocity.x = -JUMP_VELOCITY
 			elif current_pull == 1: # Y
 				velocity.y = -JUMP_VELOCITY
-			elif current_pull == 2: # X
+			elif current_pull == 2: # z
 				velocity.z = -JUMP_VELOCITY
 		
 
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("left", "right", "up", "down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-
+	var multiplyer
+	
+	if Input.is_action_pressed("shift_key"):
+		multiplyer = SPRINT_SPEED
+	else:
+		multiplyer = WALKING_SPEED
 		
 	if direction:
 		if current_pull == 0: # X
-			velocity.y = direction.y * SPEED
-			velocity.z = direction.z * SPEED
+			velocity.y = direction.y * multiplyer
+			velocity.z = direction.z * multiplyer
 		elif current_pull == 1: # Y
-			velocity.x = direction.x * SPEED
-			velocity.z = direction.z * SPEED
+			velocity.x = direction.x * multiplyer
+			velocity.z = direction.z * multiplyer
 		elif current_pull == 2: # Z
-			velocity.y = direction.y * SPEED
-			velocity.x = direction.x * SPEED
+			velocity.y = direction.y * multiplyer
+			velocity.x = direction.x * multiplyer
 	else:
-		if current_pull == 0 and is_on_wall(): # X
+		if current_pull == 0 and (is_on_floor() or is_on_ceiling()): # X
 			velocity.y = 0
 			velocity.z = 0
 		elif current_pull == 1 and (is_on_floor() or is_on_ceiling()): # Y
 			velocity.x = 0
 			velocity.z = 0
-		elif current_pull == 2 and is_on_wall(): # Z
+		elif current_pull == 2 and (is_on_floor() or is_on_ceiling()): # Z
 			velocity.y = 0
 			velocity.x = 0
 			
