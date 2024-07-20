@@ -1,7 +1,7 @@
 extends GridMap
 
 var current_floor_num = 0
-var block_index_num = 1
+var block_index_num = 3
 
 var MAP_KEY = {
 			"blank tile":0,
@@ -16,7 +16,7 @@ var gn = preload("res://scripts/Generator.gd").new(
 	1,
 	4,
 	50,
-	1,
+	0,
 	17,
 	27,
 	5,
@@ -27,7 +27,10 @@ var gn = preload("res://scripts/Generator.gd").new(
 	0,
 	MAP_KEY
 )
+
+
 var dungeon = preload("res://scripts/Dungeon.gd").new("Zelda", "The_Legend_of", gn.DUNGEON)
+@export var sliding_door: PackedScene
 
 # acts as indicator as GridMap for player script.
 func is_block():
@@ -81,6 +84,17 @@ func _ready():
 		for x in range(len(current_level["tile_map"])):
 			if current_level["tile_map"][y][x] == MAP_KEY["room tile"]:
 				set_cell_item(Vector3i(x, current_level["rh"], y), block_index_num)
+				
+				
+	# Add doors
+	var door_num = 0
+	for door in current_level["door_data"]:
+		var new_d = sliding_door.instantiate()
+		new_d.init_door(map_to_local(Vector3i(door[0][0], 2, door[0][1])), door[1])
+		new_d.name = "BasicDoor"+str(door_num)
+		add_child(new_d)
+		door_num += 1
+		
 				
 
 	

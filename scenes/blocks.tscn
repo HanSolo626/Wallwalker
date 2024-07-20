@@ -1,16 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1dllk1gxichx"]
+[gd_scene load_steps=5 format=3 uid="uid://c1dllk1gxichx"]
 
-[ext_resource type="PackedScene" uid="uid://dvvh65df1uatn" path="res://scenes/sci_fi_floor_block.tscn" id="1_yp2pk"]
 [ext_resource type="PackedScene" uid="uid://bgfy10mkincj3" path="res://scenes/sci_fi_floor_block_2.tscn" id="2_x410w"]
 [ext_resource type="PackedScene" uid="uid://bjfcda5qqkvuo" path="res://scenes/black_metal_block.tscn" id="3_aflyc"]
+[ext_resource type="PackedScene" uid="uid://c5e7mtp0sgahk" path="res://scenes/white_striped_block.tscn" id="4_bo0hu"]
+[ext_resource type="PackedScene" uid="uid://dy4utmtghno48" path="res://scenes/grey_block.tscn" id="4_xss1a"]
 
 [node name="Blocks" type="Node3D"]
-
-[node name="sci-fi_floor_block" parent="." instance=ExtResource("1_yp2pk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.236293, 0, 0.0593729)
 
 [node name="sci-fi_floor_block2" parent="." instance=ExtResource("2_x410w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.06329, 0, -0.0788722)
 
 [node name="black_metal_block" parent="." instance=ExtResource("3_aflyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.636526, 2.38419e-07, -3.0652)
+
+[node name="white_striped_block" parent="." instance=ExtResource("4_bo0hu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.27, -2.38419e-07, -1.37144)
+
+[node name="grey_block" parent="." instance=ExtResource("4_xss1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.32226, 0, -4.44683)

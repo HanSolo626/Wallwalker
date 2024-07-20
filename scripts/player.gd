@@ -6,6 +6,7 @@ const SPRINT_SPEED = 15.0
 const JUMP_VELOCITY = 12
 # the smaller this value, the faster it goes
 const CAMERA_ROTATION_SPEED = 25
+var light_on = true
 
 # Get the gravity from the project settings to be synced with RigidBody nodes. (nope!)
 var gravity = 24.0
@@ -81,6 +82,7 @@ const CAMERA_ANGLES = {
 @onready var body = $Body
 @onready var stick = $stick
 @onready var gridmap = $"../DungeonGridMap"
+@onready var flashlight = $Camera3D/SpotLight3D
 
 
 func set_top_level(t):
@@ -349,12 +351,19 @@ func _physics_process(delta):
 		
 		
 	# handle mouse clicks
-	
-				
 	if Input.is_action_just_pressed("right click"):
 		if ray_cast_3d.is_colliding():
 			if ray_cast_3d.get_collider().has_method("is_block") and is_rotating() == false:
 				change_gravity(ray_cast_3d)
+				
+	# Handle light
+	if Input.is_action_just_pressed("flashlight"):
+		if light_on:
+			flashlight.visible = false
+			light_on = false
+		else:
+			flashlight.visible = true
+			light_on = true
 				
 
 				

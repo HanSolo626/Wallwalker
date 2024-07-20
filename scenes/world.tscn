@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0udkcrdxrxmj"]
+[gd_scene load_steps=8 format=3 uid="uid://d0udkcrdxrxmj"]
 
 [ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="2_84cls"]
-[ext_resource type="MeshLibrary" uid="uid://c6i7bx2fx2rup" path="res://resources/MeshLibraries/sci_fi.tres" id="2_vx3nt"]
+[ext_resource type="MeshLibrary" uid="uid://by7wgwg3b1ijh" path="res://resources/MeshLibraries/sci_fi.tres" id="2_vx3nt"]
 [ext_resource type="Script" path="res://scripts/DungeonGridMap.gd" id="3_dskgd"]
+[ext_resource type="PackedScene" uid="uid://2iu77vgffn7u" path="res://scenes/basic_door.tscn" id="4_xmmtl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d783x"]
 sky_top_color = Color(0.448753, 0.446873, 0.455253, 1)
@@ -16,6 +17,8 @@ sky_material = SubResource("ProceduralSkyMaterial_d783x")
 [sub_resource type="Environment" id="Environment_xrpqx"]
 sky = SubResource("Sky_x4s61")
 ambient_light_source = 1
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.0
 reflected_light_source = 1
 volumetric_fog_density = 0.059
 
@@ -30,7 +33,7 @@ visible = false
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_84cls")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4285, 9.31947, 17.2521)
+unique_name_in_owner = true
 
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
@@ -55,4 +58,6 @@ text = "+"
 
 [node name="DungeonGridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("2_vx3nt")
+collision_layer = 2
 script = ExtResource("3_dskgd")
+sliding_door = ExtResource("4_xmmtl")

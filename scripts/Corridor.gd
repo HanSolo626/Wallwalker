@@ -22,8 +22,10 @@ var AREA_POINTS
 
 var START_DOOR
 var START_DOOR_POINTS
+var START_DOOR_VERTICAL
 var END_DOOR
 var END_DOOR_POINTS
+var END_DOOR_VERTICAL
 var door_radius = 1
 
 var random
@@ -273,15 +275,22 @@ func plot_corridor(
 	START_DOOR_POINTS = []
 	END_DOOR_POINTS = []
 	if starting_direction == 0 or starting_direction == 2:
+		START_DOOR_VERTICAL = true
 		for x in range(START_DOOR[0]-door_radius, START_DOOR[0]+door_radius+1):
 			START_DOOR_POINTS.append([x, START_DOOR[1]])
+			
 	elif starting_direction == 1 or starting_direction == 3:
+		START_DOOR_VERTICAL = false
 		for y in range(START_DOOR[1]-door_radius, START_DOOR[1]+door_radius+1):
 			START_DOOR_POINTS.append([START_DOOR[0], y])
+			
 	if ending_direction == 0 or ending_direction == 2:
+		END_DOOR_VERTICAL = true
 		for x in range(END_DOOR[0]-door_radius, END_DOOR[0]+door_radius+1):
 			END_DOOR_POINTS.append([x, END_DOOR[1]])
+			
 	elif ending_direction == 1 or ending_direction == 3:
+		END_DOOR_VERTICAL = false
 		for y in range(END_DOOR[1]-door_radius, END_DOOR[1]+door_radius+1):
 			END_DOOR_POINTS.append([END_DOOR[0], y])
 		

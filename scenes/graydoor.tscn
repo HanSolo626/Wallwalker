@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://y0u7s5fpex42"]
+
+[ext_resource type="PackedScene" uid="uid://bagb5m6tjqjs8" path="res://resources/doors/graydoor.glb" id="1_42vtg"]
+[ext_resource type="Script" path="res://scripts/graydoor.gd" id="2_ae8p1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_utse3"]
+size = Vector3(1, 0.999878, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4njvp"]
+
+[node name="graydoor" instance=ExtResource("1_42vtg")]
+
+[node name="Door" parent="." index="0"]
+script = ExtResource("2_ae8p1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Door" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/StaticBody3D" index="0"]
+transform = Transform3D(8.24774, 0, 0, 0, 9.59283, 0, 0, 0, 0.839518, 0, -0.0005855, 0)
+shape = SubResource("BoxShape3D_utse3")
+
+[node name="DetectPlayer" type="ShapeCast3D" parent="Door" index="1"]
+transform = Transform3D(12.3707, 0, 0, 0, 9.48618, 0, 0, 0, 14.5557, 0, 9.44574, 0)
+shape = SubResource("BoxShape3D_4njvp")

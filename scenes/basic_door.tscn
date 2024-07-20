@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://2iu77vgffn7u"]
+
+[ext_resource type="Script" path="res://scenes/basic_door.gd" id="1_wqgdc"]
+[ext_resource type="PackedScene" uid="uid://bagb5m6tjqjs8" path="res://resources/doors/graydoor.glb" id="1_y2pl1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_215xn"]
+size = Vector3(8.20642, 9.63141, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bvm3q"]
+size = Vector3(14.1211, 23.6686, 14.7422)
+
+[node name="BasicDoor" type="CharacterBody3D"]
+collision_layer = 4
+axis_lock_linear_x = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+slide_on_ceiling = false
+floor_stop_on_slope = false
+floor_block_on_wall = false
+script = ExtResource("1_wqgdc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_215xn")
+
+[node name="DoorBody" type="Node3D" parent="."]
+
+[node name="graydoor" parent="DoorBody" instance=ExtResource("1_y2pl1")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.63834, 0)
+shape = SubResource("BoxShape3D_bvm3q")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

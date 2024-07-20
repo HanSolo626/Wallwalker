@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5e7mtp0sgahk"]
+
+[ext_resource type="PackedScene" uid="uid://buxqqgqm8ieo8" path="res://resources/blocks/white_striped_block.glb" id="1_ehbwx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n8cwa"]
+
+[node name="white_striped_block" instance=ExtResource("1_ehbwx")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="white_striped" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="white_striped/StaticBody3D" index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_n8cwa")

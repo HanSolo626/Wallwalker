@@ -13,12 +13,14 @@ height = 4.0
 [sub_resource type="BoxMesh" id="BoxMesh_yyh1i"]
 
 [node name="Player" type="CharacterBody3D"]
+collision_mask = 6
 script = ExtResource("1_4q30t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_qwuce")
 
 [node name="Body" type="MeshInstance3D" parent="."]
+layers = 3
 mesh = SubResource("CapsuleMesh_53i5u")
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -27,6 +29,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53324, 0.103362)
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 999, 0, 0, -0.110323)
 target_position = Vector3(0, 0, -10)
+collision_mask = 3
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+light_energy = 6.0
+spot_range = 46.405
+spot_angle = 24.11
 
 [node name="stick" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 3, 0, 0.414206, -1.24505)
@@ -34,6 +42,6 @@ visible = false
 mesh = SubResource("BoxMesh_yyh1i")
 
 [node name="ConstantGlow" type="OmniLight3D" parent="."]
-light_energy = 16.0
-omni_range = 1e+06
-omni_shadow_mode = 0
+light_color = Color(0.269489, 0.53712, 1, 1)
+light_energy = 1.845
+omni_range = 7.614
