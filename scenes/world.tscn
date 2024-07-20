@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0udkcrdxrxmj"]
+[gd_scene load_steps=10 format=3 uid="uid://d0udkcrdxrxmj"]
 
 [ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="2_84cls"]
 [ext_resource type="MeshLibrary" uid="uid://by7wgwg3b1ijh" path="res://resources/MeshLibraries/sci_fi.tres" id="2_vx3nt"]
 [ext_resource type="Script" path="res://scripts/DungeonGridMap.gd" id="3_dskgd"]
 [ext_resource type="PackedScene" uid="uid://2iu77vgffn7u" path="res://scenes/basic_door.tscn" id="4_xmmtl"]
+[ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="5_2g0vb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d783x"]
 sky_top_color = Color(0.448753, 0.446873, 0.455253, 1)
@@ -21,6 +22,9 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.0
 reflected_light_source = 1
 volumetric_fog_density = 0.059
+
+[sub_resource type="Theme" id="Theme_o2i6n"]
+default_font_size = 42
 
 [node name="World" type="Node3D"]
 
@@ -61,3 +65,69 @@ mesh_library = ExtResource("2_vx3nt")
 collision_layer = 2
 script = ExtResource("3_dskgd")
 sliding_door = ExtResource("4_xmmtl")
+
+[node name="PauseMenu" type="Control" parent="."]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_2g0vb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+top_level = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -358.5
+offset_top = -105.0
+offset_right = 358.5
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_o2i6n")
+text = "Resume"
+
+[node name="ExitToMainMenuButton" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_o2i6n")
+text = "Exit to Main Menu"
+
+[node name="ExitGameButton" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_o2i6n")
+text = "Exit Game"
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1679.0
+offset_top = -852.5
+offset_right = 1679.0
+offset_bottom = 852.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.313726)
+
+[connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/ExitToMainMenuButton" to="PauseMenu" method="_on_exit_to_main_menu_button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/ExitGameButton" to="PauseMenu" method="_on_exit_game_button_pressed"]

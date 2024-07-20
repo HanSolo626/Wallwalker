@@ -279,9 +279,6 @@ func _input(event):
 
 func _physics_process(delta):
 	
-	# Check for quit
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
 		
 	# Add the gravity.
 	if positive:
@@ -372,3 +369,7 @@ func _physics_process(delta):
 	transform = transform.orthonormalized()
 	camera_3d.transform = camera_3d.transform.orthonormalized()
 	move_and_slide()
+
+
+func _on_exit_game_button_pressed():
+	pass # Replace with function body.
