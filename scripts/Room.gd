@@ -17,6 +17,9 @@ var WALL_AREA_POINTS
 var wall_status
 var STAIRWELL_AREA_POINTS
 var mod_num = 0
+var LAMPS
+var lamp_distance
+var lamp_count
 
 var random
 
@@ -32,6 +35,8 @@ func _init(
 	SIZE_X = check_x_input(size_x)
 	SIZE_Y = check_y_input(size_y)
 	CFS = 4
+	lamp_distance = ceil((SIZE_X + SIZE_Y) / 4) - 2
+	lamp_count = 4
 	
 	random = RandomNumberGenerator.new()
 	random.randomize()
@@ -66,11 +71,33 @@ func _init(
 		STAIRWELL_AREA_POINTS = get_stair_area()
 	else:
 		STAIRWELL_AREA_POINTS = []
+		
+	LAMPS = get_lamp_positions()
 	
 
 func _ready():
 	random = RandomNumberGenerator.new()
 	random.randomize()
+	
+	
+func get_lamp_positions():
+	var dir = 45.0
+	var leg_x
+	var leg_y
+	var list = []
+	for x in range(lamp_count):
+		leg_x = ceil(lamp_distance * cos(deg_to_rad(dir))) + POSITION[0]
+		leg_y = ceil(lamp_distance * sin(deg_to_rad(dir))) + POSITION[1]
+		list.append([leg_x, leg_y])
+		dir += 360 / lamp_count
+	dir = 0.0
+	for x in range(2):
+		leg_x = ceil(ceil(lamp_distance / 2) * cos(deg_to_rad(dir))) + POSITION[0]
+		leg_y = ceil(ceil(lamp_distance / 2) * sin(deg_to_rad(dir))) + POSITION[1]
+		list.append([leg_x, leg_y])
+		dir += 360.0 / 2
+	return list
+		
 	
 	
 func get_stair_area():

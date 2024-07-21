@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://2iu77vgffn7u"]
 
-[ext_resource type="Script" path="res://scenes/basic_door.gd" id="1_wqgdc"]
+[ext_resource type="Script" path="res://basic_door.gd" id="1_o88l8"]
 [ext_resource type="PackedScene" uid="uid://bagb5m6tjqjs8" path="res://resources/doors/graydoor.glb" id="1_y2pl1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_215xn"]
@@ -18,7 +18,7 @@ axis_lock_angular_z = true
 slide_on_ceiling = false
 floor_stop_on_slope = false
 floor_block_on_wall = false
-script = ExtResource("1_wqgdc")
+script = ExtResource("1_o88l8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_215xn")

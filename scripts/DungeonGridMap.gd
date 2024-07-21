@@ -31,6 +31,7 @@ var gn = preload("res://scripts/Generator.gd").new(
 
 var dungeon = preload("res://scripts/Dungeon.gd").new("Zelda", "The_Legend_of", gn.DUNGEON)
 @export var sliding_door: PackedScene
+@export var ceiling_lamp: PackedScene
 
 # acts as indicator as GridMap for player script.
 func is_block():
@@ -94,6 +95,15 @@ func _ready():
 		new_d.name = "BasicDoor"+str(door_num)
 		add_child(new_d)
 		door_num += 1
+		
+	# Add lamps
+	var lamp_num = 0
+	for lamp in current_level["lamp_data"]:
+		var new_l = ceiling_lamp.instantiate()
+		new_l.init_light(map_to_local(Vector3i(lamp[0], current_level["rh"]-1, lamp[1])))
+		new_l.name = "CeilingLight"+str(lamp_num)
+		add_child(new_l)
+		lamp_num += 1
 		
 				
 

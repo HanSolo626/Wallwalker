@@ -23,6 +23,7 @@ var DOWN_ROOM
 var DOOR_HEIGHT
 var DUNGEON
 var DOOR_DATA
+var LAMP_DATA
 
 var random
 #const Room = preload("res://scripts/Room.gd")
@@ -82,6 +83,7 @@ func _init(
 	SECONDARY_RING_CORRIDORS = {}
 	
 	DOOR_DATA = []
+	LAMP_DATA = []
 	
 	for x in range(secondary_rings):
 		SECONDARY_RING_ROOMS[x] = []
@@ -254,6 +256,8 @@ func build_level():
 		for room in ring:
 			for point in room.STAIRWELL_AREA_POINTS:
 				tile_map[point[1]][point[0]] = MAP_KEY["stair tile"]
+			for data_point in room.LAMPS:
+				LAMP_DATA.append(data_point)
 				
 	for corridor in corridors:
 		var start = corridor.START_DOOR
@@ -308,6 +312,7 @@ func build_level():
 		"rh":ROOM_HEIGHT,
 		"dh":DOOR_HEIGHT,
 		"door_data":DOOR_DATA,
+		"lamp_data":LAMP_DATA,
 	}
 	
 	return level
