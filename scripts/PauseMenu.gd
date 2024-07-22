@@ -1,6 +1,8 @@
 extends Control
 
 
+func _ready():
+	grab_click_focus()
 
 func _process(delta):
 	# Check for pause
@@ -13,6 +15,8 @@ func _process(delta):
 			get_tree().paused = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			show()
+			grab_click_focus()
+			print(has_focus())
 		
 
 

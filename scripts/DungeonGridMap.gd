@@ -32,6 +32,7 @@ var gn = preload("res://scripts/Generator.gd").new(
 var dungeon = preload("res://scripts/Dungeon.gd").new("Zelda", "The_Legend_of", gn.DUNGEON)
 @export var sliding_door: PackedScene
 @export var ceiling_lamp: PackedScene
+var ceiling_lights = []
 
 # acts as indicator as GridMap for player script.
 func is_block():
@@ -41,6 +42,10 @@ func get_player_start_location():
 	var a = dungeon.get_level(current_floor_num)["start"]
 	a = map_to_local(Vector3i(a[0], 2, a[1]))
 	return a
+	
+func flip_lights():
+	for light in ceiling_lights:
+		light.flip_light()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -106,6 +111,7 @@ func _ready():
 			new_l.init_light(map_to_local(Vector3i(lamp[0][0], current_level["ch"]-1, lamp[0][1])))
 		new_l.name = "CeilingLight"+str(lamp_num)
 		add_child(new_l)
+		ceiling_lights.append(new_l)
 		lamp_num += 1
 		
 				

@@ -7,6 +7,7 @@ const JUMP_VELOCITY = 12
 # the smaller this value, the faster it goes
 const CAMERA_ROTATION_SPEED = 25
 var light_on = true
+var frozen = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes. (nope!)
 var gravity = 24.0
@@ -233,6 +234,12 @@ func change_gravity(raycast_object):
 		
 
 
+func freeze_player():
+	if frozen:
+		frozen = false
+	else:
+		frozen = true
+
 
 func _ready(): # setup
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -246,7 +253,7 @@ func _ready(): # setup
 	
 func _input(event):
 	# Mouse input
-	if event is InputEventMouseMotion and is_rotating() == false:
+	if not frozen and event is InputEventMouseMotion and is_rotating() == false:
 		if positive:
 			if current_pull == 0:
 				rotate_x(event.relative.x * sensitivity)
@@ -297,7 +304,7 @@ func _physics_process(delta):
 			velocity.z -= gravity * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if not frozen and Input.is_action_just_pressed("jump") and is_on_floor():
 		if not positive:
 			if current_pull == 0: # X
 				velocity.x = JUMP_VELOCITY
@@ -324,7 +331,7 @@ func _physics_process(delta):
 	else:
 		multiplyer = WALKING_SPEED
 		
-	if direction:
+	if not frozen and direction:
 		if current_pull == 0: # X
 			velocity.y = direction.y * multiplyer
 			velocity.z = direction.z * multiplyer
@@ -348,13 +355,13 @@ func _physics_process(delta):
 		
 		
 	# handle mouse clicks
-	if Input.is_action_just_pressed("right click"):
+	if not frozen and Input.is_action_just_pressed("right click"):
 		if ray_cast_3d.is_colliding():
 			if ray_cast_3d.get_collider().has_method("is_block") and is_rotating() == false:
 				change_gravity(ray_cast_3d)
 				
 	# Handle light
-	if Input.is_action_just_pressed("flashlight"):
+	if not frozen and Input.is_action_just_pressed("flashlight"):
 		if light_on:
 			flashlight.visible = false
 			light_on = false
