@@ -19,6 +19,7 @@ var BOX
 var THICKNESS
 var MID_POINTS
 var AREA_POINTS
+var LAMPS
 
 var random
 var Room = preload("res://scripts/Room.gd")
@@ -45,6 +46,7 @@ func _init(
 	TILE_MAP_REF = tile_map_ref
 	MAP_KEY = map_key
 	THICKNESS = thickness
+	LAMPS = []
 	
 	var a_above
 	var a_right
@@ -196,6 +198,8 @@ func plot_corridor(
 	for thing in midpoints:
 		points.append(thing)
 	points.append(end)
+	
+	LAMPS = midpoints
 	
 	area_points.append(start)
 	

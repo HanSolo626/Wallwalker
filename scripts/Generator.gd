@@ -251,13 +251,15 @@ func build_level():
 	for corridor in simple_corridors:
 		for point in corridor.AREA_POINTS:
 			tile_map[point[1]][point[0]] = MAP_KEY["corridor tile"]
+		for data_point in corridor.LAMPS:
+			LAMP_DATA.append([data_point, 1])
 			
 	for ring in rooms:
 		for room in ring:
 			for point in room.STAIRWELL_AREA_POINTS:
 				tile_map[point[1]][point[0]] = MAP_KEY["stair tile"]
 			for data_point in room.LAMPS:
-				LAMP_DATA.append(data_point)
+				LAMP_DATA.append([data_point, 0])
 				
 	for corridor in corridors:
 		var start = corridor.START_DOOR
@@ -268,8 +270,8 @@ func build_level():
 			tile_map[point[1]][point[0]] = MAP_KEY["door tile"]
 		DOOR_DATA.append([start, corridor.START_DOOR_VERTICAL])
 		DOOR_DATA.append([end, corridor.END_DOOR_VERTICAL])
-		
-		# fix null area in corridor around door
+		for data_point in corridor.LAMPS:
+			LAMP_DATA.append([data_point, 1])
 		var f = corridor.STARTING_DIRECTION
 		var o
 		var k

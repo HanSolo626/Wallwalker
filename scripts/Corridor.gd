@@ -31,6 +31,8 @@ var door_radius = 1
 var random
 var Room = preload("res://scripts/Room.gd")
 
+var LAMPS
+
 
 
 
@@ -52,6 +54,7 @@ func _init(
 	TILE_MAP_REF = tile_map_ref
 	MAP_KEY = map_key
 	THICKNESS = thickness
+	LAMPS = []
 	
 	random = RandomNumberGenerator.new()
 	random.randomize()
@@ -303,6 +306,9 @@ func plot_corridor(
 	for thing in midpoints:
 		points.append(thing)
 	points.append(end)
+	
+	# Get lamps
+	LAMPS = points
 	
 	area_points.append(start)
 	

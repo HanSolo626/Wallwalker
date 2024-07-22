@@ -16,7 +16,7 @@ var gn = preload("res://scripts/Generator.gd").new(
 	1,
 	4,
 	50,
-	0,
+	1,
 	17,
 	27,
 	5,
@@ -100,7 +100,10 @@ func _ready():
 	var lamp_num = 0
 	for lamp in current_level["lamp_data"]:
 		var new_l = ceiling_lamp.instantiate()
-		new_l.init_light(map_to_local(Vector3i(lamp[0], current_level["rh"]-1, lamp[1])))
+		if lamp[1] == 0: # is it in a room?
+			new_l.init_light(map_to_local(Vector3i(lamp[0][0], current_level["rh"]-1, lamp[0][1])))
+		else:
+			new_l.init_light(map_to_local(Vector3i(lamp[0][0], current_level["ch"]-1, lamp[0][1])))
 		new_l.name = "CeilingLight"+str(lamp_num)
 		add_child(new_l)
 		lamp_num += 1
