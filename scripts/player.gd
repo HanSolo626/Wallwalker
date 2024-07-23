@@ -27,7 +27,7 @@ var z_updates = 0
 # Camera angle data
 const CAMERA_ANGLES = {
 	"floor":{
-		"up":[180, null, 0],
+		"up":[180, null, null],
 		"down":null,
 		"left":[null, null, -90],
 		"right":[null, null, 90],
@@ -100,15 +100,15 @@ func is_rotating():
 
 func update_rotation():
 	if y_updates > 0:
-		rotate_y(y_to_set)
+		rotate_object_local(Vector3(0, 1, 0), y_to_set)
 		y_updates -= 1
 		
 	if x_updates > 0:
-		rotate_x(x_to_set)
+		rotate_object_local(Vector3(1, 0, 0), x_to_set)
 		x_updates -= 1
 		
 	if z_updates > 0:
-		rotate_z(z_to_set)
+		rotate_object_local(Vector3(0, 0, 1), z_to_set)
 		z_updates -= 1
 	
 
