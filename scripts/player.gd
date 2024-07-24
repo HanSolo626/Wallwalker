@@ -6,7 +6,7 @@ const SPRINT_SPEED = 15.0
 const JUMP_VELOCITY = 12
 # the smaller this value, the faster it goes
 const CAMERA_ROTATION_SPEED = 25
-var light_on = true
+var light_on = false
 var frozen = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes. (nope!)

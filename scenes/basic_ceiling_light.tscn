@@ -14,11 +14,11 @@ script = ExtResource("2_71v4b")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65179e-08, 1.07917, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Lights" index="0"]
-light_energy = 2.0
+light_energy = 0.446
 light_indirect_energy = 0.0
 light_size = 0.195
 shadow_bias = 7.0
-omni_range = 22.0
+omni_range = 58.732
 omni_attenuation = 0.366021
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="3"]
