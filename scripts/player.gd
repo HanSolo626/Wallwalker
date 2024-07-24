@@ -15,6 +15,7 @@ var sensitivity = 0.0015
 var current_pull = 1
 var positive = false
 var dir_str = "floor"
+var rotation_trigger = true
 
 var x_to_set = 0.0
 var y_to_set = 0.0
@@ -99,29 +100,27 @@ func is_rotating():
 		return true
 
 func update_rotation():
-	if y_updates > 0:
-		rotate_object_local(Vector3(0, 1, 0), y_to_set)
-		y_updates -= 1
-		
-	if x_updates > 0:
-		rotate_object_local(Vector3(1, 0, 0), x_to_set)
-		x_updates -= 1
-		
-	if z_updates > 0:
-		rotate_object_local(Vector3(0, 0, 1), z_to_set)
-		z_updates -= 1
+	if rotation_trigger:
+		if y_updates > 0:
+			rotate_y(y_to_set)
+			y_updates -= 1
+			
+		if x_updates > 0:
+			rotate_x(x_to_set)
+			x_updates -= 1
+			
+		if z_updates > 0:
+			rotate_z(z_to_set)
+			z_updates -= 1
 	
 
 
-func change_rotation(data):
-	# get difference
-	#set_top_level(true)
-	#transform.basis = Basis()
-	#set_top_level(false)
+func arm_rotation_change(data):
+	
 	var x = data[0]
 	var y = data[1]
 	var z = data[2]
-	
+	rotation_trigger = false
 
 	if x == null:
 		pass
@@ -182,7 +181,7 @@ func change_gravity(raycast_object):
 		print("left")
 		current_pull = 0
 		positive = false
-		change_rotation(CAMERA_ANGLES[dir_str]["left"])
+		arm_rotation_change(CAMERA_ANGLES[dir_str]["left"])
 		dir_str = "left wall"
 		up_direction = Vector3.RIGHT
 		
@@ -191,7 +190,7 @@ func change_gravity(raycast_object):
 		print("right")
 		current_pull = 0
 		positive = true
-		change_rotation(CAMERA_ANGLES[dir_str]["right"])
+		arm_rotation_change(CAMERA_ANGLES[dir_str]["right"])
 		dir_str = "right wall"
 		up_direction = Vector3.LEFT
 		
@@ -200,7 +199,7 @@ func change_gravity(raycast_object):
 		print("down")
 		current_pull = 1
 		positive = false
-		change_rotation(CAMERA_ANGLES[dir_str]["down"])
+		arm_rotation_change(CAMERA_ANGLES[dir_str]["down"])
 		dir_str = "floor"
 		up_direction = Vector3.UP
 		
@@ -209,7 +208,7 @@ func change_gravity(raycast_object):
 		print("up")
 		current_pull = 1
 		positive = true
-		change_rotation(CAMERA_ANGLES[dir_str]["up"])
+		arm_rotation_change(CAMERA_ANGLES[dir_str]["up"])
 		dir_str = "ceiling"
 		up_direction = Vector3.DOWN
 		
@@ -218,7 +217,7 @@ func change_gravity(raycast_object):
 		print("backward")
 		current_pull = 2
 		positive = false
-		change_rotation(CAMERA_ANGLES[dir_str]["backward"])
+		arm_rotation_change(CAMERA_ANGLES[dir_str]["backward"])
 		dir_str = "backward wall"
 		up_direction = Vector3.BACK
 		
@@ -227,7 +226,7 @@ func change_gravity(raycast_object):
 		print("forward")
 		current_pull = 2
 		positive = true
-		change_rotation(CAMERA_ANGLES[dir_str]["forward"])
+		arm_rotation_change(CAMERA_ANGLES[dir_str]["forward"])
 		dir_str = "forward wall"
 		up_direction = Vector3.FORWARD
 		
@@ -355,10 +354,12 @@ func _physics_process(delta):
 		
 		
 	# handle mouse clicks
-	if not frozen and Input.is_action_just_pressed("right click"):
+	if not frozen and Input.is_action_just_pressed("lash"):
 		if ray_cast_3d.is_colliding():
 			if ray_cast_3d.get_collider().has_method("is_block") and is_rotating() == false:
 				change_gravity(ray_cast_3d)
+	if not frozen and Input.is_action_just_released("lash"):
+		rotation_trigger = true
 				
 	# Handle light
 	if not frozen and Input.is_action_just_pressed("flashlight"):
