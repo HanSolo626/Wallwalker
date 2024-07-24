@@ -341,15 +341,18 @@ func _physics_process(delta):
 			velocity.y = direction.y * multiplyer
 			velocity.x = direction.x * multiplyer
 	else:
-		if current_pull == 0 and (is_on_floor() or is_on_ceiling()): # X
+		if current_pull == 0 and (is_on_floor()): # X
 			velocity.y = 0
 			velocity.z = 0
+			rotation_trigger = true
 		elif current_pull == 1 and (is_on_floor() or is_on_ceiling()): # Y
 			velocity.x = 0
 			velocity.z = 0
-		elif current_pull == 2 and (is_on_floor() or is_on_ceiling()): # Z
+			rotation_trigger = true
+		elif current_pull == 2 and (is_on_floor()): # Z
 			velocity.y = 0
 			velocity.x = 0
+			rotation_trigger = true
 			
 		
 		
