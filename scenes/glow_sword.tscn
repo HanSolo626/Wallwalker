@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5fhmx4r3tpir"]
+[gd_scene load_steps=4 format=3 uid="uid://c7v5bq2rp212x"]
 
 [ext_resource type="PackedScene" uid="uid://osr14b1a2hgq" path="res://resources/weapons/glowing_sword_powered.glb" id="1_3bpsn"]
 [ext_resource type="PackedScene" uid="uid://5liinofq6nnx" path="res://resources/weapons/glowing_sword_unpowered.glb" id="2_wlnwl"]

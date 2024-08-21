@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://die75m3up6sa4"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4q30t"]
-[ext_resource type="PackedScene" uid="uid://b5fhmx4r3tpir" path="res://scenes/glow_sword.tscn" id="2_lirne"]
+[ext_resource type="PackedScene" uid="uid://c7v5bq2rp212x" path="res://scenes/glow_sword.tscn" id="2_02cdg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qwuce"]
 radius = 0.8
@@ -47,5 +47,5 @@ light_color = Color(0.269489, 0.53712, 1, 1)
 light_energy = 1.845
 omni_range = 7.614
 
-[node name="GlowSword" parent="." instance=ExtResource("2_lirne")]
-transform = Transform3D(0.64, 0, 0, 0, 0.554719, 0.319197, 0, -0.319197, 0.554719, 0.991629, 0, -1.3619)
+[node name="GlowSword" parent="." instance=ExtResource("2_02cdg")]
+transform = Transform3D(0.57, 0, 0, 0, 0.505039, 0.264264, 0, -0.264264, 0.505039, 1.00686, 0, -1.30605)
