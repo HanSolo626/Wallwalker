@@ -246,7 +246,7 @@ func _ready(): # setup
 	set_top_level(false)
 	#change_rotation(CAMERA_ANGLES["left wall"]["left"])
 	
-	transform.origin = gridmap.get_player_start_location()
+	#transform.origin = gridmap.get_player_start_location()
 	
 	
 	

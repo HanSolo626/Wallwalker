@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://die75m3up6sa4"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4q30t"]
-[ext_resource type="PackedScene" uid="uid://c7v5bq2rp212x" path="res://scenes/glow_sword.tscn" id="2_02cdg"]
+[ext_resource type="PackedScene" path="res://scenes/glow_sword.tscn" id="2_02cdg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qwuce"]
 radius = 0.8
@@ -26,6 +26,7 @@ mesh = SubResource("CapsuleMesh_53i5u")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53324, 0.103362)
+current = true
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 999, 0, 0, -0.110323)
