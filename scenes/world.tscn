@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://d0udkcrdxrxmj"]
+[gd_scene load_steps=17 format=3 uid="uid://d0udkcrdxrxmj"]
 
+[ext_resource type="Script" path="res://scripts/UserInterface.gd" id="2_2avkq"]
 [ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="2_84cls"]
 [ext_resource type="MeshLibrary" uid="uid://by7wgwg3b1ijh" path="res://resources/MeshLibraries/sci_fi.tres" id="2_vx3nt"]
 [ext_resource type="Script" path="res://scripts/DungeonGridMap.gd" id="3_dskgd"]
@@ -21,6 +22,9 @@ sky_material = SubResource("ProceduralSkyMaterial_d783x")
 [sub_resource type="Environment" id="Environment_xrpqx"]
 sky = SubResource("Sky_x4s61")
 volumetric_fog_density = 0.059
+
+[sub_resource type="Theme" id="Theme_f5cei"]
+default_font_size = 60
 
 [sub_resource type="Theme" id="Theme_gehr2"]
 default_font_size = 18
@@ -46,8 +50,33 @@ unique_name_in_owner = true
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 2560.0
+offset_bottom = 1440.0
+script = ExtResource("2_2avkq")
+
+[node name="LashingNum" type="Label" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = SubResource("Theme_f5cei")
+text = "1"
+
+[node name="BindingLashIndicator" type="ColorRect" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = 21.0
+offset_right = -30.0
+offset_bottom = 71.0
+grow_horizontal = 2
+color = Color(1, 0, 0, 1)
 
 [node name="Pointer" type="Label" parent="."]
 anchors_preset = 8

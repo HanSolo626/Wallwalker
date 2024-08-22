@@ -1,6 +1,13 @@
 extends CharacterBody3D
 
 
+# 1: Personal Gravity
+# 2: Bind objects
+var lashing_mode = 1
+
+var max_lashing_mode_num = 2
+var object_to_bind
+
 const WALKING_SPEED = 8.0
 const SPRINT_SPEED = 15.0
 const JUMP_VELOCITY = 12
@@ -85,6 +92,7 @@ const CAMERA_ANGLES = {
 @onready var stick = $stick
 @onready var gridmap = $"../DungeonGridMap"
 @onready var flashlight = $Camera3D/SpotLight3D
+@onready var user_interface = $"../UserInterface"
 
 
 func set_top_level(t):
@@ -359,8 +367,24 @@ func _physics_process(delta):
 	# handle mouse clicks
 	if not frozen and Input.is_action_just_pressed("lash"):
 		if ray_cast_3d.is_colliding():
-			if ray_cast_3d.get_collider().has_method("is_block") and is_rotating() == false:
+			
+			if lashing_mode == 1 and ray_cast_3d.get_collider().has_method("is_block") and is_rotating() == false:
 				change_gravity(ray_cast_3d)
+			elif lashing_mode == 2:
+				print(ray_cast_3d.get_collider())
+				if object_to_bind == ray_cast_3d.get_collider():
+					object_to_bind = null
+					user_interface.set_binding_indicator(false)
+				elif object_to_bind == null and ray_cast_3d.get_collider().has_method("set_target"):
+					object_to_bind = ray_cast_3d.get_collider()
+					user_interface.set_binding_indicator(true)
+				else:
+					print("test")
+					object_to_bind.set_target(ray_cast_3d.get_collision_point())
+					object_to_bind = null
+					user_interface.set_binding_indicator(false)
+				
+				
 	if not frozen and Input.is_action_just_released("lash"):
 		rotation_trigger = true
 				
@@ -372,7 +396,13 @@ func _physics_process(delta):
 		else:
 			flashlight.visible = true
 			light_on = true
-				
+			
+	# handle tab
+	if not frozen and Input.is_action_just_pressed("tab"):
+		lashing_mode += 1
+		if lashing_mode > max_lashing_mode_num:
+			lashing_mode = 1
+		user_interface.set_lashing_num(lashing_mode)
 
 				
 	update_rotation()
