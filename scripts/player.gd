@@ -371,15 +371,15 @@ func _physics_process(delta):
 			if lashing_mode == 1 and ray_cast_3d.get_collider().has_method("is_block") and is_rotating() == false:
 				change_gravity(ray_cast_3d)
 			elif lashing_mode == 2:
-				print(ray_cast_3d.get_collider())
 				if object_to_bind == ray_cast_3d.get_collider():
 					object_to_bind = null
 					user_interface.set_binding_indicator(false)
+					if ray_cast_3d.get_collider().being_lashed:
+						ray_cast_3d.get_collider().being_lashed = false
 				elif object_to_bind == null and ray_cast_3d.get_collider().has_method("set_target"):
 					object_to_bind = ray_cast_3d.get_collider()
 					user_interface.set_binding_indicator(true)
-				else:
-					print("test")
+				elif object_to_bind != null:
 					object_to_bind.set_target(ray_cast_3d.get_collision_point())
 					object_to_bind = null
 					user_interface.set_binding_indicator(false)
