@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/lashable_object.gd" id="1_0e7w1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p55s7"]
-size = Vector3(0.5, 2, 0.5)
+size = Vector3(0.4, 2, 0.4)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_mrnuc"]
 top_radius = 0.2
@@ -12,6 +12,7 @@ bottom_radius = 0.2
 [node name="Column" type="RigidBody3D"]
 collision_layer = 8
 collision_mask = 15
+continuous_cd = true
 script = ExtResource("1_0e7w1")
 
 [node name="Collision" type="CollisionShape3D" parent="."]

@@ -4,7 +4,7 @@ extends RigidBody3D
 var speed: float = 0.1
 var target = Vector3(0, 0, 0)
 var target_dir
-var attraction_force_speed = 75
+var attraction_force_speed = 50
 var time_delta: float
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -43,13 +43,13 @@ func _integrate_forces(state):
 func _physics_process(delta):
 	time_delta = delta
 	if being_lashed:
-		if transform.origin.distance_to(target) > get_min_collision_size(collision) - 0.5:
+		if transform.origin.distance_to(target) > get_min_collision_size(collision) - 0.0:
 			apply_force((target_dir * attraction_force_speed))
 			gravity_scale = 0
 			freeze = false
 		else:
-			freeze = true
-			freeze_mode = 0
+			apply_force((target_dir * attraction_force_speed))
+			gravity_scale = 0
 	else:
 		gravity_scale = 1
 		freeze = false
