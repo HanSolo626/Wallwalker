@@ -5,7 +5,9 @@ var speed: float = 0.1
 var target = Vector3(0, 0, 0)
 var target_dir
 var attraction_force_speed = 50
-var time_delta: float
+var lock_force = 150
+var lock_time = 2.5
+var timer = 0
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var being_lashed = false
@@ -14,14 +16,7 @@ var being_lashed = false
 @onready var collision = $Collision
 
 
-func look_follow(state: PhysicsDirectBodyState3D, current_transform: Transform3D, target_position: Vector3) -> void:
-	var forward_local_axis = Vector3(1, 0, 0)
-	var forward_dir = (current_transform.basis * forward_local_axis).normalized()
-	target_dir = (target_position - current_transform.origin).normalized()
-	#target = target_dir
-	var local_speed = clampf(speed, 0, acos(forward_dir.dot(target_dir)))
-	#if forward_dir.dot(target_dir) > 1e-4:
-	#	state.angular_velocity = local_speed * forward_dir.cross(target_dir) / state.step
+
 		
 func set_target(new_target: Vector3):
 	target = new_target
@@ -35,21 +30,24 @@ func get_min_collision_size(c):
 		result = c.shape.size.z
 	return result
 	
-
-func _integrate_forces(state):
-	look_follow(state, global_transform, target)
 	
 
 func _physics_process(delta):
-	time_delta = delta
+	target_dir = (target - global_transform.origin).normalized()
 	if being_lashed:
 		if transform.origin.distance_to(target) > get_min_collision_size(collision) - 0.0:
 			apply_force((target_dir * attraction_force_speed))
 			gravity_scale = 0
 			freeze = false
+			timer = 0
 		else:
-			apply_force((target_dir * attraction_force_speed))
-			gravity_scale = 0
+			timer += delta
+			if timer > lock_time:
+				freeze = true
+			else:
+				apply_force((target_dir * lock_force))
+				gravity_scale = 0
 	else:
 		gravity_scale = 1
 		freeze = false
+		timer = 0

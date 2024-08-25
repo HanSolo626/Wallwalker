@@ -86,7 +86,8 @@ const CAMERA_ANGLES = {
 
 
 @onready var camera_3d = $Camera3D
-@onready var ray_cast_3d = $Camera3D/RayCast3D
+@onready var lashing_ray_cast = $Camera3D/LashingRayCast
+@onready var binding_ray_cast = $Camera3D/BindingRayCast
 @onready var collision_shape_3d = $CollisionShape3D
 @onready var body = $Body
 @onready var stick = $stick
@@ -366,21 +367,21 @@ func _physics_process(delta):
 		
 	# handle mouse clicks
 	if not frozen and Input.is_action_just_pressed("lash"):
-		if ray_cast_3d.is_colliding():
+		if lashing_ray_cast.is_colliding() or binding_ray_cast.is_colliding():
 			
-			if lashing_mode == 1 and ray_cast_3d.get_collider().has_method("is_block") and is_rotating() == false:
-				change_gravity(ray_cast_3d)
+			if lashing_mode == 1 and lashing_ray_cast.get_collider().has_method("is_block") and is_rotating() == false:
+				change_gravity(lashing_ray_cast)
 			elif lashing_mode == 2:
-				if object_to_bind == ray_cast_3d.get_collider():
+				if object_to_bind == binding_ray_cast.get_collider():
 					object_to_bind = null
 					user_interface.set_binding_indicator(false)
-					if ray_cast_3d.get_collider().being_lashed:
-						ray_cast_3d.get_collider().being_lashed = false
-				elif object_to_bind == null and ray_cast_3d.get_collider().has_method("set_target"):
-					object_to_bind = ray_cast_3d.get_collider()
+					if binding_ray_cast.get_collider().being_lashed:
+						binding_ray_cast.get_collider().being_lashed = false
+				elif object_to_bind == null and binding_ray_cast.get_collider().has_method("set_target"):
+					object_to_bind = binding_ray_cast.get_collider()
 					user_interface.set_binding_indicator(true)
 				elif object_to_bind != null:
-					object_to_bind.set_target(ray_cast_3d.get_collision_point())
+					object_to_bind.set_target(binding_ray_cast.get_collision_point())
 					object_to_bind = null
 					user_interface.set_binding_indicator(false)
 				
