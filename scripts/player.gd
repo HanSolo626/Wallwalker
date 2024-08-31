@@ -382,11 +382,13 @@ func _physics_process(delta):
 					user_interface.set_binding_indicator(true)
 				elif object_to_bind != null:
 					if binding_ray_cast.get_collider().has_method("set_target"):
-						object_to_bind.set_target(binding_ray_cast.get_collider())
+						# disabled
+						#object_to_bind.set_target(binding_ray_cast.get_collider())
+						pass
 					else:
 						object_to_bind.set_target(binding_ray_cast.get_collision_point())
-					object_to_bind = null
-					user_interface.set_binding_indicator(false)
+						object_to_bind = null
+						user_interface.set_binding_indicator(false)
 				
 				
 	if not frozen and Input.is_action_just_released("lash"):
