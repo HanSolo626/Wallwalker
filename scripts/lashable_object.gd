@@ -88,11 +88,11 @@ func _physics_process(delta):
 		else:
 			timer += delta
 			if lashing_parent == null and timer > lock_time:
-				print(last_lash_position)
-				print(global_transform.origin)
+				#print(last_lash_position)
+				#print(global_transform.origin)
 				if vectors_are_approx_equal(global_transform.origin, last_lash_position):
 					freeze = true
-					print("freeze")
+					#print("freeze")
 				else:
 					timer = 0
 					last_lash_position = global_transform.origin
