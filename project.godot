@@ -102,6 +102,7 @@ tab={
 3d_physics/layer_2="dungeon"
 3d_physics/layer_3="doors"
 3d_physics/layer_4="objects"
+3d_physics/layer_5="platforms"
 
 [physics]
 

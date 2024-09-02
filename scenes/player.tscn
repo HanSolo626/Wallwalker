@@ -14,7 +14,7 @@ height = 4.0
 [sub_resource type="BoxMesh" id="BoxMesh_yyh1i"]
 
 [node name="Player" type="CharacterBody3D"]
-collision_mask = 14
+collision_mask = 30
 script = ExtResource("1_4q30t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -31,7 +31,7 @@ current = true
 [node name="LashingRayCast" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 999, 0, 0, -0.110323)
 target_position = Vector3(0, 0, -10)
-collision_mask = 2
+collision_mask = 18
 
 [node name="BindingRayCast" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 999, 0, 0, -0.110323)

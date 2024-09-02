@@ -1,6 +1,9 @@
 extends CharacterBody3D
 
 
+func is_platform():
+	return true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
