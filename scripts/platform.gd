@@ -10,6 +10,7 @@ var moving = false
 var one_time_timer = 0
 var loop_timer = 0
 var timer = 0
+@onready var collision = $Collision
 
 
 func is_platform():
@@ -31,6 +32,15 @@ func glide_in_loop(pos_array: Array, speed: float, pause_time: float):
 	current_glide_speed = speed
 	loop_timer = pause_time
 	moving = true
+	
+	
+func get_max_collision_size():
+	var result = collision.shape.size.x
+	if result < collision.shape.size.y:
+		result = collision.shape.size.y
+	if result < collision.shape.size.z:
+		result = collision.shape.size.z
+	return result
 	
 
 # Called when the node enters the scene tree for the first time.
