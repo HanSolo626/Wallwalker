@@ -178,9 +178,7 @@ func change_gravity(raycast_object):
 	var block = raycast_object.get_collision_point() - raycast_object.get_collision_normal()
 	var face = raycast_object.get_collision_point() + raycast_object.get_collision_normal()
 	
-	# convert to integers
-	block = gridmap.local_to_map(block)
-	face = gridmap.local_to_map(face)
+	
 	
 	# extract direction
 	# x = 0
@@ -369,7 +367,7 @@ func _physics_process(delta):
 	if not frozen and Input.is_action_just_pressed("lash"):
 		if lashing_ray_cast.is_colliding() or binding_ray_cast.is_colliding():
 			
-			if lashing_mode == 1 and lashing_ray_cast.get_collider().has_method("is_block") and is_rotating() == false:
+			if lashing_mode == 1 and (lashing_ray_cast.get_collider().has_method("is_block") or lashing_ray_cast.get_collider().has_method("is_platform")) and is_rotating() == false:
 				change_gravity(lashing_ray_cast)
 			elif lashing_mode == 2:
 				if object_to_bind == binding_ray_cast.get_collider():
@@ -381,14 +379,12 @@ func _physics_process(delta):
 					object_to_bind = binding_ray_cast.get_collider()
 					user_interface.set_binding_indicator(true)
 				elif object_to_bind != null:
-					if binding_ray_cast.get_collider().has_method("set_target"):
-						# disabled
-						#object_to_bind.set_target(binding_ray_cast.get_collider())
-						pass
+					if binding_ray_cast.get_collider().has_method("is_platform"):
+						object_to_bind.set_target(binding_ray_cast.get_collider())
 					else:
 						object_to_bind.set_target(binding_ray_cast.get_collision_point())
-						object_to_bind = null
-						user_interface.set_binding_indicator(false)
+					object_to_bind = null
+					user_interface.set_binding_indicator(false)
 				
 				
 	if not frozen and Input.is_action_just_released("lash"):
