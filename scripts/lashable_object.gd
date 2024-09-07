@@ -21,6 +21,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var being_lashed = false
 
 
+
 @onready var collision = $Collision
 
 
@@ -60,7 +61,7 @@ func get_max_collision_size():
 	return result
 	
 func vectors_are_approx_equal(a: Vector3, b: Vector3):
-	if a.snapped(Vector3(0.01, 0.01, 0.01)) == b.snapped(Vector3(0.01, 0.01, 0.01)):
+	if a.snapped(Vector3(0.1, 0.1, 0.1)) == b.snapped(Vector3(0.1, 0.1, 0.1)):
 		return true
 	else:
 		return false
@@ -96,6 +97,12 @@ func _physics_process(delta):
 				else:
 					timer = 0
 					last_lash_position = global_transform.origin
+			elif lashing_parent != null:
+				if vectors_are_approx_equal(global_position, last_lash_position):
+					freeze = true
+				else:
+					timer = 0
+					last_lash_position = global_position
 			else:
 				apply_force((target_dir * lock_force * mass))
 				gravity_scale = 0

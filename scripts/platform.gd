@@ -17,7 +17,7 @@ func is_platform():
 	return true
 	
 func move_instantly_to_position(pos: Vector3):
-	transform.origin = pos
+	global_transform.origin = pos
 	
 func glide_to_position(pos: Vector3, speed: float):
 	current_glide_position = pos
@@ -52,7 +52,7 @@ func _physics_process(delta):
 	timer += delta
 	if moving and not round(current_glide_position).is_equal_approx(round(position)):
 		if timer >= loop_timer:
-			position += (current_glide_position - position).normalized() * current_glide_speed
+			global_position += (current_glide_position - global_position).normalized() * current_glide_speed
 	elif current_glide_loop_positions != []:
 		if current_glide_loop_positions.find(current_glide_position) == current_glide_loop_positions.size()-1:
 			current_glide_position = current_glide_loop_positions[0]
