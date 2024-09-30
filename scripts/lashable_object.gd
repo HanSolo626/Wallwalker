@@ -7,10 +7,12 @@ var target_dir
 var inital_distance = 0
 var attraction_force_speed = 50
 var lock_force = 225
-var lock_time = 0.2
+var lock_time = 0.5
 var timer = 0
 var parent_lash_timer = 0
 var slow_down_fraction = 1
+
+var child_bound = false
 
 var last_lash_position = Vector3(0, 0, 0)
 
@@ -29,14 +31,23 @@ var being_lashed = false
 		
 func set_target(new_target):
 	if typeof(new_target) == TYPE_VECTOR3:
+		if child_bound:
+			var t = global_transform
+			var g = get_tree()
+			lashing_parent.remove_child(self)
+			g.current_scene.add_child(self)
+			child_bound = false
+			global_transform = t
 		target = new_target
 		lashing_parent = null
 		inital_distance = transform.origin.distance_to(target)
+
 	else:
 		lashing_parent = new_target
 		var t = global_transform
 		get_tree().current_scene.remove_child(self)
 		lashing_parent.add_child(self)
+		child_bound = true
 		global_transform = t
 	last_lash_position = Vector3(0,0,0)
 	being_lashed = true
@@ -113,3 +124,11 @@ func _physics_process(delta):
 		gravity_scale = 1
 		freeze = false
 		timer = 0
+		
+		if child_bound:
+			var t = global_transform
+			var g = get_tree()
+			lashing_parent.remove_child(self)
+			g.current_scene.add_child(self)
+			child_bound = false
+			global_transform = t
