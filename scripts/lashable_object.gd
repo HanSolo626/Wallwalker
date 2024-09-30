@@ -14,6 +14,9 @@ var slow_down_fraction = 1
 
 var last_lash_position = Vector3(0, 0, 0)
 
+var lash_direction = 0
+var rotation_error_margin = deg_to_rad(0.1)
+
 var lashing_parent
 var last_parent_origin
 
@@ -27,7 +30,7 @@ var being_lashed = false
 
 
 		
-func set_target(new_target):
+func set_target(new_target, raycast_object):
 	if typeof(new_target) == TYPE_VECTOR3:
 		target = new_target
 		lashing_parent = null
@@ -40,6 +43,30 @@ func set_target(new_target):
 		global_transform = t
 	last_lash_position = Vector3(0,0,0)
 	being_lashed = true
+	
+	if raycast_object != null:
+		# get points
+		var block = raycast_object.get_collision_point() - raycast_object.get_collision_normal()
+		var face = raycast_object.get_collision_point() + raycast_object.get_collision_normal()
+
+		
+		# extract direction
+		if block.x - face.x < 0 or block.x - face.x > 0:
+			lash_direction = 1
+			
+			
+		elif block.y - face.y < 0 or block.y - face.y > 0:
+			lash_direction = 2
+			
+			
+		elif block.z - face.z < 0 or block.z - face.z > 0:
+			lash_direction = 3
+	else:
+		lash_direction = 0
+		
+		
+
+	
 	
 func get_min_collision_size():
 	var result = collision.shape.size.x
@@ -62,9 +89,43 @@ func get_max_collision_size():
 	
 func vectors_are_approx_equal(a: Vector3, b: Vector3):
 	if a.snapped(Vector3(0.1, 0.1, 0.1)) == b.snapped(Vector3(0.1, 0.1, 0.1)):
-		return true
+		if (
+			lash_direction == 1 and
+			abs(deg_to_rad(rotation.z)) >= get_relative_measure_angle(rotation.z) - rotation_error_margin and
+			abs(deg_to_rad(rotation.z)) <= get_relative_measure_angle(rotation.z) + rotation_error_margin
+			):
+			return true
+		elif (
+			lash_direction == 2 and 
+			abs(deg_to_rad(rotation.x)) >= get_relative_measure_angle(rotation.x) - rotation_error_margin and
+			abs(deg_to_rad(rotation.x)) <= get_relative_measure_angle(rotation.x) + rotation_error_margin
+			):
+			print(abs(deg_to_rad(rotation.x)), get_relative_measure_angle(rotation.x) - rotation_error_margin)
+			print(abs(deg_to_rad(rotation.x)), get_relative_measure_angle(rotation.x) + rotation_error_margin)
+			return true
+		elif (
+			lash_direction == 3 and 
+			abs(deg_to_rad(rotation.y)) >= get_relative_measure_angle(rotation.y) - rotation_error_margin and 
+			abs(deg_to_rad(rotation.y)) <= get_relative_measure_angle(rotation.y) + rotation_error_margin
+			):
+			return true
+		else:
+			return false
 	else:
 		return false
+		
+func get_relative_measure_angle(angle: float):
+	angle = abs(deg_to_rad(angle))
+	var result
+	if angle > 45.0:
+		result = 90.0
+	if angle > 135.0:
+		result = 180
+	if angle < 45.0:
+		result = 0.0
+	else:
+		result = 90.0
+	return deg_to_rad(result)
 	
 	
 

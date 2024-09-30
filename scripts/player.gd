@@ -380,9 +380,9 @@ func _physics_process(delta):
 					user_interface.set_binding_indicator(true)
 				elif object_to_bind != null:
 					if binding_ray_cast.get_collider().has_method("is_platform"):
-						object_to_bind.set_target(binding_ray_cast.get_collider())
+						object_to_bind.set_target(binding_ray_cast.get_collider(), null)
 					else:
-						object_to_bind.set_target(binding_ray_cast.get_collision_point())
+						object_to_bind.set_target(binding_ray_cast.get_collision_point(), binding_ray_cast)
 					object_to_bind = null
 					user_interface.set_binding_indicator(false)
 				
