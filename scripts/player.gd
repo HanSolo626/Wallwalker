@@ -374,7 +374,7 @@ func _physics_process(delta):
 					object_to_bind = null
 					user_interface.set_binding_indicator(false)
 					if binding_ray_cast.get_collider().being_lashed:
-						binding_ray_cast.get_collider().being_lashed = false
+						binding_ray_cast.get_collider().lashings_off()
 				elif object_to_bind == null and binding_ray_cast.get_collider().has_method("set_target"):
 					object_to_bind = binding_ray_cast.get_collider()
 					user_interface.set_binding_indicator(true)

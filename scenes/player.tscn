@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://die75m3up6sa4"]
+[gd_scene load_steps=7 format=3 uid="uid://die75m3up6sa4"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4q30t"]
 [ext_resource type="PackedScene" uid="uid://c7v5bq2rp212x" path="res://scenes/glow_sword.tscn" id="2_02cdg"]
@@ -7,7 +7,12 @@
 radius = 0.8
 height = 4.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_crjkt"]
+emission = Color(0.697578, 0.697578, 0.697578, 1)
+grow_amount = -0.23
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_53i5u"]
+material = SubResource("StandardMaterial3D_crjkt")
 radius = 1.0
 height = 4.0
 
@@ -49,6 +54,7 @@ visible = false
 mesh = SubResource("BoxMesh_yyh1i")
 
 [node name="ConstantGlow" type="OmniLight3D" parent="."]
+visible = false
 light_color = Color(0.269489, 0.53712, 1, 1)
 light_energy = 1.845
 omni_range = 7.614

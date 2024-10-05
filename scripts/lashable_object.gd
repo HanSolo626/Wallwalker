@@ -25,11 +25,13 @@ var being_lashed = false
 
 
 @onready var collision = $Collision
+@onready var body = $Body
 
 
 
 		
 func set_target(new_target):
+	set_glow(true)
 	if typeof(new_target) == TYPE_VECTOR3:
 		if child_bound:
 			var t = global_transform
@@ -76,11 +78,27 @@ func vectors_are_approx_equal(a: Vector3, b: Vector3):
 		return true
 	else:
 		return false
-	
+		
+func lashings_off():
+	being_lashed = false
+	set_glow(false)
+		
+func set_glow(value: bool):
+	if value:
+		body.mesh.material.albedo_color.b = 5
+		body.mesh.material.emission_enabeld = true
+	else:
+		body.mesh.material.albedo_color.b = 1
+		body.mesh.material.emission_enabeld = false
+		
+		
+func _ready():
+	body.mesh.material = body.mesh.material.duplicate()
 	
 
 func _physics_process(delta):
 	if being_lashed:
+		
 		if lashing_parent != null:
 			target = lashing_parent.global_transform.origin
 			

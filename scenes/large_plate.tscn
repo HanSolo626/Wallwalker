@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://7nr55r52ae1u"]
+[gd_scene load_steps=5 format=3 uid="uid://7nr55r52ae1u"]
 
 [ext_resource type="Script" path="res://scripts/lashable_object.gd" id="1_s3b51"]
+[ext_resource type="Material" uid="uid://baxj8lnk7mupt" path="res://resources/materials/lashable_object_test_material.tres" id="2_3ntnc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p55s7"]
 size = Vector3(7, 1, 7)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1ryw3"]
+resource_local_to_scene = true
+material = ExtResource("2_3ntnc")
 size = Vector3(7, 1, 7)
 
 [node name="LargePlate" type="RigidBody3D"]

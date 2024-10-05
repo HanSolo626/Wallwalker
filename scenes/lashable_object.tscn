@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfllykgtovd4s"]
+[gd_scene load_steps=5 format=3 uid="uid://dfllykgtovd4s"]
 
 [ext_resource type="Script" path="res://scripts/lashable_object.gd" id="1_hftsd"]
+[ext_resource type="Material" uid="uid://baxj8lnk7mupt" path="res://resources/materials/lashable_object_test_material.tres" id="2_r1tm3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_te0mm"]
 size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_s81sc"]
+resource_local_to_scene = true
+material = ExtResource("2_r1tm3")
 size = Vector3(2, 2, 2)
 
 [node name="LashableObject" type="RigidBody3D"]

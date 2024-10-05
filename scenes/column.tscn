@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnl2x6g81er81"]
+[gd_scene load_steps=5 format=3 uid="uid://cnl2x6g81er81"]
 
 [ext_resource type="Script" path="res://scripts/lashable_object.gd" id="1_0e7w1"]
+[ext_resource type="Material" uid="uid://baxj8lnk7mupt" path="res://resources/materials/lashable_object_test_material.tres" id="2_qlasy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p55s7"]
 size = Vector3(0.4, 2, 0.4)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_mrnuc"]
+resource_local_to_scene = true
+material = ExtResource("2_qlasy")
 top_radius = 0.2
 bottom_radius = 0.2
 
