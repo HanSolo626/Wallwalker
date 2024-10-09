@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://d0udkcrdxrxmj"]
+[gd_scene load_steps=19 format=3 uid="uid://d0udkcrdxrxmj"]
 
 [ext_resource type="Script" path="res://scripts/test_world.gd" id="1_ml3n7"]
 [ext_resource type="Script" path="res://scripts/UserInterface.gd" id="2_2avkq"]
 [ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="2_84cls"]
 [ext_resource type="MeshLibrary" uid="uid://by7wgwg3b1ijh" path="res://resources/MeshLibraries/sci_fi.tres" id="2_vx3nt"]
+[ext_resource type="Environment" uid="uid://cecgvgme5tytb" path="res://resources/enviroments/world.tres" id="2_xdvel"]
 [ext_resource type="Script" path="res://scripts/DungeonGridMap.gd" id="3_dskgd"]
 [ext_resource type="PackedScene" uid="uid://2iu77vgffn7u" path="res://scenes/basic_door.tscn" id="4_xmmtl"]
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="5_2g0vb"]
@@ -13,22 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://cnl2x6g81er81" path="res://scenes/column.tscn" id="10_ku73m"]
 [ext_resource type="PackedScene" uid="uid://7nr55r52ae1u" path="res://scenes/large_plate.tscn" id="11_wac4o"]
 [ext_resource type="PackedScene" uid="uid://dpw0va0tvjoeb" path="res://scenes/platform.tscn" id="12_fm4ay"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d783x"]
-sky_top_color = Color(0.448753, 0.446873, 0.455253, 1)
-sky_horizon_color = Color(0.645449, 0.611724, 0.743433, 1)
-ground_bottom_color = Color(0.133042, 2.39691e-05, 0.518478, 1)
-ground_horizon_color = Color(0.645449, 0.611724, 0.743433, 1)
-
-[sub_resource type="Sky" id="Sky_x4s61"]
-sky_material = SubResource("ProceduralSkyMaterial_d783x")
-
-[sub_resource type="Environment" id="Environment_xrpqx"]
-sky = SubResource("Sky_x4s61")
-glow_enabled = true
-glow_blend_mode = 1
-glow_hdr_threshold = 3.46
-volumetric_fog_density = 0.059
 
 [sub_resource type="Theme" id="Theme_f5cei"]
 default_font_size = 60
@@ -46,7 +31,7 @@ default_font_size = 42
 script = ExtResource("1_ml3n7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_xrpqx")
+environment = ExtResource("2_xdvel")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.29404, -0.819275, 0.49227, 0, 0.515038, 0.857167, -0.955793, 0.252042, -0.151442, 0, 0, 0)

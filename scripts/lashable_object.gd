@@ -21,6 +21,7 @@ var last_parent_origin
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var being_lashed = false
+var orgininal_material
 
 
 
@@ -86,14 +87,18 @@ func lashings_off():
 func set_glow(value: bool):
 	if value:
 		body.mesh.material.albedo_color.b = 5
-		body.mesh.material.emission_enabeld = true
+		body.mesh.material.albedo_color.r = 1.5
+		body.mesh.material.albedo_color.g = 1.5
+		
+		#body.mesh.material.emission_enabeld = true
 	else:
-		body.mesh.material.albedo_color.b = 1
-		body.mesh.material.emission_enabeld = false
+		body.mesh.material = orgininal_material
+		#body.mesh.material.emission_enabeld = false
 		
 		
 func _ready():
 	body.mesh.material = body.mesh.material.duplicate()
+	orgininal_material = body.mesh.material.duplicate()
 	
 
 func _physics_process(delta):
