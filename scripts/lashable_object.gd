@@ -92,7 +92,7 @@ func set_glow(value: bool):
 		
 		#body.mesh.material.emission_enabeld = true
 	else:
-		body.mesh.material = orgininal_material
+		body.mesh.material = orgininal_material.duplicate()
 		#body.mesh.material.emission_enabeld = false
 		
 		
@@ -155,3 +155,12 @@ func _physics_process(delta):
 			g.current_scene.add_child(self)
 			child_bound = false
 			global_transform = t
+
+
+func _on_collision_detection_body_entered(body_t):
+	if being_lashed and body_t.being_lashed:
+		lashings_off()
+		body_t.lashings_off()
+		
+		
+		
