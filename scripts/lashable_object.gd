@@ -6,8 +6,8 @@ var target = Vector3(0, 0, 0)
 var target_dir
 var inital_distance = 0
 var attraction_force_speed = 50
-var lock_force = 225
-var lock_time = 0.5
+var lock_force = 100
+var lock_time = 9999999
 var timer = 0
 var parent_lash_timer = 0
 var slow_down_fraction = 1
@@ -95,6 +95,9 @@ func set_glow(value: bool):
 		body.mesh.material = orgininal_material.duplicate()
 		#body.mesh.material.emission_enabeld = false
 		
+func is_lashable_object():
+	return true
+		
 		
 func _ready():
 	body.mesh.material = body.mesh.material.duplicate()
@@ -158,7 +161,8 @@ func _physics_process(delta):
 
 
 func _on_collision_detection_body_entered(body_t):
-	if being_lashed and body_t.being_lashed:
+	# if it works, is a dumb idea?
+	if being_lashed and body_t.being_lashed and body_t != self:
 		lashings_off()
 		body_t.lashings_off()
 		
