@@ -367,7 +367,7 @@ func _physics_process(delta):
 	if not frozen and Input.is_action_just_pressed("lash"):
 		if lashing_ray_cast.is_colliding() or binding_ray_cast.is_colliding():
 			
-			if lashing_mode == 1 and (lashing_ray_cast.get_collider().has_method("is_block") or lashing_ray_cast.get_collider().has_method("is_platform")) and is_rotating() == false:
+			if lashing_mode == 1 and lashing_ray_cast.get_collider() != null and (lashing_ray_cast.get_collider().has_method("is_block") or lashing_ray_cast.get_collider().has_method("is_platform")) and is_rotating() == false:
 				change_gravity(lashing_ray_cast)
 			elif lashing_mode == 2:
 				if object_to_bind == binding_ray_cast.get_collider():
