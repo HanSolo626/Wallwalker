@@ -70,3 +70,8 @@ omni_range = 7.614
 
 [node name="GlowSword" parent="." instance=ExtResource("2_02cdg")]
 transform = Transform3D(0.57, 0, 0, 0, 0.505039, 0.264264, 0, -0.264264, 0.505039, 1.00686, 0, -1.30605)
+
+[node name="CrouchChecker" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 1, 0)
+collision_mask = 18

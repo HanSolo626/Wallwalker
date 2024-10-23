@@ -97,6 +97,7 @@ const CAMERA_ANGLES = {
 @onready var gridmap = $"../DungeonGridMap"
 @onready var flashlight = $Camera3D/SpotLight3D
 @onready var user_interface = $"../UserInterface"
+@onready var crouch_checker = $CrouchChecker
 
 
 func set_top_level(t):
@@ -241,6 +242,7 @@ func change_gravity(raycast_object):
 		dir_str = "forward wall"
 		up_direction = Vector3.FORWARD
 		
+		
 func enable_crouching():
 	if crouching != true:
 		crouching = true
@@ -250,7 +252,7 @@ func enable_crouching():
 		translate(Vector3(0, -1, 0))
 	
 func disable_crouching():
-	if crouching != false:
+	if crouching != false and not crouch_checker.is_colliding():
 		crouching = false
 		normal_collision.disabled = false
 		crouching_collision.disabled = NOTIFICATION_WM_CLOSE_REQUEST
