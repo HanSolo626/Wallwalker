@@ -247,6 +247,7 @@ func enable_crouching():
 		normal_collision.disabled = true
 		crouching_collision.disabled = false
 		camera_3d.translate(Vector3(0, -1, 0))
+		translate(Vector3(0, -1, 0))
 	
 func disable_crouching():
 	if crouching != false:
@@ -254,6 +255,7 @@ func disable_crouching():
 		normal_collision.disabled = false
 		crouching_collision.disabled = NOTIFICATION_WM_CLOSE_REQUEST
 		camera_3d.translate(Vector3(0, 1, 0))
+		translate(Vector3(0, 1, 0))
 
 
 func freeze_player():
@@ -423,6 +425,13 @@ func _physics_process(delta):
 		if lashing_mode > max_lashing_mode_num:
 			lashing_mode = 1
 		user_interface.set_lashing_num(lashing_mode)
+		
+	# handle crouch
+	if Input.is_action_just_pressed("crouch"):
+		if not crouching:
+			enable_crouching()
+		else:
+			disable_crouching()
 
 				
 	update_rotation()
