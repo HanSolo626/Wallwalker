@@ -16,6 +16,8 @@ const CAMERA_ROTATION_SPEED = 25
 var light_on = true
 var frozen = false
 
+var crouching = false
+
 # Get the gravity from the project settings to be synced with RigidBody nodes. (nope!)
 var gravity = 24.0
 var sensitivity = 0.0015
@@ -88,7 +90,8 @@ const CAMERA_ANGLES = {
 @onready var camera_3d = $Camera3D
 @onready var lashing_ray_cast = $Camera3D/LashingRayCast
 @onready var binding_ray_cast = $Camera3D/BindingRayCast
-@onready var collision_shape_3d = $CollisionShape3D
+@onready var normal_collision = $NormalCollision
+@onready var crouching_collision = $CrouchingCollision
 @onready var body = $Body
 @onready var stick = $stick
 @onready var gridmap = $"../DungeonGridMap"
@@ -98,7 +101,8 @@ const CAMERA_ANGLES = {
 
 func set_top_level(t):
 	camera_3d.top_level = t
-	collision_shape_3d.top_level = t
+	normal_collision.top_level = t
+	crouching_collision.top_level = t
 	body.top_level = t
 	stick.top_level = t
 
@@ -237,7 +241,19 @@ func change_gravity(raycast_object):
 		dir_str = "forward wall"
 		up_direction = Vector3.FORWARD
 		
-		
+func enable_crouching():
+	if crouching != true:
+		crouching = true
+		normal_collision.disabled = true
+		crouching_collision.disabled = false
+		camera_3d.translate(Vector3(0, -1, 0))
+	
+func disable_crouching():
+	if crouching != false:
+		crouching = false
+		normal_collision.disabled = false
+		crouching_collision.disabled = NOTIFICATION_WM_CLOSE_REQUEST
+		camera_3d.translate(Vector3(0, 1, 0))
 
 
 func freeze_player():
