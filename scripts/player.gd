@@ -10,6 +10,7 @@ var object_to_bind
 
 const WALKING_SPEED = 8.0
 const SPRINT_SPEED = 15.0
+const CROUCH_SPEED = 3.0
 const JUMP_VELOCITY = 12
 # the smaller this value, the faster it goes
 const CAMERA_ROTATION_SPEED = 25
@@ -330,7 +331,7 @@ func _physics_process(delta):
 			velocity.z -= gravity * delta
 
 	# Handle jump.
-	if not frozen and Input.is_action_just_pressed("jump") and is_on_floor():
+	if not frozen and not crouching and Input.is_action_just_pressed("jump") and is_on_floor():
 		if not positive:
 			if current_pull == 0: # X
 				velocity.x = JUMP_VELOCITY
@@ -352,7 +353,9 @@ func _physics_process(delta):
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var multiplyer
 	
-	if Input.is_action_pressed("shift_key"):
+	if crouching:
+		multiplyer = CROUCH_SPEED
+	elif Input.is_action_pressed("shift_key"):
 		multiplyer = SPRINT_SPEED
 	else:
 		multiplyer = WALKING_SPEED
