@@ -14,7 +14,7 @@ const CROUCH_SPEED = 3.0
 const JUMP_VELOCITY = 12
 # the smaller this value, the faster it goes
 const CAMERA_ROTATION_SPEED = 25
-var light_on = true
+var light_on = false
 var frozen = false
 
 var crouching = false
@@ -197,6 +197,7 @@ func change_gravity(raycast_object):
 		arm_rotation_change(CAMERA_ANGLES[dir_str]["left"])
 		dir_str = "left wall"
 		up_direction = Vector3.RIGHT
+		check_crouch_needed(Vector3.RIGHT)
 		
 		
 	elif block.x - face.x > 0 and (current_pull != 0 or positive != true):
@@ -206,6 +207,7 @@ func change_gravity(raycast_object):
 		arm_rotation_change(CAMERA_ANGLES[dir_str]["right"])
 		dir_str = "right wall"
 		up_direction = Vector3.LEFT
+		check_crouch_needed(Vector3.LEFT)
 		
 		
 	elif block.y - face.y < 0 and (current_pull != 1 or positive != false):
@@ -215,6 +217,7 @@ func change_gravity(raycast_object):
 		arm_rotation_change(CAMERA_ANGLES[dir_str]["down"])
 		dir_str = "floor"
 		up_direction = Vector3.UP
+		check_crouch_needed(Vector3.UP)
 		
 		
 	elif block.y - face.y > 0 and (current_pull != 1 or positive != true):
@@ -224,6 +227,7 @@ func change_gravity(raycast_object):
 		arm_rotation_change(CAMERA_ANGLES[dir_str]["up"])
 		dir_str = "ceiling"
 		up_direction = Vector3.DOWN
+		check_crouch_needed(Vector3.DOWN)
 		
 		
 	elif block.z - face.z < 0 and (current_pull != 2 or positive != false):
@@ -233,6 +237,7 @@ func change_gravity(raycast_object):
 		arm_rotation_change(CAMERA_ANGLES[dir_str]["backward"])
 		dir_str = "backward wall"
 		up_direction = Vector3.BACK
+		check_crouch_needed(Vector3.FORWARD)
 		
 		
 	elif block.z - face.z > 0 and (current_pull != 2 or positive != true):
@@ -242,23 +247,44 @@ func change_gravity(raycast_object):
 		arm_rotation_change(CAMERA_ANGLES[dir_str]["forward"])
 		dir_str = "forward wall"
 		up_direction = Vector3.FORWARD
+		check_crouch_needed(Vector3.BACK)
 		
+		
+func check_crouch_needed(direction: Vector3):
+	if check_ceiling(direction):
+		enable_crouching()
+		print("worked")
+		
+
+func check_ceiling(direction: Vector3):
+	var a = false
+	# perform raycast
+	var space_state = get_world_3d().direct_space_state
+	var end = transform.origin + direction * 2
+	var query = PhysicsRayQueryParameters3D.create(transform.origin, end)
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	if result != {}:
+		a = true
+	return a
+	
+
 		
 func enable_crouching():
 	if crouching != true:
 		crouching = true
 		normal_collision.disabled = true
 		crouching_collision.disabled = false
-		camera_3d.translate(Vector3(0, -1, 0))
-		translate(Vector3(0, -1, 0))
+		camera_3d.transform.origin = Vector3(0, 0.5, 0)
+		translate_object_local(Vector3(0, -1, 0))
 	
 func disable_crouching():
 	if crouching != false and not crouch_checker.is_colliding():
 		crouching = false
 		normal_collision.disabled = false
-		crouching_collision.disabled = NOTIFICATION_WM_CLOSE_REQUEST
-		camera_3d.translate(Vector3(0, 1, 0))
-		translate(Vector3(0, 1, 0))
+		crouching_collision.disabled = true
+		camera_3d.transform.origin = Vector3(0, 1.5, 0)
+		translate_object_local(Vector3(0, 1, 0))
 
 
 func freeze_player():

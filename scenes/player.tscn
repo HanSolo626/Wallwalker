@@ -39,7 +39,7 @@ layers = 3
 mesh = SubResource("CapsuleMesh_53i5u")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53324, 0.103362)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 current = true
 
 [node name="LashingRayCast" type="RayCast3D" parent="Camera3D"]
@@ -53,6 +53,7 @@ target_position = Vector3(0, 0, -10)
 collision_mask = 26
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+visible = false
 light_energy = 6.0
 spot_range = 46.405
 spot_angle = 24.11
@@ -75,3 +76,4 @@ transform = Transform3D(0.57, 0, 0, 0, 0.505039, 0.264264, 0, -0.264264, 0.50503
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 target_position = Vector3(0, 1, 0)
 collision_mask = 18
+debug_shape_custom_color = Color(1, 0, 0, 1)
