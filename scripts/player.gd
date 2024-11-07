@@ -11,6 +11,7 @@ var object_to_bind
 const WALKING_SPEED = 8.0
 const SPRINT_SPEED = 15.0
 const JUMP_VELOCITY = 12
+const SLOWDOWN_CHANGE = 1
 # the smaller this value, the faster it goes
 const CAMERA_ROTATION_SPEED = 25
 var light_on = true
@@ -238,6 +239,21 @@ func change_gravity(raycast_object):
 		up_direction = Vector3.FORWARD
 		
 		
+		
+func slow_down_player(value):
+	if value > 0:
+		if value > SLOWDOWN_CHANGE:
+			value -= SLOWDOWN_CHANGE
+		else:
+			value = 0
+	else:
+		if abs(value) > SLOWDOWN_CHANGE:
+			value += SLOWDOWN_CHANGE
+		else:
+			value = 0
+	return value
+	
+		
 
 
 func freeze_player():
@@ -349,16 +365,16 @@ func _physics_process(delta):
 			velocity.x = direction.x * multiplyer
 	else:
 		if current_pull == 0 and (is_on_floor()): # X
-			velocity.y = 0
-			velocity.z = 0
+			velocity.y = slow_down_player(velocity.y)
+			velocity.z = slow_down_player(velocity.z)
 			rotation_trigger = true
 		elif current_pull == 1 and (is_on_floor() or is_on_ceiling()): # Y
-			velocity.x = 0
-			velocity.z = 0
+			velocity.x = slow_down_player(velocity.x)
+			velocity.z = slow_down_player(velocity.z)
 			rotation_trigger = true
 		elif current_pull == 2 and (is_on_floor()): # Z
-			velocity.y = 0
-			velocity.x = 0
+			velocity.y = slow_down_player(velocity.y)
+			velocity.x = slow_down_player(velocity.x)
 			rotation_trigger = true
 			
 		
