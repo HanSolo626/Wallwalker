@@ -16,6 +16,10 @@ const CAMERA_ROTATION_SPEED = 25
 var light_on = true
 var frozen = false
 
+var dead = false
+var health = 100
+var recovery_rate = 3.5
+
 # Get the gravity from the project settings to be synced with RigidBody nodes. (nope!)
 var gravity = 24.0
 var sensitivity = 0.0015
@@ -84,6 +88,8 @@ const CAMERA_ANGLES = {
 	},
 }
 
+
+signal player_killed
 
 @onready var camera_3d = $Camera3D
 @onready var lashing_ray_cast = $Camera3D/LashingRayCast
@@ -418,3 +424,9 @@ func _physics_process(delta):
 
 func _on_exit_game_button_pressed():
 	pass # Replace with function body.
+
+
+func _on_death_detection_area_entered(area):
+	player_killed.emit()
+	print("your dead")
+	

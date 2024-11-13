@@ -104,6 +104,7 @@ tab={
 3d_physics/layer_4="objects"
 3d_physics/layer_5="platforms"
 3d_physics/layer_6="object_binding_detection"
+3d_physics/layer_7="player_death"
 
 [physics]
 

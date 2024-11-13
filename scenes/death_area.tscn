@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ly3qcqmjd874"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dcic2"]
+radius = 3.46
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tv14r"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_3hnlk"]
+material = SubResource("StandardMaterial3D_tv14r")
+
+[node name="DeathArea" type="Area3D"]
+collision_layer = 64
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_dcic2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_3hnlk")

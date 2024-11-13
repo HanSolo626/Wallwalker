@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://die75m3up6sa4"]
+[gd_scene load_steps=8 format=3 uid="uid://die75m3up6sa4"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4q30t"]
 [ext_resource type="PackedScene" uid="uid://c7v5bq2rp212x" path="res://scenes/glow_sword.tscn" id="2_02cdg"]
@@ -16,6 +16,10 @@ material = SubResource("StandardMaterial3D_crjkt")
 radius = 1.0
 height = 4.0
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n3ra2"]
+radius = 0.9
+height = 3.9
+
 [sub_resource type="BoxMesh" id="BoxMesh_yyh1i"]
 
 [node name="Player" type="CharacterBody3D"]
@@ -28,6 +32,12 @@ shape = SubResource("CapsuleShape3D_qwuce")
 [node name="Body" type="MeshInstance3D" parent="."]
 layers = 3
 mesh = SubResource("CapsuleMesh_53i5u")
+
+[node name="DeathDetection" type="Area3D" parent="."]
+collision_mask = 64
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathDetection"]
+shape = SubResource("CapsuleShape3D_n3ra2")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53324, 0.103362)
@@ -61,3 +71,5 @@ omni_range = 7.614
 
 [node name="GlowSword" parent="." instance=ExtResource("2_02cdg")]
 transform = Transform3D(0.57, 0, 0, 0, 0.505039, 0.264264, 0, -0.264264, 0.505039, 1.00686, 0, -1.30605)
+
+[connection signal="area_entered" from="DeathDetection" to="." method="_on_death_detection_area_entered"]
