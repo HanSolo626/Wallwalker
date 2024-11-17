@@ -1,6 +1,6 @@
 extends Control
 
-@onready var dungeon_grid_map = $"../DungeonGridMap"
+@onready var dungeon_grid_map = $"../../DungeonGridMap"
 @onready var cheat_bar = $CheatBarBox/CheatBar
 @onready var cheat_status = $CheatStatusBox/CheatStatus
 @onready var player = %Player

@@ -99,7 +99,7 @@ signal player_killed
 @onready var stick = $stick
 @onready var gridmap = $"../DungeonGridMap"
 @onready var flashlight = $Camera3D/SpotLight3D
-@onready var user_interface = $"../UserInterface"
+@onready var user_interface = $"../Control/UserInterface"
 
 
 func set_top_level(t):
@@ -316,7 +316,7 @@ func _physics_process(delta):
 			velocity.z -= gravity * delta
 
 	# Handle jump.
-	if not frozen and Input.is_action_just_pressed("jump") and is_on_floor():
+	if not dead and not frozen and Input.is_action_just_pressed("jump") and is_on_floor():
 		if not positive:
 			if current_pull == 0: # X
 				velocity.x = JUMP_VELOCITY
@@ -343,7 +343,7 @@ func _physics_process(delta):
 	else:
 		multiplyer = WALKING_SPEED
 		
-	if not frozen and direction:
+	if not dead and not frozen and direction:
 		if current_pull == 0: # X
 			velocity.y = direction.y * multiplyer
 			velocity.z = direction.z * multiplyer
@@ -370,7 +370,7 @@ func _physics_process(delta):
 		
 		
 	# handle mouse clicks
-	if not frozen and Input.is_action_just_pressed("lash"):
+	if not dead and not frozen and Input.is_action_just_pressed("lash"):
 		if lashing_ray_cast.is_colliding() or binding_ray_cast.is_colliding():
 			
 			if lashing_mode == 1 and lashing_ray_cast.get_collider() != null and (lashing_ray_cast.get_collider().has_method("is_block") or lashing_ray_cast.get_collider().has_method("is_platform")) and is_rotating() == false:
@@ -395,11 +395,11 @@ func _physics_process(delta):
 					user_interface.set_binding_indicator(false)
 				
 				
-	if not frozen and Input.is_action_just_released("lash"):
+	if not dead and not frozen and Input.is_action_just_released("lash"):
 		rotation_trigger = true
 				
 	# Handle light
-	if not frozen and Input.is_action_just_pressed("flashlight"):
+	if not dead and not frozen and Input.is_action_just_pressed("flashlight"):
 		if light_on:
 			flashlight.visible = false
 			light_on = false
@@ -408,7 +408,7 @@ func _physics_process(delta):
 			light_on = true
 			
 	# handle tab
-	if not frozen and Input.is_action_just_pressed("tab"):
+	if not dead and not frozen and Input.is_action_just_pressed("tab"):
 		lashing_mode += 1
 		if lashing_mode > max_lashing_mode_num:
 			lashing_mode = 1
@@ -429,4 +429,4 @@ func _on_exit_game_button_pressed():
 func _on_death_detection_area_entered(area):
 	player_killed.emit()
 	print("your dead")
-	
+	dead = true

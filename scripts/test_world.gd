@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var platform = $Platform
+@onready var user_interface = $Control/UserInterface
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,3 +12,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_player_player_killed():
+	user_interface.enable_death_screen()
