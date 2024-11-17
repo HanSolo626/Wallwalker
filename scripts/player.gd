@@ -9,8 +9,11 @@ var max_lashing_mode_num = 2
 var object_to_bind
 
 const WALKING_SPEED = 8.0
+const WALKING_ACC = 1.0
 const SPRINT_SPEED = 15.0
+const SPRINT_ACC = 1.5
 const JUMP_VELOCITY = 12
+const SLOWDOWN_CHANGE = 1.0
 # the smaller this value, the faster it goes
 const CAMERA_ROTATION_SPEED = 25
 var light_on = true
@@ -244,6 +247,32 @@ func change_gravity(raycast_object):
 		up_direction = Vector3.FORWARD
 		
 		
+		
+func slow_down_player(value):
+	if value > 0:
+		if value > SLOWDOWN_CHANGE:
+			value -= SLOWDOWN_CHANGE
+		else:
+			value = 0
+	else:
+		if abs(value) > SLOWDOWN_CHANGE:
+			value += SLOWDOWN_CHANGE
+		else:
+			value = 0
+	return value
+	
+func speed_up_player(value, dir, acc, max_speed):
+	if dir > 0:
+		if value < dir * max_speed:
+			value += acc
+		else:
+			value = dir * max_speed
+	else:
+		if abs(value) < abs(dir * max_speed):
+			value -= acc
+		else:
+			value = dir * max_speed
+	return value
 
 
 func freeze_player():
@@ -337,34 +366,37 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "up", "down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var multiplyer
+	var acceleration
 	
 	if Input.is_action_pressed("shift_key"):
 		multiplyer = SPRINT_SPEED
+		acceleration = SPRINT_ACC
 	else:
 		multiplyer = WALKING_SPEED
+		acceleration = WALKING_ACC
 		
 	if not dead and not frozen and direction:
 		if current_pull == 0: # X
-			velocity.y = direction.y * multiplyer
-			velocity.z = direction.z * multiplyer
+			velocity.y = speed_up_player(velocity.y, direction.y, acceleration, multiplyer)
+			velocity.z = speed_up_player(velocity.z, direction.z, acceleration, multiplyer)
 		elif current_pull == 1: # Y
-			velocity.x = direction.x * multiplyer
-			velocity.z = direction.z * multiplyer
+			velocity.x = speed_up_player(velocity.x, direction.x, acceleration, multiplyer)
+			velocity.z = speed_up_player(velocity.z, direction.z, acceleration, multiplyer)
 		elif current_pull == 2: # Z
-			velocity.y = direction.y * multiplyer
-			velocity.x = direction.x * multiplyer
+			velocity.y = speed_up_player(velocity.y, direction.y, acceleration, multiplyer)
+			velocity.x = speed_up_player(velocity.x, direction.x, acceleration, multiplyer)
 	else:
 		if current_pull == 0 and (is_on_floor()): # X
-			velocity.y = 0
-			velocity.z = 0
+			velocity.y = slow_down_player(velocity.y)
+			velocity.z = slow_down_player(velocity.z)
 			rotation_trigger = true
 		elif current_pull == 1 and (is_on_floor() or is_on_ceiling()): # Y
-			velocity.x = 0
-			velocity.z = 0
+			velocity.x = slow_down_player(velocity.x)
+			velocity.z = slow_down_player(velocity.z)
 			rotation_trigger = true
 		elif current_pull == 2 and (is_on_floor()): # Z
-			velocity.y = 0
-			velocity.x = 0
+			velocity.y = slow_down_player(velocity.y)
+			velocity.x = slow_down_player(velocity.x)
 			rotation_trigger = true
 			
 		
