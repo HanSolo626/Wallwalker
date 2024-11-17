@@ -105,7 +105,6 @@ signal player_killed
 @onready var stick = $stick
 @onready var gridmap = $"../DungeonGridMap"
 @onready var flashlight = $Camera3D/SpotLight3D
-@onready var user_interface = $"../UserInterface"
 @onready var crouch_checker = $CrouchChecker
 @onready var user_interface = $"../Control/UserInterface"
 
@@ -392,8 +391,7 @@ func _physics_process(delta):
 			velocity.z -= gravity * delta
 
 	# Handle jump.
-	if not frozen and not crouching and Input.is_action_just_pressed("jump") and is_on_floor():
-	if not dead and not frozen and Input.is_action_just_pressed("jump") and is_on_floor():
+	if not dead and not frozen and not crouching and Input.is_action_just_pressed("jump") and is_on_floor():
 		if not positive:
 			if current_pull == 0: # X
 				velocity.x = JUMP_VELOCITY
@@ -418,6 +416,7 @@ func _physics_process(delta):
 	
 	if crouching:
 		multiplyer = CROUCH_SPEED
+		acceleration = WALKING_ACC
 	elif Input.is_action_pressed("shift_key"):
 		multiplyer = SPRINT_SPEED
 		acceleration = SPRINT_ACC
