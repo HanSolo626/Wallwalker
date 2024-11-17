@@ -11,14 +11,16 @@ var object_to_bind
 const WALKING_SPEED = 8.0
 const WALKING_ACC = 1.0
 const SPRINT_SPEED = 15.0
+const CROUCH_SPEED = 3.0
 const SPRINT_ACC = 1.5
 const JUMP_VELOCITY = 12
 const SLOWDOWN_CHANGE = 1.0
 # the smaller this value, the faster it goes
 const CAMERA_ROTATION_SPEED = 25
-var light_on = true
+var light_on = false
 var frozen = false
 
+var crouching = false
 var dead = false
 var health = 100
 var recovery_rate = 3.5
@@ -97,17 +99,21 @@ signal player_killed
 @onready var camera_3d = $Camera3D
 @onready var lashing_ray_cast = $Camera3D/LashingRayCast
 @onready var binding_ray_cast = $Camera3D/BindingRayCast
-@onready var collision_shape_3d = $CollisionShape3D
+@onready var normal_collision = $NormalCollision
+@onready var crouching_collision = $CrouchingCollision
 @onready var body = $Body
 @onready var stick = $stick
 @onready var gridmap = $"../DungeonGridMap"
 @onready var flashlight = $Camera3D/SpotLight3D
+@onready var user_interface = $"../UserInterface"
+@onready var crouch_checker = $CrouchChecker
 @onready var user_interface = $"../Control/UserInterface"
 
 
 func set_top_level(t):
 	camera_3d.top_level = t
-	collision_shape_3d.top_level = t
+	normal_collision.top_level = t
+	crouching_collision.top_level = t
 	body.top_level = t
 	stick.top_level = t
 
@@ -200,6 +206,7 @@ func change_gravity(raycast_object):
 		arm_rotation_change(CAMERA_ANGLES[dir_str]["left"])
 		dir_str = "left wall"
 		up_direction = Vector3.RIGHT
+		check_crouch_needed(Vector3.RIGHT)
 		
 		
 	elif block.x - face.x > 0 and (current_pull != 0 or positive != true):
@@ -209,6 +216,7 @@ func change_gravity(raycast_object):
 		arm_rotation_change(CAMERA_ANGLES[dir_str]["right"])
 		dir_str = "right wall"
 		up_direction = Vector3.LEFT
+		check_crouch_needed(Vector3.LEFT)
 		
 		
 	elif block.y - face.y < 0 and (current_pull != 1 or positive != false):
@@ -218,6 +226,7 @@ func change_gravity(raycast_object):
 		arm_rotation_change(CAMERA_ANGLES[dir_str]["down"])
 		dir_str = "floor"
 		up_direction = Vector3.UP
+		check_crouch_needed(Vector3.UP)
 		
 		
 	elif block.y - face.y > 0 and (current_pull != 1 or positive != true):
@@ -227,6 +236,7 @@ func change_gravity(raycast_object):
 		arm_rotation_change(CAMERA_ANGLES[dir_str]["up"])
 		dir_str = "ceiling"
 		up_direction = Vector3.DOWN
+		check_crouch_needed(Vector3.DOWN)
 		
 		
 	elif block.z - face.z < 0 and (current_pull != 2 or positive != false):
@@ -236,6 +246,7 @@ func change_gravity(raycast_object):
 		arm_rotation_change(CAMERA_ANGLES[dir_str]["backward"])
 		dir_str = "backward wall"
 		up_direction = Vector3.BACK
+		check_crouch_needed(Vector3.FORWARD)
 		
 		
 	elif block.z - face.z > 0 and (current_pull != 2 or positive != true):
@@ -245,8 +256,44 @@ func change_gravity(raycast_object):
 		arm_rotation_change(CAMERA_ANGLES[dir_str]["forward"])
 		dir_str = "forward wall"
 		up_direction = Vector3.FORWARD
+		check_crouch_needed(Vector3.BACK)
 		
 		
+func check_crouch_needed(direction: Vector3):
+	if check_ceiling(direction):
+		enable_crouching()
+		print("worked")
+		
+
+func check_ceiling(direction: Vector3):
+	var a = false
+	# perform raycast
+	var space_state = get_world_3d().direct_space_state
+	var end = transform.origin + direction * 2
+	var query = PhysicsRayQueryParameters3D.create(transform.origin, end)
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	if result != {}:
+		a = true
+	return a
+	
+
+		
+func enable_crouching():
+	if crouching != true:
+		crouching = true
+		normal_collision.disabled = true
+		crouching_collision.disabled = false
+		camera_3d.transform.origin = Vector3(0, 0.5, 0)
+		translate_object_local(Vector3(0, -1, 0))
+	
+func disable_crouching():
+	if crouching != false and not crouch_checker.is_colliding():
+		crouching = false
+		normal_collision.disabled = false
+		crouching_collision.disabled = true
+		camera_3d.transform.origin = Vector3(0, 1.5, 0)
+		translate_object_local(Vector3(0, 1, 0))
 		
 func slow_down_player(value):
 	if value > 0:
@@ -345,6 +392,7 @@ func _physics_process(delta):
 			velocity.z -= gravity * delta
 
 	# Handle jump.
+	if not frozen and not crouching and Input.is_action_just_pressed("jump") and is_on_floor():
 	if not dead and not frozen and Input.is_action_just_pressed("jump") and is_on_floor():
 		if not positive:
 			if current_pull == 0: # X
@@ -368,7 +416,9 @@ func _physics_process(delta):
 	var multiplyer
 	var acceleration
 	
-	if Input.is_action_pressed("shift_key"):
+	if crouching:
+		multiplyer = CROUCH_SPEED
+	elif Input.is_action_pressed("shift_key"):
 		multiplyer = SPRINT_SPEED
 		acceleration = SPRINT_ACC
 	else:
@@ -445,6 +495,13 @@ func _physics_process(delta):
 		if lashing_mode > max_lashing_mode_num:
 			lashing_mode = 1
 		user_interface.set_lashing_num(lashing_mode)
+		
+	# handle crouch
+	if Input.is_action_just_pressed("crouch"):
+		if not crouching:
+			enable_crouching()
+		else:
+			disable_crouching()
 
 				
 	update_rotation()

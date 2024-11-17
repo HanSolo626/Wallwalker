@@ -7,6 +7,10 @@
 radius = 0.8
 height = 4.0
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f4l6w"]
+radius = 0.8
+height = 1.95
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_crjkt"]
 emission = Color(0.697578, 0.697578, 0.697578, 1)
 grow_amount = -0.23
@@ -26,10 +30,15 @@ height = 3.9
 collision_mask = 30
 script = ExtResource("1_4q30t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="NormalCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_qwuce")
 
+[node name="CrouchingCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_f4l6w")
+disabled = true
+
 [node name="Body" type="MeshInstance3D" parent="."]
+visible = false
 layers = 3
 mesh = SubResource("CapsuleMesh_53i5u")
 
@@ -40,7 +49,7 @@ collision_mask = 64
 shape = SubResource("CapsuleShape3D_n3ra2")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53324, 0.103362)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 current = true
 
 [node name="LashingRayCast" type="RayCast3D" parent="Camera3D"]
@@ -54,6 +63,7 @@ target_position = Vector3(0, 0, -10)
 collision_mask = 26
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+visible = false
 light_energy = 6.0
 spot_range = 46.405
 spot_angle = 24.11
@@ -72,4 +82,9 @@ omni_range = 7.614
 [node name="GlowSword" parent="." instance=ExtResource("2_02cdg")]
 transform = Transform3D(0.57, 0, 0, 0, 0.505039, 0.264264, 0, -0.264264, 0.505039, 1.00686, 0, -1.30605)
 
+[node name="CrouchChecker" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 1, 0)
+collision_mask = 18
+debug_shape_custom_color = Color(1, 0, 0, 1)
 [connection signal="area_entered" from="DeathDetection" to="." method="_on_death_detection_area_entered"]
