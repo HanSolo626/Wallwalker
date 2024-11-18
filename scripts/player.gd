@@ -107,6 +107,8 @@ signal player_killed
 @onready var flashlight = $Camera3D/SpotLight3D
 @onready var crouch_checker = $CrouchChecker
 @onready var user_interface = $"../Control/UserInterface"
+@onready var death_detection_normal = $DeathDetection/Normal
+@onready var death_detection_crouching = $DeathDetection/Crouching
 
 
 func set_top_level(t):
@@ -285,6 +287,8 @@ func enable_crouching():
 		crouching_collision.disabled = false
 		camera_3d.transform.origin = Vector3(0, 0.5, 0)
 		translate_object_local(Vector3(0, -1, 0))
+		death_detection_normal.disabled = true
+		death_detection_crouching.disabled = false
 	
 func disable_crouching():
 	if crouching != false and not crouch_checker.is_colliding():
@@ -293,6 +297,9 @@ func disable_crouching():
 		crouching_collision.disabled = true
 		camera_3d.transform.origin = Vector3(0, 1.5, 0)
 		translate_object_local(Vector3(0, 1, 0))
+		death_detection_normal.disabled = false
+		death_detection_crouching.disabled = true
+		
 		
 func slow_down_player(value):
 	if value > 0:
@@ -496,7 +503,7 @@ func _physics_process(delta):
 		user_interface.set_lashing_num(lashing_mode)
 		
 	# handle crouch
-	if Input.is_action_just_pressed("crouch"):
+	if not dead and Input.is_action_just_pressed("crouch"):
 		if not crouching:
 			enable_crouching()
 		else:

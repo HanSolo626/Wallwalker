@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://die75m3up6sa4"]
+[gd_scene load_steps=10 format=3 uid="uid://die75m3up6sa4"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4q30t"]
 [ext_resource type="PackedScene" uid="uid://c7v5bq2rp212x" path="res://scenes/glow_sword.tscn" id="2_02cdg"]
@@ -21,8 +21,11 @@ radius = 1.0
 height = 4.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n3ra2"]
-radius = 0.9
-height = 3.9
+radius = 0.85
+height = 4.1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ettip"]
+radius = 0.85
 
 [sub_resource type="BoxMesh" id="BoxMesh_yyh1i"]
 
@@ -45,8 +48,12 @@ mesh = SubResource("CapsuleMesh_53i5u")
 [node name="DeathDetection" type="Area3D" parent="."]
 collision_mask = 64
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathDetection"]
+[node name="Normal" type="CollisionShape3D" parent="DeathDetection"]
 shape = SubResource("CapsuleShape3D_n3ra2")
+disabled = true
+
+[node name="Crouching" type="CollisionShape3D" parent="DeathDetection"]
+shape = SubResource("CapsuleShape3D_ettip")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
