@@ -24,6 +24,7 @@ var frozen = false
 
 var crouching = false
 var dead = false
+var fall_damage_on = true
 var health = 100
 var recovery_rate = 3.5
 
@@ -352,13 +353,14 @@ func kill_player():
 	dead = true
 		
 func check_fall_damage():
-	if frame_counter >= FALL_DAMAGE_FRAME_DELAY:
+	if fall_damage_on and frame_counter >= FALL_DAMAGE_FRAME_DELAY:
 		var current_velocity_state = transform.origin - previous_transform_state
 		var diff = current_velocity_state - previous_velocity_state
-		print(diff)
 		if abs(diff.x) > FALL_DAMAGE_MARGIN or abs(diff.y) > FALL_DAMAGE_MARGIN or abs(diff.z) > FALL_DAMAGE_MARGIN:
 			kill_player()
-
+			print("Killed at velocity: "+str(diff))
+		elif abs(diff.x) > 0.08 or abs(diff.y) > 0.08 or abs(diff.z) > 0.08:
+			print("Noticable velocity change: "+str(diff))
 	
 
 
