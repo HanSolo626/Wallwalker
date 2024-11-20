@@ -15,6 +15,8 @@ const CROUCH_SPEED = 3.0
 const SPRINT_ACC = 1.5
 const JUMP_VELOCITY = 12
 const SLOWDOWN_CHANGE = 1.0
+const FALL_DAMAGE_MARGIN = 0.5
+const FALL_DAMAGE_FRAME_DELAY = 7
 # the smaller this value, the faster it goes
 const CAMERA_ROTATION_SPEED = 25
 var light_on = false
@@ -39,6 +41,15 @@ var z_to_set = 0.0
 var x_updates = 0
 var y_updates = 0
 var z_updates = 0
+
+var origin_diff: Vector3
+var velocity_diff: Vector3
+var previous_transform_state = Vector3(0,0,0)
+var previous_velocity_state = Vector3(0,0,0)
+
+var frame_counter = 0
+
+
 
 
 # Camera angle data
@@ -333,6 +344,22 @@ func freeze_player():
 		frozen = false
 	else:
 		frozen = true
+		
+		
+func kill_player():
+	player_killed.emit()
+	print("your dead")
+	dead = true
+		
+func check_fall_damage():
+	if frame_counter >= FALL_DAMAGE_FRAME_DELAY:
+		var current_velocity_state = transform.origin - previous_transform_state
+		var diff = current_velocity_state - previous_velocity_state
+		print(diff)
+		if abs(diff.x) > FALL_DAMAGE_MARGIN or abs(diff.y) > FALL_DAMAGE_MARGIN or abs(diff.z) > FALL_DAMAGE_MARGIN:
+			kill_player()
+
+	
 
 
 func _ready(): # setup
@@ -380,7 +407,9 @@ func _input(event):
 
 func _physics_process(delta):
 	
-		
+	check_fall_damage()
+	
+	
 	# Add the gravity.
 	if positive:
 		if current_pull == 0: # X
@@ -512,16 +541,16 @@ func _physics_process(delta):
 				
 	update_rotation()
 	
+	previous_velocity_state = transform.origin - previous_transform_state
+	previous_transform_state = transform.origin
 	transform = transform.orthonormalized()
 	camera_3d.transform = camera_3d.transform.orthonormalized()
 	move_and_slide()
-
+	frame_counter += 1
 
 func _on_exit_game_button_pressed():
 	pass # Replace with function body.
 
 
 func _on_death_detection_area_entered(area):
-	player_killed.emit()
-	print("your dead")
-	dead = true
+	kill_player()
