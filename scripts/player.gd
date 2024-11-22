@@ -15,7 +15,7 @@ const CROUCH_SPEED = 3.0
 const SPRINT_ACC = 1.5
 const JUMP_VELOCITY = 12
 const SLOWDOWN_CHANGE = 1.0
-const FALL_DAMAGE_MARGIN = 0.5
+const FALL_DAMAGE_MARGIN = 0.6
 const FALL_DAMAGE_FRAME_DELAY = 7
 # the smaller this value, the faster it goes
 const CAMERA_ROTATION_SPEED = 25
@@ -29,7 +29,7 @@ var health = 100
 var recovery_rate = 3.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes. (nope!)
-var gravity = 24.0
+var gravity = 33.5
 var sensitivity = 0.0015
 var current_pull = 1
 var positive = false
