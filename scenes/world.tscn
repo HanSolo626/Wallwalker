@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d0udkcrdxrxmj"]
+[gd_scene load_steps=20 format=3 uid="uid://d0udkcrdxrxmj"]
 
 [ext_resource type="Script" path="res://scripts/test_world.gd" id="1_ml3n7"]
 [ext_resource type="Script" path="res://scripts/UserInterface.gd" id="2_2avkq"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://7nr55r52ae1u" path="res://scenes/large_plate.tscn" id="11_wac4o"]
 [ext_resource type="PackedScene" uid="uid://dpw0va0tvjoeb" path="res://scenes/platform.tscn" id="12_fm4ay"]
 [ext_resource type="PackedScene" uid="uid://ly3qcqmjd874" path="res://scenes/death_area.tscn" id="15_ue1o6"]
-[ext_resource type="PackedScene" uid="uid://bv3ss3w313dwx" path="res://scenes/stumper_door.tscn" id="16_si75h"]
 
 [sub_resource type="Theme" id="Theme_f5cei"]
 default_font_size = 60
@@ -254,9 +253,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6515, 4.12589, 2.67497)
 
 [node name="DeathArea" parent="." instance=ExtResource("15_ue1o6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1561, -0.968899, -6.53725)
-
-[node name="StumperDoor" parent="." instance=ExtResource("16_si75h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.529, -1.90735e-06, -17.2434)
 
 [connection signal="pressed" from="Control/PauseMenu/VBoxContainer/ResumeButton" to="Control/PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Control/PauseMenu/VBoxContainer/ExitToMainMenuButton" to="Control/PauseMenu" method="_on_exit_to_main_menu_button_pressed"]
