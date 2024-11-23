@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv3ss3w313dwx"]
+
+[ext_resource type="Script" path="res://scripts/stumper_door.gd" id="1_xhqcp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_stqfo"]
+size = Vector3(3.5, 5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r37cg"]
+albedo_color = Color(0, 0.65098, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_12qq2"]
+material = SubResource("StandardMaterial3D_r37cg")
+size = Vector3(3.5, 5, 0.5)
+
+[node name="StumperDoor" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 41
+script = ExtResource("1_xhqcp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_stqfo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_12qq2")
