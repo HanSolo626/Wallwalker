@@ -43,6 +43,7 @@ layers = 3
 mesh = SubResource("CapsuleMesh_53i5u")
 
 [node name="DeathDetection" type="Area3D" parent="."]
+collision_layer = 0
 collision_mask = 64
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathDetection"]
