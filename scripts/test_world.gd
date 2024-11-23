@@ -1,12 +1,14 @@
 extends Node3D
 
+var switch1 = false
+
 @onready var platform = $Platform
 @onready var user_interface = $Control/UserInterface
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	platform.glide_in_loop([Vector3(0, 5, 0), Vector3(-8, 5, 0), Vector3(-8, 5, -8), Vector3(0, 5, -8)], 0.1, 0.5)
-	
+	#platform.glide_in_loop([Vector3(0, 5, 0), Vector3(-8, 5, 0), Vector3(-8, 5, -8), Vector3(0, 5, -8)], 0.1, 0.5)
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,4 +21,6 @@ func _on_player_player_killed():
 
 
 func _on_area_switch_body_entered(body):
-	print("worked")
+	if not switch1:
+		platform.glide_to_position(Vector3(0, 12, 0), 0.1)
+		switch1 = true
