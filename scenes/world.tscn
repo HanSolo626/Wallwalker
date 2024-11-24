@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d0udkcrdxrxmj"]
+[gd_scene load_steps=22 format=3 uid="uid://d0udkcrdxrxmj"]
 
 [ext_resource type="Script" path="res://scripts/test_world.gd" id="1_ml3n7"]
 [ext_resource type="Script" path="res://scripts/UserInterface.gd" id="2_2avkq"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dpw0va0tvjoeb" path="res://scenes/platform.tscn" id="12_fm4ay"]
 [ext_resource type="PackedScene" uid="uid://ly3qcqmjd874" path="res://scenes/death_area.tscn" id="15_ue1o6"]
 [ext_resource type="PackedScene" uid="uid://be8vak5qw1py1" path="res://scenes/area_switch.tscn" id="16_3q7m7"]
+[ext_resource type="PackedScene" uid="uid://bjtryani5nlmd" path="res://scenes/control_panel.tscn" id="17_bnck2"]
 
 [sub_resource type="Theme" id="Theme_f5cei"]
 default_font_size = 60
@@ -257,6 +258,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1561, -0.968899, -6.53725
 
 [node name="AreaSwitch" parent="." instance=ExtResource("16_3q7m7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.20804, -1.04444, -2.4885)
+
+[node name="ControlPanel" parent="." instance=ExtResource("17_bnck2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.116, -1.09691, 6.94727)
 
 [connection signal="pressed" from="Control/PauseMenu/VBoxContainer/ResumeButton" to="Control/PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Control/PauseMenu/VBoxContainer/ExitToMainMenuButton" to="Control/PauseMenu" method="_on_exit_to_main_menu_button_pressed"]

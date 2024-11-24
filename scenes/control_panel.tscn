@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjtryani5nlmd"]
+[gd_scene load_steps=8 format=3 uid="uid://bjtryani5nlmd"]
 
 [ext_resource type="Texture2D" uid="uid://bxq3hibj4mv8r" path="res://resources/falcon.png" id="1_1aq2j"]
 [ext_resource type="Script" path="res://scripts/control_panel.gd" id="1_uivvo"]
@@ -6,27 +6,44 @@
 [sub_resource type="CylinderMesh" id="CylinderMesh_8uk8x"]
 top_radius = 0.2
 bottom_radius = 0.3
+height = 3.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5db8b"]
 albedo_texture = ExtResource("1_1aq2j")
 
 [sub_resource type="BoxMesh" id="BoxMesh_vw1dg"]
-size = Vector3(0.34, 1.1, 2.32)
+size = Vector3(0.26, 1.54, 2.58)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kmdnh"]
-size = Vector3(0.998535, 2.35583, 2.35938)
+size = Vector3(1.23132, 3.65781, 2.60669)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ure52"]
+size = Vector3(2.425, 3.433, 3.921)
 
 [node name="ControlPanel" type="StaticBody3D"]
+collision_layer = 258
+collision_mask = 9
+collision_priority = 0.0
 script = ExtResource("1_uivvo")
 
 [node name="Stand" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_8uk8x")
 
 [node name="Panel" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.734855, -0.678224, 0, 0.678224, 0.734855, 0, 0, 0, 1, 0.109373, 0.887985, 0)
+transform = Transform3D(0.734855, -0.678224, 0, 0.678224, 0.734855, 0, 0, 0, 1, 0.109373, 1.47302, 0)
 material_override = SubResource("StandardMaterial3D_5db8b")
 mesh = SubResource("BoxMesh_vw1dg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0964355, 0.239929, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0953979, 0.314346, -0.000854492)
 shape = SubResource("BoxShape3D_kmdnh")
+
+[node name="PlayerDetection" type="Area3D" parent="."]
+collision_layer = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12789, 0.354092, -0.00723135)
+shape = SubResource("BoxShape3D_ure52")
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
