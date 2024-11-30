@@ -3,6 +3,15 @@ extends StaticBody3D
 
 var player_present = false
 var being_lashed = false
+var num_id = 0
+
+func set_id(num: int):
+	num_id = num
+	return num_id
+	
+func get_id():
+	return num_id
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

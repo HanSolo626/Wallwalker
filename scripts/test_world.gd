@@ -15,12 +15,21 @@ func _ready():
 func _process(delta):
 	pass
 
+func perform_action_one_test():
+	platform.glide_to_position(Vector3(0, 12, 0), 0.1)
+
 
 func _on_player_player_killed():
 	user_interface.enable_death_screen()
 
 
 func _on_area_switch_body_entered(body):
-	if not switch1:
-		platform.glide_to_position(Vector3(0, 12, 0), 0.1)
-		switch1 = true
+	#if not switch1:
+	#	platform.glide_to_position(Vector3(0, 12, 0), 0.1)
+	#	switch1 = true
+	pass
+
+
+func _on_player_control_clicked(control_panel):
+	if control_panel.player_present:
+		perform_action_one_test()

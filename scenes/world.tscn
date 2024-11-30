@@ -266,5 +266,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.116, -1.09691, 6.94727)
 [connection signal="pressed" from="Control/PauseMenu/VBoxContainer/ExitToMainMenuButton" to="Control/PauseMenu" method="_on_exit_to_main_menu_button_pressed"]
 [connection signal="pressed" from="Control/PauseMenu/VBoxContainer/ExitGameButton" to="Control/PauseMenu" method="_on_exit_game_button_pressed"]
 [connection signal="text_submitted" from="Control/CheatMenu/CheatBarBox/CheatBar" to="Control/CheatMenu" method="_on_cheat_bar_text_submitted"]
+[connection signal="control_clicked" from="Player" to="." method="_on_player_control_clicked"]
 [connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
 [connection signal="body_entered" from="AreaSwitch" to="." method="_on_area_switch_body_entered"]

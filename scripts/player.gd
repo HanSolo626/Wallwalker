@@ -95,6 +95,7 @@ const CAMERA_ANGLES = {
 
 
 signal player_killed
+signal control_clicked
 
 @onready var camera_3d = $Camera3D
 @onready var lashing_ray_cast = $Camera3D/LashingRayCast
@@ -107,6 +108,7 @@ signal player_killed
 @onready var flashlight = $Camera3D/SpotLight3D
 @onready var crouch_checker = $CrouchChecker
 @onready var user_interface = $"../Control/UserInterface"
+@onready var control_ray_cast = $Camera3D/ControlRayCast
 
 
 func set_top_level(t):
@@ -474,6 +476,10 @@ func _physics_process(delta):
 						object_to_bind.set_target(lashing_ray_cast.get_collision_point())
 					object_to_bind = null
 					user_interface.set_binding_indicator(false)
+					
+	if not dead and not frozen and Input.is_action_just_pressed("left click"):
+		if control_ray_cast.is_colliding():
+			control_clicked.emit(control_ray_cast.get_collider())
 				
 				
 	if not dead and not frozen and Input.is_action_just_released("lash"):
