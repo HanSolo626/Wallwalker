@@ -4,6 +4,7 @@ var switch1 = false
 
 @onready var platform = $Platform
 @onready var user_interface = $Control/UserInterface
+@onready var player = %Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,9 +25,9 @@ func _on_player_player_killed():
 
 
 func _on_area_switch_body_entered(body):
-	#if not switch1:
-	#	platform.glide_to_position(Vector3(0, 12, 0), 0.1)
-	#	switch1 = true
+	player.change_gravity_up()
+	player.rotation_trigger = true
+	print("test")
 	pass
 
 
