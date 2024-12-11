@@ -28,9 +28,13 @@ func _on_area_switch_body_entered(body):
 	player.change_gravity_up()
 	player.rotation_trigger = true
 	print("test")
-	pass
 
 
 func _on_player_control_clicked(control_panel):
 	if control_panel.player_present:
 		perform_action_one_test()
+
+
+func _on_area_switch_2_body_entered(body):
+	player.change_gravity_down()
+	player.rotation_trigger = true
