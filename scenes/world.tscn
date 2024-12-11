@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dpw0va0tvjoeb" path="res://scenes/platform.tscn" id="12_fm4ay"]
 [ext_resource type="PackedScene" uid="uid://ly3qcqmjd874" path="res://scenes/death_area.tscn" id="15_ue1o6"]
 [ext_resource type="PackedScene" uid="uid://be8vak5qw1py1" path="res://scenes/area_switch.tscn" id="16_3q7m7"]
-[ext_resource type="PackedScene" uid="uid://bjtryani5nlmd" path="res://scenes/control_panel.tscn" id="17_bnck2"]
+[ext_resource type="PackedScene" path="res://scenes/control_panel.tscn" id="17_bnck2"]
 
 [sub_resource type="Theme" id="Theme_f5cei"]
 default_font_size = 60
