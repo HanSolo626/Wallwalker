@@ -55,6 +55,8 @@ func prep_lashing_settings():
 	lashable_faces[4] = get_meta("minus_z_lash")
 	lashable_faces[5] = get_meta("plus_z_lash")
 	
+func get_surface_lashable(index: int):
+	return lashable_faces[index]
 
 func _ready():
 	prep_lashing_settings()

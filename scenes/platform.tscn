@@ -12,12 +12,12 @@ size = Vector3(5.5, 0.4, 7)
 collision_layer = 16
 collision_mask = 11
 script = ExtResource("1_n5kjc")
-metadata/minus_x_lash = false
-metadata/plus_x_lash = false
-metadata/minus_y_lash = false
-metadata/plus_y_lash = false
-metadata/minus_z_lash = false
-metadata/plus_z_lash = false
+metadata/minus_x_lash = true
+metadata/plus_x_lash = true
+metadata/minus_y_lash = true
+metadata/plus_y_lash = true
+metadata/minus_z_lash = true
+metadata/plus_z_lash = true
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_xuar1")

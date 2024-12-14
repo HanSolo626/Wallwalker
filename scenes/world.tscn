@@ -250,6 +250,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5082, 0.90325, -15.503)
 
 [node name="Platform" parent="." instance=ExtResource("12_fm4ay")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6515, 4.12589, 2.67497)
+metadata/plus_y_lash = false
 
 [node name="DeathArea" parent="." instance=ExtResource("15_ue1o6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1561, -0.968899, -6.53725)
