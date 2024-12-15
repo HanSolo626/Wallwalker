@@ -260,6 +260,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1561, -0.968899, -6.53725
 [node name="AreaSwitch" parent="." instance=ExtResource("16_3q7m7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.20804, -1.04444, -2.4885)
 
+[node name="AreaSwitch2" parent="." instance=ExtResource("16_3q7m7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.20804, 9.28195, -2.4885)
+
 [node name="ControlPanel" parent="." instance=ExtResource("17_bnck2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.116, -1.09691, 6.94727)
 
@@ -270,3 +273,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.116, -1.09691, 6.94727)
 [connection signal="control_clicked" from="Player" to="." method="_on_player_control_clicked"]
 [connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
 [connection signal="body_entered" from="AreaSwitch" to="." method="_on_area_switch_body_entered"]
+[connection signal="body_entered" from="AreaSwitch2" to="." method="_on_area_switch_2_body_entered"]

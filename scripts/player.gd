@@ -142,6 +142,7 @@ func update_rotation():
 
 func arm_rotation_change(data):
 	
+	
 	var x = data[0]
 	var y = data[1]
 	var z = data[2]
@@ -277,11 +278,91 @@ func change_gravity(raycast_object: RayCast3D):
 			up_direction = Vector3.FORWARD
 			check_crouch_needed(Vector3.BACK)
 		
+		change_gravity_left()
+		
+		
+	elif block.x - face.x > 0 and (current_pull != 0 or positive != true):
+		change_gravity_right()
+		
+	elif block.y - face.y < 0 and (current_pull != 1 or positive != false):
+		change_gravity_down()
+		
+		
+	elif block.y - face.y > 0 and (current_pull != 1 or positive != true):
+		change_gravity_up()
+		
+		
+	elif block.z - face.z < 0 and (current_pull != 2 or positive != false):
+		change_gravity_backward()
+		
+	elif block.z - face.z > 0 and (current_pull != 2 or positive != true):
+		change_gravity_forward()
+		
+		
+func change_gravity_left():
+	if CAMERA_ANGLES[dir_str]["left"] != null:
+		print("left")
+		current_pull = 0
+		positive = false
+		arm_rotation_change(CAMERA_ANGLES[dir_str]["left"])
+		dir_str = "left wall"
+		up_direction = Vector3.RIGHT
+		check_crouch_needed(Vector3.RIGHT)
+	
+func change_gravity_right():
+	if CAMERA_ANGLES[dir_str]["right"] != null:
+		print("right")
+		current_pull = 0
+		positive = true
+		arm_rotation_change(CAMERA_ANGLES[dir_str]["right"])
+		dir_str = "right wall"
+		up_direction = Vector3.LEFT
+		check_crouch_needed(Vector3.LEFT)
+	
+func change_gravity_down():
+	if CAMERA_ANGLES[dir_str]["down"]:
+		print("down")
+		current_pull = 1
+		positive = false
+		arm_rotation_change(CAMERA_ANGLES[dir_str]["down"])
+		dir_str = "floor"
+		up_direction = Vector3.UP
+		check_crouch_needed(Vector3.UP)
+	
+func change_gravity_up():
+	if CAMERA_ANGLES[dir_str]["up"] != null:
+		print("up")
+		current_pull = 1
+		positive = true
+		arm_rotation_change(CAMERA_ANGLES[dir_str]["up"])
+		dir_str = "ceiling"
+		up_direction = Vector3.DOWN
+		check_crouch_needed(Vector3.DOWN)
+	
+func change_gravity_forward():
+	if CAMERA_ANGLES[dir_str]["forward"]:
+		print("forward")
+		current_pull = 2
+		positive = true
+		arm_rotation_change(CAMERA_ANGLES[dir_str]["forward"])
+		dir_str = "forward wall"
+		up_direction = Vector3.FORWARD
+		check_crouch_needed(Vector3.BACK)
+
+func change_gravity_backward():
+	if CAMERA_ANGLES[dir_str]["backward"]:
+		print("backward")
+		current_pull = 2
+		positive = false
+		arm_rotation_change(CAMERA_ANGLES[dir_str]["backward"])
+		dir_str = "backward wall"
+		up_direction = Vector3.BACK
+		check_crouch_needed(Vector3.FORWARD)
+	
 		
 func check_crouch_needed(direction: Vector3):
 	if check_ceiling(direction):
 		enable_crouching()
-		print("worked")
 		
 
 func check_ceiling(direction: Vector3):
@@ -473,6 +554,7 @@ func _physics_process(delta):
 	# handle mouse clicks
 	if not dead and not frozen and Input.is_action_just_pressed("lash"):
 		if lashing_ray_cast.is_colliding() or binding_ray_cast.is_colliding():
+			print(lashing_ray_cast.get_collider())
 			
 			if lashing_mode == 1 and lashing_ray_cast.get_collider() != null and (lashing_ray_cast.get_collider().has_method("is_block") or lashing_ray_cast.get_collider().has_method("is_platform")) and is_rotating() == false:
 				change_gravity(lashing_ray_cast)
