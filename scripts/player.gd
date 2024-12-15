@@ -205,98 +205,45 @@ func change_gravity(raycast_object: RayCast3D):
 		if lashed_object.has_method("glide_in_loop") and not lashed_object.get_surface_lashable(0):
 			pass
 		else:
-			print("left")
-			current_pull = 0
-			positive = false
-			arm_rotation_change(CAMERA_ANGLES[dir_str]["left"])
-			dir_str = "left wall"
-			up_direction = Vector3.RIGHT
-			check_crouch_needed(Vector3.RIGHT)
+			change_gravity_left()
 		
 		
 	elif block.x - face.x > 0 and (current_pull != 0 or positive != true):
 		if lashed_object.has_method("glide_in_loop") and not lashed_object.get_surface_lashable(1):
 			pass
 		else:
-			print("right")
-			current_pull = 0
-			positive = true
-			arm_rotation_change(CAMERA_ANGLES[dir_str]["right"])
-			dir_str = "right wall"
-			up_direction = Vector3.LEFT
-			check_crouch_needed(Vector3.LEFT)
+			change_gravity_right()
 		
 		
 	elif block.y - face.y < 0 and (current_pull != 1 or positive != false):
 		if lashed_object.has_method("glide_in_loop") and not lashed_object.get_surface_lashable(2):
 			pass
 		else:
-			print("down")
-			current_pull = 1
-			positive = false
-			arm_rotation_change(CAMERA_ANGLES[dir_str]["down"])
-			dir_str = "floor"
-			up_direction = Vector3.UP
-			check_crouch_needed(Vector3.UP)
+			change_gravity_down()
 		
 		
 	elif block.y - face.y > 0 and (current_pull != 1 or positive != true):
 		if lashed_object.has_method("glide_in_loop") and not lashed_object.get_surface_lashable(3):
 			pass
 		else:
-			print("up")
-			current_pull = 1
-			positive = true
-			arm_rotation_change(CAMERA_ANGLES[dir_str]["up"])
-			dir_str = "ceiling"
-			up_direction = Vector3.DOWN
-			check_crouch_needed(Vector3.DOWN)
+			change_gravity_up()
 		
 		
 	elif block.z - face.z < 0 and (current_pull != 2 or positive != false):
 		if lashed_object.has_method("glide_in_loop") and not lashed_object.get_surface_lashable(4):
 			pass
 		else:
-			print("backward")
-			current_pull = 2
-			positive = false
-			arm_rotation_change(CAMERA_ANGLES[dir_str]["backward"])
-			dir_str = "backward wall"
-			up_direction = Vector3.BACK
-			check_crouch_needed(Vector3.FORWARD)
+			change_gravity_backward()
 		
 		
 	elif block.z - face.z > 0 and (current_pull != 2 or positive != true):
 		if lashed_object.has_method("glide_in_loop") and not lashed_object.get_surface_lashable(5):
 			pass
 		else:
-			print("forward")
-			current_pull = 2
-			positive = true
-			arm_rotation_change(CAMERA_ANGLES[dir_str]["forward"])
-			dir_str = "forward wall"
-			up_direction = Vector3.FORWARD
-			check_crouch_needed(Vector3.BACK)
-		
-		change_gravity_left()
+			change_gravity_forward()
 		
 		
-	elif block.x - face.x > 0 and (current_pull != 0 or positive != true):
-		change_gravity_right()
 		
-	elif block.y - face.y < 0 and (current_pull != 1 or positive != false):
-		change_gravity_down()
-		
-		
-	elif block.y - face.y > 0 and (current_pull != 1 or positive != true):
-		change_gravity_up()
-		
-		
-	elif block.z - face.z < 0 and (current_pull != 2 or positive != false):
-		change_gravity_backward()
-		
-	elif block.z - face.z > 0 and (current_pull != 2 or positive != true):
-		change_gravity_forward()
 		
 		
 func change_gravity_left():
