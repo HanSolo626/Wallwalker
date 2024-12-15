@@ -27,7 +27,7 @@ var recovery_rate = 3.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes. (nope!)
 var gravity = 24.0
-var sensitivity = 0.0015
+var sensitivity = 0.0030
 var current_pull = 1
 var positive = false
 var dir_str = "floor"
@@ -340,7 +340,9 @@ func _ready(): # setup
 	
 func _input(event):
 	# Mouse input
+	print(is_rotating())
 	if not frozen and event is InputEventMouseMotion and is_rotating() == false:
+		print("test")
 		if positive:
 			if current_pull == 0:
 				rotate_x(event.relative.x * sensitivity)
