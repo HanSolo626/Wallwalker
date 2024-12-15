@@ -189,75 +189,93 @@ func arm_rotation_change(data):
 	
 
 
-func change_gravity(raycast_object):
+func change_gravity(raycast_object: RayCast3D):
 	# get points
 	var block = raycast_object.get_collision_point() - raycast_object.get_collision_normal()
 	var face = raycast_object.get_collision_point() + raycast_object.get_collision_normal()
 	
-	
+	var lashed_object = raycast_object.get_collider()
 	
 	# extract direction
 	# x = 0
 	# y = 1
 	# z = 2
 	if block.x - face.x < 0 and (current_pull != 0 or positive != false):
-		print("left")
-		current_pull = 0
-		positive = false
-		arm_rotation_change(CAMERA_ANGLES[dir_str]["left"])
-		dir_str = "left wall"
-		up_direction = Vector3.RIGHT
-		check_crouch_needed(Vector3.RIGHT)
+		if lashed_object.has_method("glide_in_loop") and not lashed_object.get_surface_lashable(0):
+			pass
+		else:
+			print("left")
+			current_pull = 0
+			positive = false
+			arm_rotation_change(CAMERA_ANGLES[dir_str]["left"])
+			dir_str = "left wall"
+			up_direction = Vector3.RIGHT
+			check_crouch_needed(Vector3.RIGHT)
 		
 		
 	elif block.x - face.x > 0 and (current_pull != 0 or positive != true):
-		print("right")
-		current_pull = 0
-		positive = true
-		arm_rotation_change(CAMERA_ANGLES[dir_str]["right"])
-		dir_str = "right wall"
-		up_direction = Vector3.LEFT
-		check_crouch_needed(Vector3.LEFT)
+		if lashed_object.has_method("glide_in_loop") and not lashed_object.get_surface_lashable(1):
+			pass
+		else:
+			print("right")
+			current_pull = 0
+			positive = true
+			arm_rotation_change(CAMERA_ANGLES[dir_str]["right"])
+			dir_str = "right wall"
+			up_direction = Vector3.LEFT
+			check_crouch_needed(Vector3.LEFT)
 		
 		
 	elif block.y - face.y < 0 and (current_pull != 1 or positive != false):
-		print("down")
-		current_pull = 1
-		positive = false
-		arm_rotation_change(CAMERA_ANGLES[dir_str]["down"])
-		dir_str = "floor"
-		up_direction = Vector3.UP
-		check_crouch_needed(Vector3.UP)
+		if lashed_object.has_method("glide_in_loop") and not lashed_object.get_surface_lashable(2):
+			pass
+		else:
+			print("down")
+			current_pull = 1
+			positive = false
+			arm_rotation_change(CAMERA_ANGLES[dir_str]["down"])
+			dir_str = "floor"
+			up_direction = Vector3.UP
+			check_crouch_needed(Vector3.UP)
 		
 		
 	elif block.y - face.y > 0 and (current_pull != 1 or positive != true):
-		print("up")
-		current_pull = 1
-		positive = true
-		arm_rotation_change(CAMERA_ANGLES[dir_str]["up"])
-		dir_str = "ceiling"
-		up_direction = Vector3.DOWN
-		check_crouch_needed(Vector3.DOWN)
+		if lashed_object.has_method("glide_in_loop") and not lashed_object.get_surface_lashable(3):
+			pass
+		else:
+			print("up")
+			current_pull = 1
+			positive = true
+			arm_rotation_change(CAMERA_ANGLES[dir_str]["up"])
+			dir_str = "ceiling"
+			up_direction = Vector3.DOWN
+			check_crouch_needed(Vector3.DOWN)
 		
 		
 	elif block.z - face.z < 0 and (current_pull != 2 or positive != false):
-		print("backward")
-		current_pull = 2
-		positive = false
-		arm_rotation_change(CAMERA_ANGLES[dir_str]["backward"])
-		dir_str = "backward wall"
-		up_direction = Vector3.BACK
-		check_crouch_needed(Vector3.FORWARD)
+		if lashed_object.has_method("glide_in_loop") and not lashed_object.get_surface_lashable(4):
+			pass
+		else:
+			print("backward")
+			current_pull = 2
+			positive = false
+			arm_rotation_change(CAMERA_ANGLES[dir_str]["backward"])
+			dir_str = "backward wall"
+			up_direction = Vector3.BACK
+			check_crouch_needed(Vector3.FORWARD)
 		
 		
 	elif block.z - face.z > 0 and (current_pull != 2 or positive != true):
-		print("forward")
-		current_pull = 2
-		positive = true
-		arm_rotation_change(CAMERA_ANGLES[dir_str]["forward"])
-		dir_str = "forward wall"
-		up_direction = Vector3.FORWARD
-		check_crouch_needed(Vector3.BACK)
+		if lashed_object.has_method("glide_in_loop") and not lashed_object.get_surface_lashable(5):
+			pass
+		else:
+			print("forward")
+			current_pull = 2
+			positive = true
+			arm_rotation_change(CAMERA_ANGLES[dir_str]["forward"])
+			dir_str = "forward wall"
+			up_direction = Vector3.FORWARD
+			check_crouch_needed(Vector3.BACK)
 		
 		
 func check_crouch_needed(direction: Vector3):

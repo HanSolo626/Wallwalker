@@ -10,7 +10,12 @@ var moving = false
 var one_time_timer = 0
 var loop_timer = 0
 var timer = 0
+#					  -X    +X    -Y    +Y    -Z    +Z
+var lashable_faces = [true, true, true, true, true, true]
+
+
 @onready var collision = $Collision
+
 
 
 func is_platform():
@@ -42,10 +47,19 @@ func get_max_collision_size():
 		result = collision.shape.size.z
 	return result
 	
+func prep_lashing_settings():
+	lashable_faces[0] = get_meta("minus_x_lash")
+	lashable_faces[1] = get_meta("plus_x_lash")
+	lashable_faces[2] = get_meta("minus_y_lash")
+	lashable_faces[3] = get_meta("plus_y_lash")
+	lashable_faces[4] = get_meta("minus_z_lash")
+	lashable_faces[5] = get_meta("plus_z_lash")
+	
+func get_surface_lashable(index: int):
+	return lashable_faces[index]
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	prep_lashing_settings()
 
 
 func _physics_process(delta):
