@@ -1,6 +1,6 @@
 extends Control
 
-@onready var dungeon_grid_map = $"../../DungeonGridMap"
+@onready var dungeon_grid_map = $"../../SubViewportContainer/SubViewport/DungeonGridMap"
 @onready var cheat_bar = $CheatBarBox/CheatBar
 @onready var cheat_status = $CheatStatusBox/CheatStatus
 @onready var player = %Player
@@ -12,6 +12,7 @@ var CHEATS
 var enabled_cheats = []
 
 func _ready():
+	return
 	CHEAT_CODES = [
 		"lumosnox"
 	]
@@ -21,6 +22,7 @@ func _ready():
 	}
 
 func _process(_delta):
+	return
 	
 	if Input.is_action_just_pressed("text_input"):
 		if not menu_open:

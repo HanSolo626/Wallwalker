@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var platform = $Platform
+@onready var platform = %Platform
 @onready var user_interface = $Control/UserInterface
 
 # Called when the node enters the scene tree for the first time.

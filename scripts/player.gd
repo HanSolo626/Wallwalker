@@ -106,7 +106,7 @@ signal player_killed
 @onready var gridmap = $"../DungeonGridMap"
 @onready var flashlight = $Camera3D/SpotLight3D
 @onready var crouch_checker = $CrouchChecker
-@onready var user_interface = $"../Control/UserInterface"
+@onready var user_interface = $"../../../Control/UserInterface"
 
 
 func set_top_level(t):
