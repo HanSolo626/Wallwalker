@@ -1,0 +1,156 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlni0vkfjodkp"]
+
+[ext_resource type="Script" path="res://scripts/UserInterface.gd" id="1_cpq4r"]
+[ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="2_ys448"]
+
+[sub_resource type="Theme" id="Theme_f5cei"]
+default_font_size = 60
+
+[sub_resource type="Theme" id="Theme_o2i6n"]
+default_font_size = 42
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pointer" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -90.5
+offset_right = -36.0
+offset_bottom = -67.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(10, 8)
+text = "+"
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -967.0
+offset_top = -537.0
+offset_right = 953.0
+offset_bottom = 543.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cpq4r")
+
+[node name="DeathScreen" type="ColorRect" parent="UserInterface"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -5.0
+offset_right = 10.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 0.384314)
+
+[node name="LashingNum" type="Label" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 83.0
+grow_horizontal = 2
+theme = SubResource("Theme_f5cei")
+text = "1"
+
+[node name="BindingLashIndicator" type="ColorRect" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -74.0
+offset_top = 21.0
+offset_right = -24.0
+offset_bottom = 71.0
+grow_horizontal = 2
+color = Color(1, 0, 0, 1)
+
+[node name="PauseMenu" type="Control" parent="."]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ys448")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+top_level = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -358.5
+offset_top = -105.0
+offset_right = 358.5
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_o2i6n")
+text = "Resume"
+
+[node name="ExitToMainMenuButton" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_o2i6n")
+text = "Exit to Main Menu"
+
+[node name="ExitGameButton" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_o2i6n")
+text = "Exit Game"
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2263.0
+offset_top = -1606.0
+offset_right = 2125.0
+offset_bottom = 1554.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.494118)
+
+[connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/ExitToMainMenuButton" to="PauseMenu" method="_on_exit_to_main_menu_button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/ExitGameButton" to="PauseMenu" method="_on_exit_game_button_pressed"]
