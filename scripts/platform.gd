@@ -15,6 +15,7 @@ var lashable_faces = [true, true, true, true, true, true]
 
 
 @onready var collision = $Collision
+@onready var mesh = $Mesh
 
 
 
@@ -96,6 +97,9 @@ func get_surface_lashable(index: int):
 
 func _ready():
 	prep_lashing_settings()
+	collision.shape.size.x = mesh.mesh.size.x
+	collision.shape.size.y = mesh.mesh.size.y
+	collision.shape.size.z = mesh.mesh.size.z
 
 
 func _physics_process(delta):
