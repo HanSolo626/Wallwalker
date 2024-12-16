@@ -104,7 +104,7 @@ signal control_clicked
 @onready var crouching_collision = $CrouchingCollision
 @onready var body = $Body
 @onready var stick = $stick
-@onready var gridmap = $"../DungeonGridMap"
+#@onready var gridmap = $"../DungeonGridMap"
 @onready var flashlight = $Camera3D/SpotLight3D
 @onready var crouch_checker = $CrouchChecker
 @onready var user_interface = $"../Control/UserInterface"
