@@ -38,6 +38,42 @@ func glide_in_loop(pos_array: Array, speed: float, pause_time: float):
 	loop_timer = pause_time
 	moving = true
 	
+func glide_up(y: float, speed: float):
+	current_glide_position = transform.basis.y * y
+	current_glide_speed = speed
+	current_glide_loop_positions = []
+	moving = true
+	
+func glide_down(y: float, speed: float):
+	current_glide_position = transform.basis.y * -y
+	current_glide_speed = speed
+	current_glide_loop_positions = []
+	moving = true
+	
+func glide_left(x: float, speed: float):
+	current_glide_position = transform.basis.x * -x
+	current_glide_speed = speed
+	current_glide_loop_positions = []
+	moving = true
+	
+func glide_right(x: float, speed: float):
+	current_glide_position = transform.basis.x * x
+	current_glide_speed = speed
+	current_glide_loop_positions = []
+	moving = true
+	
+func glide_forward(z: float, speed: float):
+	current_glide_position = transform.basis.z * z
+	current_glide_speed = speed
+	current_glide_loop_positions = []
+	moving = true
+	
+func glide_backward(z: float, speed: float):
+	current_glide_position = transform.basis.z * -z
+	current_glide_speed = speed
+	current_glide_loop_positions = []
+	moving = true
+	
 	
 func get_max_collision_size():
 	var result = collision.shape.size.x
