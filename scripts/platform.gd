@@ -40,37 +40,43 @@ func glide_in_loop(pos_array: Array, speed: float, pause_time: float):
 	moving = true
 	
 func glide_up(y: float, speed: float):
-	current_glide_position = transform.basis.y * y
+	var r = Vector3(transform.origin.x, transform.origin.y + y, transform.origin.z)
+	current_glide_position = r
 	current_glide_speed = speed
 	current_glide_loop_positions = []
 	moving = true
 	
 func glide_down(y: float, speed: float):
-	current_glide_position = transform.basis.y * -y
+	var r = Vector3(transform.origin.x, transform.origin.y - y, transform.origin.z)
+	current_glide_position = r
 	current_glide_speed = speed
 	current_glide_loop_positions = []
 	moving = true
 	
 func glide_left(x: float, speed: float):
-	current_glide_position = transform.basis.x * -x
+	var r = Vector3(transform.origin.x - x, transform.origin.y, transform.origin.z)
+	current_glide_position = r
 	current_glide_speed = speed
 	current_glide_loop_positions = []
 	moving = true
 	
 func glide_right(x: float, speed: float):
-	current_glide_position = transform.basis.x * x
+	var r = Vector3(transform.origin.x + x, transform.origin.y, transform.origin.z)
+	current_glide_position = r
 	current_glide_speed = speed
 	current_glide_loop_positions = []
 	moving = true
 	
 func glide_forward(z: float, speed: float):
-	current_glide_position = transform.basis.z * z
+	var r = Vector3(transform.origin.x, transform.origin.y, transform.origin.z + z)
+	current_glide_position = r
 	current_glide_speed = speed
 	current_glide_loop_positions = []
 	moving = true
 	
 func glide_backward(z: float, speed: float):
-	current_glide_position = transform.basis.z * -z
+	var r = Vector3(transform.origin.x, transform.origin.y, transform.origin.z - z)
+	current_glide_position = r
 	current_glide_speed = speed
 	current_glide_loop_positions = []
 	moving = true

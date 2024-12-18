@@ -5,7 +5,7 @@
 [ext_resource type="Environment" uid="uid://cecgvgme5tytb" path="res://resources/enviroments/world.tres" id="3_gc4iq"]
 [ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="4_8e6wx"]
 [ext_resource type="PackedScene" uid="uid://dpw0va0tvjoeb" path="res://scenes/platform.tscn" id="5_fnqaj"]
-[ext_resource type="PackedScene" path="res://scenes/control_panel.tscn" id="6_w24tf"]
+[ext_resource type="PackedScene" uid="uid://bjtryani5nlmd" path="res://scenes/control_panel.tscn" id="6_w24tf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sk7i7"]
 size = Vector3(15, 0.4, 15)

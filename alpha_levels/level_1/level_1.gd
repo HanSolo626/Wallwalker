@@ -15,4 +15,5 @@ func _process(delta):
 
 func _on_player_control_clicked(control_panel):
 	if control_panel.player_present:
-		platform_3.glide_to_position(Vector3(-5.144, 0.7, 0.211), 0.1)
+		#platform_3.glide_to_position(Vector3(-5.144, 0.7, 0.211), 0.1)
+		platform_3.glide_up(20, 0.1)
