@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyr7dunfwy7ca"]
+[gd_scene load_steps=8 format=3 uid="uid://dyr7dunfwy7ca"]
 
 [ext_resource type="Script" path="res://alpha_levels/template/level_template.gd" id="1_k7dmo"]
 [ext_resource type="PackedScene" uid="uid://dlni0vkfjodkp" path="res://scenes/control.tscn" id="2_f0a60"]
 [ext_resource type="Environment" uid="uid://cecgvgme5tytb" path="res://resources/enviroments/world.tres" id="5_lqkcx"]
 [ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="6_7xn02"]
+[ext_resource type="PackedScene" uid="uid://n8187bvy8ose" path="res://scenes/area_switch.tscn" id="6_t1cei"]
 [ext_resource type="PackedScene" uid="uid://dpw0va0tvjoeb" path="res://scenes/platform.tscn" id="14_8gehk"]
+
+[sub_resource type="FogMaterial" id="FogMaterial_gv52p"]
+density = 0.2727
+albedo = Color(1, 1, 0.619608, 1)
+emission = Color(0.774446, 0.774446, 0, 1)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_k7dmo")
@@ -25,5 +31,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2713, 0)
 [node name="Platform" parent="." instance=ExtResource("14_8gehk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.290324, 0, -0.642425)
 
+[node name="AreaSwitch" parent="." instance=ExtResource("6_t1cei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.532264, 0, 8.63667)
+
+[node name="FogVolume" parent="AreaSwitch" index="3"]
+size = Vector3(10, 4.3, 10)
+material = SubResource("FogMaterial_gv52p")
+
 [connection signal="control_clicked" from="Player" to="." method="_on_player_control_clicked"]
 [connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
+
+[editable path="AreaSwitch"]

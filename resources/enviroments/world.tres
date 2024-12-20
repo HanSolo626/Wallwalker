@@ -15,4 +15,5 @@ sky = SubResource("Sky_x4s61")
 glow_enabled = true
 glow_blend_mode = 1
 glow_hdr_threshold = 1.6
-volumetric_fog_density = 0.1094
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0

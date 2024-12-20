@@ -1,21 +1,54 @@
-[gd_scene load_steps=4 format=3 uid="uid://n8187bvy8ose"]
+[gd_scene load_steps=7 format=3 uid="uid://n8187bvy8ose"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rsq76"]
-albedo_color = Color(0.913175, 0.47906, 1.92523e-07, 1)
+[ext_resource type="BoxMesh" uid="uid://bequkoc4tv5f7" path="res://resources/materials/area_switch_lashing_effect.tres" id="1_rvjri"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_xswq4"]
-material = SubResource("StandardMaterial3D_rsq76")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1eoyx"]
+transparency = 1
+albedo_color = Color(1, 1, 0, 0.317647)
+disable_receive_shadows = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_msbi6"]
+material = SubResource("StandardMaterial3D_1eoyx")
+size = Vector2(9, 9)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yfwbb"]
-size = Vector3(8.46, 2, 8.21)
+size = Vector3(9, 2.77792, 9)
+
+[sub_resource type="Curve" id="Curve_42tmf"]
+_data = [Vector2(0, 0.768403), 0.0, 0.0, 0, 0, Vector2(0.817097, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="FogMaterial" id="FogMaterial_kcl61"]
 
 [node name="AreaSwitch" type="Area3D"]
 collision_layer = 128
 monitorable = false
 
 [node name="Marker" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_xswq4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.300724, 0)
+mesh = SubResource("PlaneMesh_msbi6")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66338, 0)
 shape = SubResource("BoxShape3D_yfwbb")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+amount = 75
+lifetime = 1.5
+preprocess = 125.55
+speed_scale = 0.07
+mesh = ExtResource("1_rvjri")
+emission_shape = 3
+emission_box_extents = Vector3(4.5, 0, 4.5)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+scale_amount_curve = SubResource("Curve_42tmf")
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.86363, 0)
+size = Vector3(9, 3.23406, 9)
+material = SubResource("FogMaterial_kcl61")
