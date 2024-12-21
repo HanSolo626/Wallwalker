@@ -17,6 +17,7 @@ radius = 2.5
 size = Vector3(3.03783, 1.73115, 3.921)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i12jp"]
+albedo_color = Color(0, 0, 0, 1)
 albedo_texture = ExtResource("2_4lq3b")
 roughness_texture = ExtResource("6_xkt3q")
 normal_enabled = true
@@ -53,7 +54,7 @@ shape = SubResource("BoxShape3D_ure52")
 mesh = SubResource("CylinderMesh_5paic")
 
 [node name="Decal" type="Decal" parent="MeshInstance3D"]
-transform = Transform3D(1.76, 0, 0, 0, 1.76, 0, 0, 0, 1.76, 0, 0, 0)
+transform = Transform3D(1.76, 0, 0, 0, 1.76, 0, 0, 0, 1.76, 0, 0, 0.0905423)
 size = Vector3(2, 1.06348, 2)
 texture_albedo = ExtResource("7_0lic4")
 texture_emission = ExtResource("8_2s4gq")

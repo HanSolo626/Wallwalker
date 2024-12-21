@@ -18,7 +18,7 @@ func set_glowing_off():
 	if glowing:
 		glowing = false
 		decal.emission_energy = 0
-		decal.modulate = Color(0,0,0)
+		decal.modulate = Color(0.5, 0.5, 0.5)
 
 func set_id(num: int):
 	num_id = num
