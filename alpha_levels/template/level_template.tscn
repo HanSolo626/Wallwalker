@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyr7dunfwy7ca"]
+[gd_scene load_steps=7 format=3 uid="uid://dyr7dunfwy7ca"]
 
 [ext_resource type="Script" path="res://alpha_levels/template/level_template.gd" id="1_k7dmo"]
 [ext_resource type="PackedScene" uid="uid://dlni0vkfjodkp" path="res://scenes/control.tscn" id="2_f0a60"]
 [ext_resource type="Environment" uid="uid://cecgvgme5tytb" path="res://resources/enviroments/world.tres" id="5_lqkcx"]
+[ext_resource type="PackedScene" uid="uid://ccvhhostaxxt7" path="res://scenes/floor_switch.tscn" id="6_6revw"]
 [ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="6_7xn02"]
 [ext_resource type="PackedScene" uid="uid://dpw0va0tvjoeb" path="res://scenes/platform.tscn" id="14_8gehk"]
 
@@ -24,6 +25,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2713, 0)
 
 [node name="Platform" parent="." instance=ExtResource("14_8gehk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.290324, 0, -0.642425)
+
+[node name="FloorSwitch" parent="." instance=ExtResource("6_6revw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.454487, 0.509224, 5.24426)
 
 [connection signal="control_clicked" from="Player" to="." method="_on_player_control_clicked"]
 [connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
