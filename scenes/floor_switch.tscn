@@ -1,0 +1,65 @@
+[gd_scene load_steps=13 format=3 uid="uid://ccvhhostaxxt7"]
+
+[ext_resource type="Script" path="res://scripts/floor_switch.gd" id="1_t5ohv"]
+[ext_resource type="Texture2D" uid="uid://1l05fjtrmg6a" path="res://materials/quartz/Quartz_002_COLOR.jpg" id="2_4lq3b"]
+[ext_resource type="Texture2D" uid="uid://dpt34bhk7t5vt" path="res://materials/quartz/Quartz_002_OCC.jpg" id="3_6b8h4"]
+[ext_resource type="Texture2D" uid="uid://dqlcqo5cc1cyo" path="res://materials/quartz/Quartz_002_DISP.png" id="4_8smoa"]
+[ext_resource type="Texture2D" uid="uid://d4lkvmj1vfr66" path="res://materials/quartz/Quartz_002_NORM.jpg" id="5_i6dto"]
+[ext_resource type="Texture2D" uid="uid://bu7kw062iu5nh" path="res://materials/quartz/Quartz_002_ROUGH.jpg" id="6_xkt3q"]
+[ext_resource type="Texture2D" uid="uid://ttl1gai7nooq" path="res://materials/eye.png" id="7_0lic4"]
+[ext_resource type="Texture2D" uid="uid://d37n2whmflmoj" path="res://materials/eye_glow.png" id="8_2s4gq"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_svs57"]
+height = 0.1
+radius = 2.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ure52"]
+size = Vector3(3.03783, 1.73115, 3.921)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i12jp"]
+albedo_texture = ExtResource("2_4lq3b")
+roughness_texture = ExtResource("6_xkt3q")
+normal_enabled = true
+normal_texture = ExtResource("5_i6dto")
+ao_enabled = true
+ao_texture = ExtResource("3_6b8h4")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_8smoa")
+uv1_scale = Vector3(3.27, 3.27, 3.27)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5paic"]
+material = SubResource("StandardMaterial3D_i12jp")
+top_radius = 2.5
+bottom_radius = 2.5
+height = 0.1
+
+[node name="FloorSwitch" type="StaticBody3D"]
+collision_layer = 258
+collision_mask = 9
+collision_priority = 0.0
+script = ExtResource("1_t5ohv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_svs57")
+
+[node name="PlayerDetection" type="Area3D" parent="."]
+collision_layer = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00244761, 0.850926, 0)
+shape = SubResource("BoxShape3D_ure52")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_5paic")
+
+[node name="Decal" type="Decal" parent="MeshInstance3D"]
+transform = Transform3D(1.76, 0, 0, 0, 1.76, 0, 0, 0, 1.76, 0, 0, 0)
+size = Vector3(2, 1.06348, 2)
+texture_albedo = ExtResource("7_0lic4")
+texture_emission = ExtResource("8_2s4gq")
+modulate = Color(0.209439, 0.437009, 1, 1)
+upper_fade = 1e-05
+lower_fade = 1e-05
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
