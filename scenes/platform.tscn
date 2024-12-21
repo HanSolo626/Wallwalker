@@ -1,11 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpw0va0tvjoeb"]
+[gd_scene load_steps=10 format=3 uid="uid://dpw0va0tvjoeb"]
 
 [ext_resource type="Script" path="res://scripts/platform.gd" id="1_n5kjc"]
+[ext_resource type="Texture2D" uid="uid://cwqhac26jw6g" path="res://materials/stone_floor/Substance_Graph_BaseColor.jpg" id="2_tbiab"]
+[ext_resource type="Texture2D" uid="uid://fgg782g4uuld" path="res://materials/stone_floor/Substance_Graph_AmbientOcclusion.jpg" id="3_fahoj"]
+[ext_resource type="Texture2D" uid="uid://btr5ofb17tf6s" path="res://materials/stone_floor/Substance_Graph_Height.jpg" id="4_e4yq7"]
+[ext_resource type="Texture2D" uid="uid://crrg5t7wknbek" path="res://materials/stone_floor/Substance_Graph_Normal.jpg" id="5_ba0st"]
+[ext_resource type="Texture2D" uid="uid://c766607xoryp5" path="res://materials/stone_floor/Substance_Graph_Roughness.jpg" id="6_xj3ts"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xuar1"]
 size = Vector3(5.5, 0.4, 7)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5icwd"]
+albedo_color = Color(0.338473, 0.338473, 0.338473, 1)
+albedo_texture = ExtResource("2_tbiab")
+roughness_texture = ExtResource("6_xj3ts")
+normal_enabled = true
+normal_texture = ExtResource("5_ba0st")
+ao_enabled = true
+ao_texture = ExtResource("3_fahoj")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_e4yq7")
+uv1_scale = Vector3(1.63, 1.63, 1.63)
+
 [sub_resource type="BoxMesh" id="BoxMesh_585pg"]
+material = SubResource("StandardMaterial3D_5icwd")
 size = Vector3(5.5, 0.4, 7)
 
 [node name="Platform" type="CharacterBody3D"]

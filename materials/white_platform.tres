@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://cyapi80k4l3c4"]
+
+[ext_resource type="Texture2D" uid="uid://cwqhac26jw6g" path="res://materials/stone_floor/Substance_Graph_BaseColor.jpg" id="1_dk386"]
+[ext_resource type="Texture2D" uid="uid://fgg782g4uuld" path="res://materials/stone_floor/Substance_Graph_AmbientOcclusion.jpg" id="2_apa1h"]
+[ext_resource type="Texture2D" uid="uid://btr5ofb17tf6s" path="res://materials/stone_floor/Substance_Graph_Height.jpg" id="3_gx848"]
+[ext_resource type="Texture2D" uid="uid://crrg5t7wknbek" path="res://materials/stone_floor/Substance_Graph_Normal.jpg" id="4_0s5p3"]
+[ext_resource type="Texture2D" uid="uid://c766607xoryp5" path="res://materials/stone_floor/Substance_Graph_Roughness.jpg" id="5_y31rh"]
+
+[resource]
+albedo_texture = ExtResource("1_dk386")
+roughness_texture = ExtResource("5_y31rh")
+normal_enabled = true
+normal_texture = ExtResource("4_0s5p3")
+ao_enabled = true
+ao_texture = ExtResource("2_apa1h")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_gx848")
+uv1_scale = Vector3(1.63, 1.63, 1.63)
