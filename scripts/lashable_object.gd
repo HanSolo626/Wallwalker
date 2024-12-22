@@ -23,6 +23,10 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var being_lashed = false
 var orgininal_material
 
+var platform_target_reference
+var inital_platform_reference
+var inital_target_position
+
 
 
 @onready var collision = $Collision
@@ -48,12 +52,33 @@ func set_target(new_target):
 	else:
 		lashing_parent = new_target
 		var t = global_transform
-		get_tree().current_scene.remove_child(self)
-		lashing_parent.add_child(self)
+		if not self in lashing_parent.get_children():
+			get_tree().current_scene.remove_child(self)
+			lashing_parent.add_child(self)
 		child_bound = true
 		global_transform = t
 	last_lash_position = Vector3(0,0,0)
 	being_lashed = true
+	platform_target_reference = null
+	
+func set_target_platform(target_position: Vector3, target_platform):
+	set_glow(true)
+	if child_bound:
+		var t = global_transform
+		var g = get_tree()
+		lashing_parent.remove_child(self)
+		g.current_scene.add_child(self)
+		child_bound = false
+		global_transform = t
+	platform_target_reference = target_platform
+	inital_platform_reference = target_platform.global_transform.origin
+	target = target_position
+	inital_target_position = target_position
+	lashing_parent = null
+	inital_distance = transform.origin.distance_to(target)
+	last_lash_position = Vector3(0,0,0)
+	being_lashed = true
+	
 	
 func get_min_collision_size():
 	var result = collision.shape.size.x
@@ -107,7 +132,9 @@ func _ready():
 func _physics_process(delta):
 	if being_lashed:
 		
-		if lashing_parent != null:
+		if platform_target_reference != null:
+			target = (platform_target_reference.global_transform.origin - inital_platform_reference) + inital_target_position
+		elif lashing_parent != null:
 			target = lashing_parent.global_transform.origin
 			
 		target_dir = (target - global_transform.origin).normalized()
