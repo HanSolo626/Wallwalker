@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://df0ivw703jsfh"]
+
+[ext_resource type="Script" path="res://alpha_levels/lashing_binding_test_area/lashing_binding_test_area.gd" id="1_l0wlg"]
+[ext_resource type="PackedScene" uid="uid://dlni0vkfjodkp" path="res://scenes/control.tscn" id="2_t7p85"]
+[ext_resource type="Environment" uid="uid://cecgvgme5tytb" path="res://resources/enviroments/world.tres" id="3_yrmdt"]
+[ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="4_qv8cy"]
+[ext_resource type="PackedScene" uid="uid://dpw0va0tvjoeb" path="res://scenes/platform.tscn" id="5_wlm11"]
+[ext_resource type="PackedScene" uid="uid://cnl2x6g81er81" path="res://scenes/column.tscn" id="6_ivkto"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jypxi"]
+size = Vector3(50, 0.4, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5cv2e"]
+size = Vector3(50, 0.4, 50)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_l0wlg")
+
+[node name="Control" parent="." instance=ExtResource("2_t7p85")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_yrmdt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.29404, -0.819275, 0.49227, 0, 0.515038, 0.857167, -0.955793, 0.252042, -0.151442, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("4_qv8cy")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2713, 0)
+
+[node name="Platform" parent="." instance=ExtResource("5_wlm11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.290324, 0, -0.642425)
+
+[node name="Collision" parent="Platform" index="0"]
+shape = SubResource("BoxShape3D_jypxi")
+
+[node name="Mesh" parent="Platform" index="1"]
+mesh = SubResource("BoxMesh_5cv2e")
+
+[node name="Platform2" parent="." instance=ExtResource("5_wlm11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.36197, 8.70489, 13.2084)
+
+[node name="Column" parent="." instance=ExtResource("6_ivkto")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.44281, 5.95862, -14.7837)
+
+[connection signal="control_clicked" from="Player" to="." method="_on_player_control_clicked"]
+[connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
+
+[editable path="Platform"]
