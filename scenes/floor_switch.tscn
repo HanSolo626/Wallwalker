@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ccvhhostaxxt7"]
+[gd_scene load_steps=13 format=3 uid="uid://bbydprljo5a8y"]
 
 [ext_resource type="Script" path="res://scripts/floor_switch.gd" id="1_t5ohv"]
 [ext_resource type="Texture2D" uid="uid://1l05fjtrmg6a" path="res://materials/quartz/Quartz_002_COLOR.jpg" id="2_4lq3b"]
@@ -45,6 +45,7 @@ shape = SubResource("CylinderShape3D_svs57")
 
 [node name="PlayerDetection" type="Area3D" parent="."]
 collision_layer = 256
+collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00244761, 0.850926, 0)
@@ -54,8 +55,8 @@ shape = SubResource("BoxShape3D_ure52")
 mesh = SubResource("CylinderMesh_5paic")
 
 [node name="Decal" type="Decal" parent="MeshInstance3D"]
-transform = Transform3D(1.76, 0, 0, 0, 1.76, 0, 0, 0, 1.76, 0, 0, 0.0905423)
-size = Vector3(2, 1.06348, 2)
+transform = Transform3D(1.76, 0, 0, 0, 1.76, 0, 0, 0, 1.76, 0, -0.439464, 0.0905423)
+size = Vector3(2, 0.564089, 2)
 texture_albedo = ExtResource("7_0lic4")
 texture_emission = ExtResource("8_2s4gq")
 modulate = Color(0.209439, 0.437009, 1, 1)

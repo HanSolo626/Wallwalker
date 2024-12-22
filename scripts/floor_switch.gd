@@ -1,10 +1,10 @@
 extends StaticBody3D
 
 
-var player_present = false
 var being_lashed = false
 var num_id = 0
 var glowing = true
+var objects_present = 0
 
 @onready var decal = $MeshInstance3D/Decal
 
@@ -39,10 +39,12 @@ func _process(delta):
 
 
 func _on_player_detection_body_entered(body):
-	player_present = true
-	set_glowing_on()
+	objects_present += 1
+	if objects_present != 0:
+		set_glowing_on()
 
 
 func _on_player_detection_body_exited(body):
-	player_present = false
-	set_glowing_off()
+	objects_present -= 1
+	if objects_present == 0:
+		set_glowing_off()
