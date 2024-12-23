@@ -74,11 +74,9 @@ bones/7/rotation = Quaternion(0.550715, -0.0531294, -0.0232035, 0.832678)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/position = Vector3(-3.19881, 12.474, 3.66497)
 bones/8/rotation = Quaternion(-0.194512, -0.124652, 0.819172, 0.524961)
-bones/8/scale = Vector3(1, 1, 1)
 bones/19/scale = Vector3(1, 1, 1)
 bones/29/position = Vector3(3.57859, 12.3056, 3.60573)
 bones/29/rotation = Quaternion(0.290873, -0.148922, 0.807952, -0.490335)
-bones/29/scale = Vector3(1, 1, 1)
 
 [node name="basicRig_Body" parent="basicRig/Skeleton3D" index="0"]
 mesh = SubResource("ArrayMesh_aemm0")
