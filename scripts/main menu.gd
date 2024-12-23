@@ -7,4 +7,4 @@ func _on_exit_pressed():
 
 
 func _on_load_dungeon_pressed():
-	get_tree().change_scene_to_file("res://alpha_levels/level_1/level_1.tscn")
+	get_tree().change_scene_to_file("res://alpha_levels/lashing_binding_test_area/lashing_binding_test_area.tscn")

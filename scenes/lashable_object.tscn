@@ -16,7 +16,7 @@ size = Vector3(2.09961, 2.05859, 2.04663)
 
 [node name="LashableObject" type="RigidBody3D"]
 collision_layer = 8
-collision_mask = 15
+collision_mask = 271
 mass = 2.0
 script = ExtResource("1_hftsd")
 

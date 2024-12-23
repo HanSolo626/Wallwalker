@@ -515,8 +515,11 @@ func _physics_process(delta):
 					object_to_bind = binding_ray_cast.get_collider()
 					user_interface.set_binding_indicator(true)
 				elif object_to_bind != null:
+					# binding to platform
 					if binding_ray_cast.get_collider().has_method("is_platform"):
-						object_to_bind.set_target(binding_ray_cast.get_collider())
+						object_to_bind.set_target_platform(binding_ray_cast.get_collision_point(), binding_ray_cast.get_collider())
+						
+					# binding to objects
 					elif binding_ray_cast.get_collider().has_method("is_lashable_object"):
 						object_to_bind.set_target(binding_ray_cast.get_collider().global_transform.origin)
 					else:
