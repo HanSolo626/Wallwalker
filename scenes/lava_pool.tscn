@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://begintd0rtp8x"]
+
+[ext_resource type="Texture2D" uid="uid://bjpx0s73iio08" path="res://materials/lava/Lava_005_COLOR.jpg" id="1_5yplb"]
+[ext_resource type="Texture2D" uid="uid://byctp253xfjkr" path="res://materials/lava/Lava_005_OCC.jpg" id="2_xo5ym"]
+[ext_resource type="Texture2D" uid="uid://g1cxdj7urrg" path="res://materials/lava/Lava_005_NORM.jpg" id="3_g0jen"]
+[ext_resource type="Texture2D" uid="uid://b61l56s4132jp" path="res://materials/lava/Lava_005_DISP.png" id="3_vk1yd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_63rxh"]
+size = Vector3(30, 0.5, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_38qo6"]
+albedo_texture = ExtResource("1_5yplb")
+normal_enabled = true
+normal_texture = ExtResource("3_g0jen")
+ao_enabled = true
+ao_texture = ExtResource("2_xo5ym")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_vk1yd")
+uv1_scale = Vector3(4.17, 4.17, 4.17)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qs2sj"]
+material = SubResource("StandardMaterial3D_38qo6")
+size = Vector2(30, 30)
+
+[node name="DeathArea" type="Area3D"]
+collision_layer = 64
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_63rxh")
+
+[node name="LavaMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_qs2sj")
