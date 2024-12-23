@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://die75m3up6sa4"]
+[gd_scene load_steps=13 format=3 uid="uid://die75m3up6sa4"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4q30t"]
 [ext_resource type="PackedScene" uid="uid://c7v5bq2rp212x" path="res://scenes/glow_sword.tscn" id="2_02cdg"]
 [ext_resource type="PackedScene" uid="uid://dereem7mw7l1j" path="res://scenes/fps_hands.tscn" id="3_eqapl"]
 [ext_resource type="PackedScene" uid="uid://lnpfy724i3cj" path="res://scenes/blue_sphere.tscn" id="3_yir28"]
 [ext_resource type="PackedScene" uid="uid://mwyuixdc708x" path="res://scenes/green_sphere.tscn" id="4_kfqst"]
+[ext_resource type="PackedScene" uid="uid://b5a8bjtbfwu54" path="res://scenes/yellow_sphere.tscn" id="5_l3c3j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qwuce"]
 radius = 0.8
@@ -85,6 +86,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35743, -0.926419, -1.89945
 
 [node name="GreenSphere" parent="Camera3D" instance=ExtResource("4_kfqst")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19862, -0.866369, -1.90169)
+
+[node name="YellowSphere" parent="Camera3D" instance=ExtResource("5_l3c3j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19862, -0.866369, -1.90169)
+visible = false
 
 [node name="stick" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 3, 0, 0.414206, -1.24505)

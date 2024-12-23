@@ -110,6 +110,9 @@ signal control_clicked
 @onready var user_interface = $"../Control/UserInterface"
 @onready var control_ray_cast = $Camera3D/ControlRayCast
 
+@onready var yellow_sphere = $Camera3D/YellowSphere
+@onready var green_sphere = $Camera3D/GreenSphere
+
 
 func set_top_level(t):
 	camera_3d.top_level = t
@@ -511,10 +514,15 @@ func _physics_process(delta):
 					user_interface.set_binding_indicator(false)
 					if binding_ray_cast.get_collider().being_lashed:
 						binding_ray_cast.get_collider().lashings_off()
+					green_sphere.show()
+					yellow_sphere.hide()
 				elif object_to_bind == null and binding_ray_cast.get_collider().has_method("set_target"):
 					object_to_bind = binding_ray_cast.get_collider()
 					user_interface.set_binding_indicator(true)
+					green_sphere.hide()
+					yellow_sphere.show()
 				elif object_to_bind != null:
+					
 					# binding to platform
 					if binding_ray_cast.get_collider().has_method("is_platform"):
 						object_to_bind.set_target_platform(binding_ray_cast.get_collision_point(), binding_ray_cast.get_collider())
@@ -526,6 +534,8 @@ func _physics_process(delta):
 						object_to_bind.set_target(lashing_ray_cast.get_collision_point())
 					object_to_bind = null
 					user_interface.set_binding_indicator(false)
+					green_sphere.show()
+					yellow_sphere.hide()
 					
 	if not dead and not frozen and Input.is_action_just_pressed("left click"):
 		if control_ray_cast.is_colliding():
