@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://df0ivw703jsfh"]
+[gd_scene load_steps=12 format=3 uid="uid://df0ivw703jsfh"]
 
 [ext_resource type="Script" path="res://alpha_levels/lashing_binding_test_area/lashing_binding_test_area.gd" id="1_l0wlg"]
 [ext_resource type="PackedScene" uid="uid://dlni0vkfjodkp" path="res://scenes/control.tscn" id="2_t7p85"]
 [ext_resource type="Environment" uid="uid://cecgvgme5tytb" path="res://resources/enviroments/world.tres" id="3_yrmdt"]
 [ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="4_qv8cy"]
 [ext_resource type="PackedScene" uid="uid://dpw0va0tvjoeb" path="res://scenes/platform.tscn" id="5_wlm11"]
+[ext_resource type="Material" uid="uid://bd2slbmfhe623" path="res://materials/white_platform.tres" id="6_7igs8"]
 [ext_resource type="PackedScene" uid="uid://cnl2x6g81er81" path="res://scenes/column.tscn" id="6_ivkto"]
 [ext_resource type="PackedScene" uid="uid://dfllykgtovd4s" path="res://scenes/lashable_object.tscn" id="7_l44cq"]
 [ext_resource type="PackedScene" uid="uid://bbydprljo5a8y" path="res://scenes/floor_switch.tscn" id="8_dsky8"]
@@ -13,6 +14,7 @@
 size = Vector3(50, 0.4, 50)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5cv2e"]
+material = ExtResource("6_7igs8")
 size = Vector3(50, 0.4, 50)
 
 [node name="World" type="Node3D"]
