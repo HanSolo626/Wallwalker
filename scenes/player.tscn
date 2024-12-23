@@ -79,17 +79,17 @@ spot_range = 46.405
 spot_angle = 24.11
 
 [node name="fps-hands" parent="Camera3D" instance=ExtResource("3_eqapl")]
-transform = Transform3D(-0.4, 0, -6.03983e-08, 0, 0.4, 0, 6.03983e-08, 0, -0.4, 0.0222014, -6.0246, -0.101349)
+transform = Transform3D(-0.4, 0, -6.03983e-08, 0, 0.4, 0, 6.03983e-08, 0, -0.4, 0.0222014, -6.0246, 0.107342)
 
-[node name="BlueSphere" parent="Camera3D" instance=ExtResource("3_yir28")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35743, -0.926419, -1.89945)
-
-[node name="GreenSphere" parent="Camera3D" instance=ExtResource("4_kfqst")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19862, -0.866369, -1.90169)
-
-[node name="YellowSphere" parent="Camera3D" instance=ExtResource("5_l3c3j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19862, -0.866369, -1.90169)
+[node name="YellowSphere" parent="Camera3D/fps-hands" instance=ExtResource("5_l3c3j")]
+transform = Transform3D(-2.5, 0, 3.77489e-07, 0, 2.5, 0, -3.77489e-07, 0, -2.5, -2.94105, 12.8956, 4.51495)
 visible = false
+
+[node name="GreenSphere" parent="Camera3D/fps-hands" instance=ExtResource("4_kfqst")]
+transform = Transform3D(-2.5, 0, 3.77489e-07, 0, 2.5, 0, -3.77489e-07, 0, -2.5, -2.94105, 12.8956, 4.51495)
+
+[node name="BlueSphere" parent="Camera3D/fps-hands" instance=ExtResource("3_yir28")]
+transform = Transform3D(-2.5, 0, 3.77489e-07, 0, 2.5, 0, -3.77489e-07, 0, -2.5, 3.44908, 12.7455, 4.56681)
 
 [node name="stick" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 3, 0, 0.414206, -1.24505)

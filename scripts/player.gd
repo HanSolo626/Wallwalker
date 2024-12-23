@@ -110,8 +110,9 @@ signal control_clicked
 @onready var user_interface = $"../Control/UserInterface"
 @onready var control_ray_cast = $Camera3D/ControlRayCast
 
-@onready var yellow_sphere = $Camera3D/YellowSphere
-@onready var green_sphere = $Camera3D/GreenSphere
+@onready var yellow_sphere = $Camera3D/"fps-hands"/YellowSphere
+@onready var green_sphere = $Camera3D/"fps-hands"/GreenSphere
+@onready var fps_hands = $"Camera3D/fps-hands"
 
 
 func set_top_level(t):
@@ -336,6 +337,7 @@ func enable_crouching():
 		crouching_collision.disabled = false
 		camera_3d.transform.origin = Vector3(0, 0.5, 0)
 		translate_object_local(Vector3(0, -1, 0))
+		fps_hands.translate_object_local((Vector3(0, 1.5, 0)))
 	
 func disable_crouching():
 	if crouching != false and not crouch_checker.is_colliding():
@@ -344,6 +346,7 @@ func disable_crouching():
 		crouching_collision.disabled = true
 		camera_3d.transform.origin = Vector3(0, 1.5, 0)
 		translate_object_local(Vector3(0, 1, 0))
+		fps_hands.translate_object_local((Vector3(0, -1.5, 0)))
 		
 func slow_down_player(value):
 	if value > 0:
