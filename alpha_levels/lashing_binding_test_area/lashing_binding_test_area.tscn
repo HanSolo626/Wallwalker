@@ -5,10 +5,10 @@
 [ext_resource type="Environment" uid="uid://cecgvgme5tytb" path="res://resources/enviroments/world.tres" id="3_yrmdt"]
 [ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="4_qv8cy"]
 [ext_resource type="PackedScene" uid="uid://dpw0va0tvjoeb" path="res://scenes/platform.tscn" id="5_wlm11"]
-[ext_resource type="Material" uid="uid://bd2slbmfhe623" path="res://materials/white_platform.tres" id="6_7igs8"]
+[ext_resource type="Material" uid="uid://bm87sn21ahp7b" path="res://materials/white_platform.tres" id="6_7igs8"]
 [ext_resource type="PackedScene" uid="uid://cnl2x6g81er81" path="res://scenes/column.tscn" id="6_ivkto"]
 [ext_resource type="PackedScene" uid="uid://dfllykgtovd4s" path="res://scenes/lashable_object.tscn" id="7_l44cq"]
-[ext_resource type="PackedScene" uid="uid://bbydprljo5a8y" path="res://scenes/floor_switch.tscn" id="8_dsky8"]
+[ext_resource type="PackedScene" path="res://scenes/floor_switch.tscn" id="8_dsky8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jypxi"]
 size = Vector3(50, 0.4, 50)

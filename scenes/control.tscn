@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlni0vkfjodkp"]
+[gd_scene load_steps=6 format=3 uid="uid://dlni0vkfjodkp"]
 
 [ext_resource type="Script" path="res://scripts/UserInterface.gd" id="1_cpq4r"]
+[ext_resource type="Texture2D" uid="uid://bsuutyugehvy7" path="res://materials/sight.png" id="2_x1f3u"]
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="2_ys448"]
 
 [sub_resource type="Theme" id="Theme_f5cei"]
@@ -24,6 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Pointer" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -68,6 +70,7 @@ grow_vertical = 2
 color = Color(1, 0, 0, 0.384314)
 
 [node name="LashingNum" type="Label" parent="UserInterface"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -80,6 +83,7 @@ theme = SubResource("Theme_f5cei")
 text = "1"
 
 [node name="BindingLashIndicator" type="ColorRect" parent="UserInterface"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -90,6 +94,25 @@ offset_right = -24.0
 offset_bottom = 71.0
 grow_horizontal = 2
 color = Color(1, 0, 0, 1)
+
+[node name="Sight" type="Control" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UserInterface/Sight"]
+modulate = Color(0.366595, 0.366595, 0.366595, 0.67451)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_x1f3u")
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
