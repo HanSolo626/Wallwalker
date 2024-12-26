@@ -26,9 +26,11 @@ height = 0.3
 [node name="YellowSphere" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+cast_shadow = 0
 mesh = SubResource("SphereMesh_u3ngs")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+cast_shadow = 0
 mesh = SubResource("SphereMesh_b7avk")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]

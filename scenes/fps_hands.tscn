@@ -79,6 +79,7 @@ bones/29/position = Vector3(3.57859, 12.3056, 3.60573)
 bones/29/rotation = Quaternion(0.290873, -0.148922, 0.807952, -0.490335)
 
 [node name="basicRig_Body" parent="basicRig/Skeleton3D" index="0"]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_aemm0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="basicRig/Skeleton3D" index="1"]
