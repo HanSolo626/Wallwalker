@@ -26,19 +26,17 @@ func dir_contents(path):
 
 func _ready():
 	var levels = dir_contents("res://alpha_levels")
-	var iteration = 0
 	for level_name in levels:
 		var button = Button.new()
 		button.name = level_name
 		button.text = level_name
 		button.pressed.connect(_on_button_pressed.bind(button))
 		v_box_container.add_child(button)
-		iteration += 1
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 	
 	
