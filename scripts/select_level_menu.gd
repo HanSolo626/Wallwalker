@@ -45,3 +45,7 @@ func _process(delta):
 func _on_button_pressed(button):
 	var a = button.name
 	get_tree().change_scene_to_file("res://alpha_levels/"+str(a)+"/"+str(a)+".tscn")
+
+
+func _on_return_to_main_menu_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
