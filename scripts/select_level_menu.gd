@@ -1,7 +1,6 @@
 extends Control
 
-@onready var v_box_container = $VBoxContainer
-
+@onready var v_box_container = $VScrollBar/VBoxContainer
 
 
 
@@ -24,14 +23,15 @@ func dir_contents(path):
 
 
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	var levels = dir_contents("res://alpha_levels")
 	var iteration = 0
-	for name in levels:
+	for level_name in levels:
 		var button = Button.new()
-		button.name = "B"+str(iteration)
-		button.text = name
+		button.name = level_name
+		button.text = level_name
+		button.pressed.connect(_on_button_pressed.bind(button))
 		v_box_container.add_child(button)
 		iteration += 1
 	
@@ -40,3 +40,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+	
+func _on_button_pressed(button):
+	var a = button.name
+	get_tree().change_scene_to_file("res://alpha_levels/"+str(a)+"/"+str(a)+".tscn")
