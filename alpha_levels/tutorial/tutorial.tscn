@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://00idyfnhwmrs"]
+
+[ext_resource type="Script" path="res://alpha_levels/tutorial/tutorial.gd" id="1_25f1e"]
+[ext_resource type="PackedScene" uid="uid://dlni0vkfjodkp" path="res://scenes/control.tscn" id="2_jiyo4"]
+[ext_resource type="Environment" uid="uid://cecgvgme5tytb" path="res://resources/enviroments/world.tres" id="3_mt0nt"]
+[ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="4_hewsm"]
+[ext_resource type="PackedScene" uid="uid://dpw0va0tvjoeb" path="res://scenes/platform.tscn" id="5_2pdya"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_slerl"]
+size = Vector3(21.1, 0.4, 33.31)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n0pxj"]
+size = Vector3(21.1, 0.4, 33.31)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_25f1e")
+
+[node name="Control" parent="." instance=ExtResource("2_jiyo4")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_mt0nt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.29404, -0.819275, 0.49227, 0, 0.515038, 0.857167, -0.955793, 0.252042, -0.151442, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("4_hewsm")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2713, 0)
+
+[node name="Platform" parent="." instance=ExtResource("5_2pdya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.290324, 0, -0.642425)
+
+[node name="Collision" parent="Platform" index="0"]
+shape = SubResource("BoxShape3D_slerl")
+
+[node name="Mesh" parent="Platform" index="1"]
+mesh = SubResource("BoxMesh_n0pxj")
+
+[connection signal="control_clicked" from="Player" to="." method="_on_player_control_clicked"]
+[connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
+
+[editable path="Platform"]
