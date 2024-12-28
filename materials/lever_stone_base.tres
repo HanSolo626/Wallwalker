@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://xoxtg2niiip1"]
+
+[ext_resource type="Texture2D" uid="uid://2w57y61hvag4" path="res://materials/lever_stone_base/Concrete_018_BaseColor.jpg" id="1_rcn0f"]
+[ext_resource type="Texture2D" uid="uid://dps7v1phmj1ov" path="res://materials/lever_stone_base/Concrete_018_AmbientOcclusion.jpg" id="2_n6fvp"]
+[ext_resource type="Texture2D" uid="uid://dbo00ccdcruui" path="res://materials/lever_stone_base/Concrete_018_Height.png" id="3_t8dcn"]
+[ext_resource type="Texture2D" uid="uid://dkwm0ghggvlaq" path="res://materials/lever_stone_base/Concrete_018_Normal.jpg" id="4_x8kni"]
+[ext_resource type="Texture2D" uid="uid://cl6kq3a44mqre" path="res://materials/lever_stone_base/Concrete_018_Roughness.jpg" id="5_ksagt"]
+
+[resource]
+albedo_texture = ExtResource("1_rcn0f")
+roughness_texture = ExtResource("5_ksagt")
+normal_enabled = true
+normal_texture = ExtResource("4_x8kni")
+ao_enabled = true
+ao_texture = ExtResource("2_n6fvp")
+heightmap_enabled = true
+heightmap_scale = 1.2
+heightmap_texture = ExtResource("3_t8dcn")

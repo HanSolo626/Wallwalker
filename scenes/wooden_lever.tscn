@@ -1,0 +1,86 @@
+[gd_scene load_steps=16 format=3 uid="uid://qbadlqjemld3"]
+
+[ext_resource type="Script" path="res://scripts/control_panel.gd" id="1_gqkbd"]
+[ext_resource type="Texture2D" uid="uid://b0exsu73p52rm" path="res://materials/wood_for_lever/Wood_021_basecolor.jpg" id="2_6xtvw"]
+[ext_resource type="Material" uid="uid://xoxtg2niiip1" path="res://materials/lever_stone_base.tres" id="2_i266u"]
+[ext_resource type="Texture2D" uid="uid://j4hnqkhf3pym" path="res://materials/wood_for_lever/Wood_021_ambientOcclusion.jpg" id="3_scf8l"]
+[ext_resource type="Texture2D" uid="uid://bg3glhy6spfs7" path="res://materials/wood_for_lever/Wood_021_height.png" id="4_xbdh8"]
+[ext_resource type="Texture2D" uid="uid://qw0416ws0vln" path="res://materials/wood_for_lever/Wood_021_normal.jpg" id="5_3wi4e"]
+[ext_resource type="Texture2D" uid="uid://by1f8p1upq54f" path="res://materials/wood_for_lever/Wood_021_roughness.jpg" id="6_lr3vi"]
+[ext_resource type="Material" uid="uid://b4mwddk8tkd4y" path="res://materials/dark_wood.tres" id="8_u8i75"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kmdnh"]
+size = Vector3(1.03851, 0.164697, 1.57562)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ure52"]
+size = Vector3(3.5, 1.963, 3.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7fble"]
+material = ExtResource("2_i266u")
+size = Vector3(1, 0.12, 1.54)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_iig1e"]
+material = ExtResource("8_u8i75")
+top_radius = 0.23
+bottom_radius = 0.23
+height = 0.175
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mryp6"]
+albedo_texture = ExtResource("2_6xtvw")
+roughness_texture = ExtResource("6_lr3vi")
+normal_enabled = true
+normal_texture = ExtResource("5_3wi4e")
+ao_enabled = true
+ao_texture = ExtResource("3_scf8l")
+heightmap_texture = ExtResource("4_xbdh8")
+uv1_scale = Vector3(1.75, 1.75, 1.75)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_upmby"]
+material = SubResource("StandardMaterial3D_mryp6")
+top_radius = 0.07
+bottom_radius = 0.07
+height = 1.3
+
+[sub_resource type="SphereMesh" id="SphereMesh_7vjyh"]
+material = ExtResource("8_u8i75")
+radius = 0.155
+height = 0.29
+
+[node name="WoodenLever" type="StaticBody3D"]
+collision_layer = 258
+collision_mask = 9
+collision_priority = 0.0
+script = ExtResource("1_gqkbd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00100636, 0.0117828, 0.0154725)
+shape = SubResource("BoxShape3D_kmdnh")
+
+[node name="PlayerDetection" type="Area3D" parent="."]
+collision_layer = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.931339, 0)
+shape = SubResource("BoxShape3D_ure52")
+
+[node name="BaseMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_7fble")
+
+[node name="HingeMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.0216977, 0)
+mesh = SubResource("CylinderMesh_iig1e")
+
+[node name="LeverHinge" type="Node3D" parent="."]
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, 0, 0)
+
+[node name="LeverMesh" type="MeshInstance3D" parent="LeverHinge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551949, 0)
+mesh = SubResource("CylinderMesh_upmby")
+skeleton = NodePath("../..")
+
+[node name="GripMesh" type="MeshInstance3D" parent="LeverHinge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19764, 0)
+mesh = SubResource("SphereMesh_7vjyh")
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]

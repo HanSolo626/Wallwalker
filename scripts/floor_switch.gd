@@ -8,6 +8,9 @@ var objects_present = 0
 
 @onready var decal = $MeshInstance3D/Decal
 
+signal activated
+signal deactivated
+
 func set_glowing_on():
 	if not glowing:
 		glowing = true
@@ -42,9 +45,11 @@ func _on_player_detection_body_entered(body):
 	objects_present += 1
 	if objects_present != 0:
 		set_glowing_on()
+		activated.emit()
 
 
 func _on_player_detection_body_exited(body):
 	objects_present -= 1
 	if objects_present == 0:
 		set_glowing_off()
+		deactivated.emit()
