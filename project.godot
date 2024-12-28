@@ -118,6 +118,7 @@ crouch={
 3d_physics/layer_7="player_death"
 3d_physics/layer_8="area_switches"
 3d_physics/layer_9="manual_switches"
+3d_physics/layer_10="levers"
 
 [physics]
 

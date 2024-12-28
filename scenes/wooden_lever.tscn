@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://qbadlqjemld3"]
 
-[ext_resource type="Script" path="res://scripts/control_panel.gd" id="1_gqkbd"]
+[ext_resource type="Script" path="res://scripts/wooden_lever.gd" id="1_qukiw"]
 [ext_resource type="Texture2D" uid="uid://b0exsu73p52rm" path="res://materials/wood_for_lever/Wood_021_basecolor.jpg" id="2_6xtvw"]
 [ext_resource type="Material" uid="uid://xoxtg2niiip1" path="res://materials/lever_stone_base.tres" id="2_i266u"]
 [ext_resource type="Texture2D" uid="uid://j4hnqkhf3pym" path="res://materials/wood_for_lever/Wood_021_ambientOcclusion.jpg" id="3_scf8l"]
@@ -47,17 +47,16 @@ radius = 0.155
 height = 0.29
 
 [node name="WoodenLever" type="StaticBody3D"]
-collision_layer = 258
-collision_mask = 9
+collision_layer = 514
 collision_priority = 0.0
-script = ExtResource("1_gqkbd")
+script = ExtResource("1_qukiw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00100636, 0.0117828, 0.0154725)
 shape = SubResource("BoxShape3D_kmdnh")
 
 [node name="PlayerDetection" type="Area3D" parent="."]
-collision_layer = 256
+collision_layer = 512
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.931339, 0)
@@ -71,7 +70,7 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.0
 mesh = SubResource("CylinderMesh_iig1e")
 
 [node name="LeverHinge" type="Node3D" parent="."]
-transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, 0, 0)
+transform = Transform3D(0.85, 0, 0, 0, 0.736122, -0.425, 0, 0.425, 0.736122, 0, 0, 0)
 
 [node name="LeverMesh" type="MeshInstance3D" parent="LeverHinge"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551949, 0)
