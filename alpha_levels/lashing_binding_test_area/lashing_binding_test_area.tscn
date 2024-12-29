@@ -60,6 +60,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.1456, 0.227904, -4.53073)
 [node name="WoodenLever" parent="." instance=ExtResource("10_tbetn")]
 transform = Transform3D(2.05, 0, 0, 0, 2.05, 0, 0, 0, 2.05, -42.2608, 0.272276, 4.82249)
 
+[connection signal="action_key_pressed" from="Player" to="." method="_on_player_action_key_pressed"]
 [connection signal="control_clicked" from="Player" to="." method="_on_player_control_clicked"]
 [connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
 

@@ -96,6 +96,7 @@ const CAMERA_ANGLES = {
 
 signal player_killed
 signal control_clicked
+signal action_key_pressed
 
 @onready var camera_3d = $Camera3D
 @onready var lashing_ray_cast = $Camera3D/LashingRayCast
@@ -570,6 +571,11 @@ func _physics_process(delta):
 			enable_crouching()
 		else:
 			disable_crouching()
+			
+	# handle action key
+	if not dead and not frozen and Input.is_action_just_pressed("action"):
+		action_key_pressed.emit()
+		
 
 				
 	update_rotation()

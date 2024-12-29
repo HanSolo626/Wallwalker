@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var platform_2 = $Platform2
+@onready var wooden_lever = $WoodenLever
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,3 +12,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_player_action_key_pressed():
+	if wooden_lever.player_present:
+		wooden_lever.set_lever_on()
+		wooden_lever.set_disabled()
+		platform_2.glide_to_position(Vector3(0, 10, 0), 0.1)
