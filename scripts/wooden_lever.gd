@@ -36,6 +36,11 @@ func set_disabled():
 	disabled = true
 	label_3d.hide()
 	
+func lever_usable():
+	if player_present and not moving:
+		return true
+	else:
+		return false
 	
 
 # Called when the node enters the scene tree for the first time.
@@ -46,6 +51,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if moving:
+		label_3d.hide()
 		if on:
 			if lever_hinge.rotation.x > deg_to_rad(-30):
 				lever_hinge.rotate_x(-speed * delta)
@@ -53,6 +59,8 @@ func _process(delta):
 			else:
 				lever_hinge.rotation.x = deg_to_rad(-30)
 				moving = false
+				if player_present and not disabled:
+					label_3d.show()
 		else:
 			if lever_hinge.rotation.x < deg_to_rad(30):
 				lever_hinge.rotate_x(speed * delta)
@@ -60,6 +68,9 @@ func _process(delta):
 			else:
 				lever_hinge.rotation.x = deg_to_rad(30)
 				moving = false
+				if player_present and not disabled:
+					label_3d.show()
+	
 
 
 func _on_player_detection_body_entered(body):

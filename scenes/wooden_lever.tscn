@@ -13,7 +13,7 @@
 size = Vector3(1.03851, 0.164697, 1.57562)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ure52"]
-size = Vector3(3.5, 1.963, 3.5)
+size = Vector3(1.79391, 1.60699, 2.3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7fble"]
 material = ExtResource("2_i266u")
@@ -59,7 +59,7 @@ shape = SubResource("BoxShape3D_kmdnh")
 collision_layer = 512
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.931339, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.752994, 0)
 shape = SubResource("BoxShape3D_ure52")
 
 [node name="BaseMesh" type="MeshInstance3D" parent="."]

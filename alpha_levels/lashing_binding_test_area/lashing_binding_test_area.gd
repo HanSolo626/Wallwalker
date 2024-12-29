@@ -15,7 +15,7 @@ func _process(delta):
 
 
 func _on_player_action_key_pressed():
-	if wooden_lever.player_present:
+	if wooden_lever.lever_usable():
 		wooden_lever.set_lever_on()
-		wooden_lever.set_disabled()
+		#wooden_lever.set_disabled()
 		platform_2.glide_to_position(Vector3(0, 10, 0), 0.1)
