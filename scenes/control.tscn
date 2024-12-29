@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlni0vkfjodkp"]
+[gd_scene load_steps=7 format=3 uid="uid://dlni0vkfjodkp"]
 
 [ext_resource type="Script" path="res://scripts/UserInterface.gd" id="1_cpq4r"]
+[ext_resource type="Script" path="res://scripts/control.gd" id="1_uhqgs"]
 [ext_resource type="Texture2D" uid="uid://bsuutyugehvy7" path="res://materials/sight.png" id="2_x1f3u"]
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="2_ys448"]
 
@@ -23,6 +24,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_uhqgs")
 
 [node name="Pointer" type="Label" parent="."]
 visible = false
