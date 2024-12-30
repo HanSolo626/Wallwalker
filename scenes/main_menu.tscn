@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://nufqsu6ppn36"]
 
-[ext_resource type="Script" path="res://scripts/main menu.gd" id="1_bb7ei"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_bb7ei"]
 [ext_resource type="Texture2D" uid="uid://budv8vuqw2ed" path="res://wall walker title.png" id="2_obc43"]
 
 [node name="Control" type="Control"]
@@ -27,6 +27,11 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
 
+[node name="WallWalkerTitle" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(186, -122)
+scale = Vector2(0.617516, 0.617516)
+texture = ExtResource("2_obc43")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
@@ -37,11 +42,6 @@ text = "Play"
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Exit"
-
-[node name="WallWalkerTitle" type="Sprite2D" parent="MarginContainer"]
-position = Vector2(186, -122)
-scale = Vector2(0.617516, 0.617516)
-texture = ExtResource("2_obc43")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Load Dungeon" to="." method="_on_load_dungeon_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

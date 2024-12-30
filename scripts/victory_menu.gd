@@ -1,15 +1,13 @@
 extends Control
 
+@onready var return_to_main_menu_button = $VBoxContainer/ReturnToMainMenuButton
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func activate():
+	get_tree().paused = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	show()
+	print(has_focus())
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_return_to_main_menu_button_pressed():
+func _on_return_to_main_menu_button_button_down():
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

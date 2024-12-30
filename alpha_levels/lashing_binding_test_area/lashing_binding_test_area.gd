@@ -2,6 +2,15 @@ extends Node3D
 
 @onready var platform_2 = $Platform2
 @onready var control = $Control
+@onready var floor_switch = $FloorSwitch
+
+
+
+func end_game():
+	control.get_victory_menu().process_mode = PROCESS_MODE_ALWAYS
+	#control.get_pause_menu().set_mouse_filter(2)
+	control.get_pause_menu().process_mode = PROCESS_MODE_DISABLED
+	control.get_victory_menu().activate()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,7 +21,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if floor_switch.glowing:
+		end_game()
 
 
 func _on_player_player_killed():
