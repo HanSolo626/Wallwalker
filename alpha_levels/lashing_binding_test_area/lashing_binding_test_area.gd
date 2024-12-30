@@ -27,3 +27,7 @@ func _process(delta):
 
 func _on_player_player_killed():
 	control.get_user_interface().enable_death_screen()
+
+
+func _on_control_death_animation_done():
+	get_tree().reload_current_scene()

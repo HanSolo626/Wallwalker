@@ -60,6 +60,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.1456, 0.227904, -4.53073)
 [node name="SmallSpikes" parent="." instance=ExtResource("10_fryh8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.9858, 0.330856, 0.062198)
 
+[connection signal="death_animation_done" from="Control" to="." method="_on_control_death_animation_done"]
 [connection signal="control_clicked" from="Player" to="." method="_on_player_control_clicked"]
 [connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
 

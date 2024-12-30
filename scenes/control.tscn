@@ -234,6 +234,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.494118)
 
+[connection signal="death_animation_done" from="UserInterface" to="." method="_on_user_interface_death_animation_done"]
 [connection signal="button_down" from="VictoryMenu/VBoxContainer/ReturnToMainMenuButton" to="VictoryMenu" method="_on_return_to_main_menu_button_button_down"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ExitToMainMenuButton" to="PauseMenu" method="_on_exit_to_main_menu_button_pressed"]
