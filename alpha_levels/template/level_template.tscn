@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://alpha_levels/template/level_template.gd" id="1_k7dmo"]
 [ext_resource type="PackedScene" uid="uid://dlni0vkfjodkp" path="res://scenes/control.tscn" id="2_f0a60"]
 [ext_resource type="Environment" uid="uid://cecgvgme5tytb" path="res://resources/enviroments/world.tres" id="5_lqkcx"]
-[ext_resource type="PackedScene" uid="uid://ccvhhostaxxt7" path="res://scenes/floor_switch.tscn" id="6_6revw"]
+[ext_resource type="PackedScene" uid="uid://bbydprljo5a8y" path="res://scenes/floor_switch.tscn" id="6_6revw"]
 [ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="6_7xn02"]
 [ext_resource type="PackedScene" uid="uid://cnl2x6g81er81" path="res://scenes/column.tscn" id="7_krmbu"]
 [ext_resource type="PackedScene" uid="uid://dpw0va0tvjoeb" path="res://scenes/platform.tscn" id="14_8gehk"]

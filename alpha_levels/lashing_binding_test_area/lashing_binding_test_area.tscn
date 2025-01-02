@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://df0ivw703jsfh"]
+[gd_scene load_steps=20 format=3 uid="uid://df0ivw703jsfh"]
 
 [ext_resource type="Script" path="res://alpha_levels/lashing_binding_test_area/lashing_binding_test_area.gd" id="1_l0wlg"]
 [ext_resource type="PackedScene" uid="uid://dlni0vkfjodkp" path="res://scenes/control.tscn" id="2_t7p85"]
@@ -9,6 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://cnl2x6g81er81" path="res://scenes/column.tscn" id="6_ivkto"]
 [ext_resource type="PackedScene" uid="uid://dfllykgtovd4s" path="res://scenes/lashable_object.tscn" id="7_l44cq"]
 [ext_resource type="PackedScene" uid="uid://bbydprljo5a8y" path="res://scenes/floor_switch.tscn" id="8_dsky8"]
+[ext_resource type="Texture2D" uid="uid://cwqhac26jw6g" path="res://materials/stone_floor/Substance_Graph_BaseColor.jpg" id="10_4jfsx"]
+[ext_resource type="Texture2D" uid="uid://fgg782g4uuld" path="res://materials/stone_floor/Substance_Graph_AmbientOcclusion.jpg" id="11_stmcf"]
+[ext_resource type="Texture2D" uid="uid://btr5ofb17tf6s" path="res://materials/stone_floor/Substance_Graph_Height.jpg" id="12_shy38"]
+[ext_resource type="Texture2D" uid="uid://crrg5t7wknbek" path="res://materials/stone_floor/Substance_Graph_Normal.jpg" id="13_v18mo"]
+[ext_resource type="Texture2D" uid="uid://c766607xoryp5" path="res://materials/stone_floor/Substance_Graph_Roughness.jpg" id="14_fm672"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jypxi"]
 size = Vector3(50, 0.4, 50)
@@ -16,6 +21,25 @@ size = Vector3(50, 0.4, 50)
 [sub_resource type="BoxMesh" id="BoxMesh_5cv2e"]
 material = ExtResource("6_7igs8")
 size = Vector3(50, 0.4, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f402a"]
+size = Vector3(25.41, 11.68, 0.71)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5icwd"]
+albedo_color = Color(0.338473, 0.338473, 0.338473, 1)
+albedo_texture = ExtResource("10_4jfsx")
+roughness_texture = ExtResource("14_fm672")
+normal_enabled = true
+normal_texture = ExtResource("13_v18mo")
+ao_enabled = true
+ao_texture = ExtResource("11_stmcf")
+heightmap_enabled = true
+heightmap_texture = ExtResource("12_shy38")
+uv1_scale = Vector3(1.63, 1.63, 1.63)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vngpe"]
+material = SubResource("StandardMaterial3D_5icwd")
+size = Vector3(25.41, 11.68, 0.71)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_l0wlg")
@@ -44,6 +68,17 @@ shape = SubResource("BoxShape3D_jypxi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4104, 0, 0)
 mesh = SubResource("BoxMesh_5cv2e")
 
+[node name="Platform7" parent="." instance=ExtResource("5_wlm11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.290324, 10.2203, -0.642425)
+
+[node name="Collision" parent="Platform7" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4104, 0, 0)
+shape = SubResource("BoxShape3D_jypxi")
+
+[node name="Mesh" parent="Platform7" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4104, 0, 0)
+mesh = SubResource("BoxMesh_5cv2e")
+
 [node name="Platform2" parent="." instance=ExtResource("5_wlm11")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.7724, 8.70489, 13.2084)
 
@@ -56,7 +91,48 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.6267, 3.88159, -12.1756)
 [node name="FloorSwitch" parent="." instance=ExtResource("8_dsky8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.1456, 0.227904, -4.53073)
 
+[node name="Platform3" parent="." instance=ExtResource("5_wlm11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.9477, 4.36653, -17.1511)
+
+[node name="Collision" parent="Platform3" index="0"]
+shape = SubResource("BoxShape3D_f402a")
+
+[node name="Mesh" parent="Platform3" index="1"]
+mesh = SubResource("BoxMesh_vngpe")
+
+[node name="Platform6" parent="." instance=ExtResource("5_wlm11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.9477, 4.36653, 7.45066)
+
+[node name="Collision" parent="Platform6" index="0"]
+shape = SubResource("BoxShape3D_f402a")
+
+[node name="Mesh" parent="Platform6" index="1"]
+mesh = SubResource("BoxMesh_vngpe")
+
+[node name="Platform4" parent="." instance=ExtResource("5_wlm11")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19.6189, 4.36653, -4.54006)
+
+[node name="Collision" parent="Platform4" index="0"]
+shape = SubResource("BoxShape3D_f402a")
+
+[node name="Mesh" parent="Platform4" index="1"]
+mesh = SubResource("BoxMesh_vngpe")
+
+[node name="Platform5" parent="." instance=ExtResource("5_wlm11")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -42.8561, 4.36653, -4.54006)
+
+[node name="Collision" parent="Platform5" index="0"]
+shape = SubResource("BoxShape3D_f402a")
+
+[node name="Mesh" parent="Platform5" index="1"]
+mesh = SubResource("BoxMesh_vngpe")
+
 [connection signal="control_clicked" from="Player" to="." method="_on_player_control_clicked"]
 [connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
 
 [editable path="Platform"]
+[editable path="Platform7"]
+[editable path="Platform3"]
+[editable path="Platform6"]
+[editable path="Platform4"]
+[editable path="Platform5"]
