@@ -21,11 +21,14 @@ var last_parent_origin
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var being_lashed = false
+var glowing = false
 var orgininal_material
 
 var platform_target_reference
 var inital_platform_reference
 var inital_target_position
+
+var lashing_effect
 
 
 
@@ -110,14 +113,17 @@ func lashings_off():
 	set_glow(false)
 		
 func set_glow(value: bool):
-	if value:
-		body.mesh.material.albedo_color.b = 5
-		body.mesh.material.albedo_color.r = 1.5
-		body.mesh.material.albedo_color.g = 1.5
+	if value and not glowing:
+		#body.mesh.material.albedo_color.b = 5
+		#body.mesh.material.albedo_color.r = 1.5
+		#body.mesh.material.albedo_color.g = 1.5
+		add_child(preload("res://scenes/lashing_effect.tscn").instantiate())
+		glowing = true
 		
-		#body.mesh.material.emission_enabeld = true
-	else:
-		body.mesh.material = orgininal_material.duplicate()
+	elif not value and glowing:
+		#body.mesh.material = orgininal_material.duplicate()
+		get_child(-1).queue_free()
+		glowing = false
 		#body.mesh.material.emission_enabeld = false
 		
 func is_lashable_object():

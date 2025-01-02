@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://wrmo4h5d2cds"]
+[gd_scene load_steps=6 format=3 uid="uid://wrmo4h5d2cds"]
 
+[ext_resource type="Script" path="res://scripts/lashing_effect.gd" id="1_kktwb"]
 [ext_resource type="Texture2D" uid="uid://dyrrylq7iouig" path="res://resources/particles/particle_50x50.png" id="1_kpx1b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8w5d"]
@@ -20,6 +21,7 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.49503, 1), 0.0, 0.0, 0, 0, Vec
 point_count = 3
 
 [node name="LashingEffect" type="Node3D"]
+script = ExtResource("1_kktwb")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]
 transparency = 0.63
