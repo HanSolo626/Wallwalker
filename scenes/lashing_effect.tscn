@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://wrmo4h5d2cds"]
+
+[ext_resource type="Texture2D" uid="uid://dyrrylq7iouig" path="res://resources/particles/particle_50x50.png" id="1_kpx1b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8w5d"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0, 2.42, 9.946, 1)
+albedo_texture = ExtResource("1_kpx1b")
+billboard_mode = 1
+billboard_keep_scale = true
+grow_amount = 2.512
+
+[sub_resource type="QuadMesh" id="QuadMesh_xu167"]
+material = SubResource("StandardMaterial3D_j8w5d")
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_o2gmp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.49503, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="LashingEffect" type="Node3D"]
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transparency = 0.63
+cast_shadow = 0
+amount = 40
+lifetime = 2.78
+preprocess = 3.77
+local_coords = true
+mesh = SubResource("QuadMesh_xu167")
+emission_shape = 1
+emission_sphere_radius = 1.5
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+scale_amount_curve = SubResource("Curve_o2gmp")
