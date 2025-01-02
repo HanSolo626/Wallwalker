@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://df0ivw703jsfh"]
+[gd_scene load_steps=21 format=3 uid="uid://df0ivw703jsfh"]
 
 [ext_resource type="Script" path="res://alpha_levels/lashing_binding_test_area/lashing_binding_test_area.gd" id="1_l0wlg"]
 [ext_resource type="PackedScene" uid="uid://dlni0vkfjodkp" path="res://scenes/control.tscn" id="2_t7p85"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://btr5ofb17tf6s" path="res://materials/stone_floor/Substance_Graph_Height.jpg" id="12_shy38"]
 [ext_resource type="Texture2D" uid="uid://crrg5t7wknbek" path="res://materials/stone_floor/Substance_Graph_Normal.jpg" id="13_v18mo"]
 [ext_resource type="Texture2D" uid="uid://c766607xoryp5" path="res://materials/stone_floor/Substance_Graph_Roughness.jpg" id="14_fm672"]
+[ext_resource type="PackedScene" uid="uid://mwyuixdc708x" path="res://scenes/green_sphere.tscn" id="15_nqbjn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jypxi"]
 size = Vector3(50, 0.4, 50)
@@ -127,6 +128,14 @@ shape = SubResource("BoxShape3D_f402a")
 [node name="Mesh" parent="Platform5" index="1"]
 mesh = SubResource("BoxMesh_vngpe")
 
+[node name="GreenSphere" parent="." instance=ExtResource("15_nqbjn")]
+transform = Transform3D(4.71, 0, 0, 0, 4.71, 0, 0, 0, 4.71, -37.3241, 1.14736, -10.9612)
+
+[node name="OmniLight3D" parent="GreenSphere" index="2"]
+light_color = Color(1, 1, 1, 1)
+light_energy = 1.59
+omni_range = 21.937
+
 [connection signal="control_clicked" from="Player" to="." method="_on_player_control_clicked"]
 [connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
 
@@ -136,3 +145,4 @@ mesh = SubResource("BoxMesh_vngpe")
 [editable path="Platform6"]
 [editable path="Platform4"]
 [editable path="Platform5"]
+[editable path="GreenSphere"]
