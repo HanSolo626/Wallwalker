@@ -10,7 +10,6 @@ ground_horizon_color = Color(0.645449, 0.611724, 0.743433, 1)
 sky_material = SubResource("ProceduralSkyMaterial_d783x")
 
 [resource]
-background_mode = 2
 sky = SubResource("Sky_x4s61")
 glow_enabled = true
 glow_blend_mode = 1

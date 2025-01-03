@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://die75m3up6sa4"]
+[gd_scene load_steps=16 format=3 uid="uid://die75m3up6sa4"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4q30t"]
 [ext_resource type="PackedScene" uid="uid://c7v5bq2rp212x" path="res://scenes/glow_sword.tscn" id="2_02cdg"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://lnpfy724i3cj" path="res://scenes/blue_sphere.tscn" id="3_yir28"]
 [ext_resource type="PackedScene" uid="uid://mwyuixdc708x" path="res://scenes/green_sphere.tscn" id="4_kfqst"]
 [ext_resource type="PackedScene" uid="uid://b5a8bjtbfwu54" path="res://scenes/yellow_sphere.tscn" id="5_l3c3j"]
+[ext_resource type="AudioStream" uid="uid://bmhto6mo3v00w" path="res://resources/sound_fx/lashing_1.mp3" id="7_4gtxi"]
+[ext_resource type="AudioStream" uid="uid://dkpy128sagwme" path="res://resources/sound_fx/lashing_2.mp3" id="7_ywps4"]
+[ext_resource type="AudioStream" uid="uid://ckf1anigjaoid" path="res://resources/sound_fx/binding_1.mp3" id="9_se0r8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qwuce"]
 radius = 0.8
@@ -111,5 +114,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 target_position = Vector3(0, 1, 0)
 collision_mask = 18
 debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="LashingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ywps4")
+volume_db = -10.0
+pitch_scale = 0.85
+
+[node name="CancelLashingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_4gtxi")
+volume_db = -10.0
+
+[node name="BindingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_se0r8")
+volume_db = -10.0
+pitch_scale = 2.5
 
 [connection signal="area_entered" from="DeathDetection" to="." method="_on_death_detection_area_entered"]

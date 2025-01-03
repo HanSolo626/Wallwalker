@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c752fad231wv"]
+
+[ext_resource type="Script" path="res://scripts/lashable_object.gd" id="1_kpoqk"]
+[ext_resource type="PackedScene" uid="uid://dl3t2wph8cn6t" path="res://materials/barrel/wooden_barrels_01_barrel_03.tscn" id="3_wxnp3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_te0mm"]
+size = Vector3(1.5733, 1.84808, 1.57336)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p5wng"]
+size = Vector3(1.673, 1.948, 1.673)
+
+[node name="Barrel" type="RigidBody3D"]
+collision_layer = 8
+collision_mask = 271
+mass = 2.0
+script = ExtResource("1_kpoqk")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00643921, -0.0354919, 0.00152588)
+shape = SubResource("BoxShape3D_te0mm")
+
+[node name="Body" parent="." instance=ExtResource("3_wxnp3")]
+transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0, -0.957, 0)
+
+[node name="CollisionDetection" type="Area3D" parent="."]
+collision_layer = 32
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionDetection"]
+shape = SubResource("BoxShape3D_p5wng")
+
+[connection signal="body_entered" from="CollisionDetection" to="." method="_on_collision_detection_body_entered"]
