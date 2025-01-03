@@ -119,6 +119,7 @@ signal control_clicked
 @onready var yellow_sphere = $Camera3D/"fps-hands"/YellowSphere
 @onready var green_sphere = $Camera3D/"fps-hands"/GreenSphere
 @onready var fps_hands = $"Camera3D/fps-hands"
+@onready var lashing_sound = $LashingSound
 
 
 func set_top_level(t):
@@ -267,6 +268,7 @@ func change_gravity(raycast_object: RayCast3D):
 		
 func change_gravity_left():
 	if CAMERA_ANGLES[dir_str]["left"] != null:
+		lashing_sound.play()
 		print("left")
 		current_pull = 0
 		positive = false
@@ -277,6 +279,7 @@ func change_gravity_left():
 	
 func change_gravity_right():
 	if CAMERA_ANGLES[dir_str]["right"] != null:
+		lashing_sound.play()
 		print("right")
 		current_pull = 0
 		positive = true
@@ -287,6 +290,7 @@ func change_gravity_right():
 	
 func change_gravity_down():
 	if CAMERA_ANGLES[dir_str]["down"]:
+		lashing_sound.play()
 		print("down")
 		current_pull = 1
 		positive = false
@@ -297,6 +301,7 @@ func change_gravity_down():
 	
 func change_gravity_up():
 	if CAMERA_ANGLES[dir_str]["up"] != null:
+		lashing_sound.play()
 		print("up")
 		current_pull = 1
 		positive = true
@@ -307,6 +312,7 @@ func change_gravity_up():
 	
 func change_gravity_forward():
 	if CAMERA_ANGLES[dir_str]["forward"]:
+		lashing_sound.play()
 		print("forward")
 		current_pull = 2
 		positive = true
@@ -317,6 +323,7 @@ func change_gravity_forward():
 
 func change_gravity_backward():
 	if CAMERA_ANGLES[dir_str]["backward"]:
+		lashing_sound.play()
 		print("backward")
 		current_pull = 2
 		positive = false
@@ -538,6 +545,7 @@ func _physics_process(delta):
 				if lashing_count == max_lashings and currently_bound_object != null:
 					currently_bound_object.lashings_off()
 				change_gravity(lashing_ray_cast)
+				
 			
 			# BIND
 			elif Input.is_action_just_pressed("bind"):
