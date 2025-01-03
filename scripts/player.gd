@@ -564,6 +564,9 @@ func _physics_process(delta):
 					if lashing_count == max_lashings:
 						change_gravity_down()
 						rotation_trigger = true
+						if currently_bound_object != null:
+							currently_bound_object.lashings_off()
+							currently_bound_object = null
 						mod_lashing_count(-1)
 						
 					mod_lashing_count(1)
