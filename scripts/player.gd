@@ -120,6 +120,8 @@ signal control_clicked
 @onready var green_sphere = $Camera3D/"fps-hands"/GreenSphere
 @onready var fps_hands = $"Camera3D/fps-hands"
 @onready var lashing_sound = $LashingSound
+@onready var cancel_lashing_sound = $CancelLashingSound
+@onready var binding_sound = $BindingSound
 
 
 func set_top_level(t):
@@ -290,7 +292,7 @@ func change_gravity_right():
 	
 func change_gravity_down():
 	if CAMERA_ANGLES[dir_str]["down"]:
-		lashing_sound.play()
+		cancel_lashing_sound.play()
 		print("down")
 		current_pull = 1
 		positive = false
@@ -559,6 +561,7 @@ func _physics_process(delta):
 						currently_bound_object = null
 					green_sphere.show()
 					yellow_sphere.hide()
+					cancel_lashing_sound.play()
 					
 				# TARGET BIND
 				elif object_to_bind == null and binding_ray_cast.get_collider().has_method("set_target"):
@@ -593,6 +596,7 @@ func _physics_process(delta):
 					user_interface.set_binding_indicator(false)
 					green_sphere.show()
 					yellow_sphere.hide()
+					binding_sound.play()
 					
 	if not dead and not frozen and Input.is_action_just_pressed("left click"):
 		if control_ray_cast.is_colliding():
