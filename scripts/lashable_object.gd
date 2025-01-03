@@ -131,8 +131,9 @@ func is_lashable_object():
 		
 		
 func _ready():
-	body.mesh.material = body.mesh.material.duplicate()
-	orgininal_material = body.mesh.material.duplicate()
+	#body.mesh.material = body.mesh.material.duplicate()
+	#orgininal_material = body.mesh.material.duplicate()
+	pass
 	
 
 func _physics_process(delta):

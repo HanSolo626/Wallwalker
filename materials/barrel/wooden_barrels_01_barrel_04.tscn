@@ -51,6 +51,5 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nfwis")
 
 [node name="wooden_barrels_01_barrel04" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.939537, 0, -1.5611)
 mesh = SubResource("ArrayMesh_w3jh3")
 skeleton = NodePath("")
