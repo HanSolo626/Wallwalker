@@ -5,6 +5,7 @@ var player_present = false
 var being_lashed = false
 var num_id = 0
 
+
 func set_id(num: int):
 	num_id = num
 	return num_id

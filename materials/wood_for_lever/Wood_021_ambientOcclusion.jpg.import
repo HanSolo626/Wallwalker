@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgou26huy3xl5"
-path.s3tc="res://.godot/imported/logo.png-cca8726399059c8d4f806e28e356b14d.s3tc.ctex"
+uid="uid://j4hnqkhf3pym"
+path.s3tc="res://.godot/imported/Wood_021_ambientOcclusion.jpg-8e244688e8658067e30ede8a1ea7b021.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://logo.png"
-dest_files=["res://.godot/imported/logo.png-cca8726399059c8d4f806e28e356b14d.s3tc.ctex"]
+source_file="res://materials/wood_for_lever/Wood_021_ambientOcclusion.jpg"
+dest_files=["res://.godot/imported/Wood_021_ambientOcclusion.jpg-8e244688e8658067e30ede8a1ea7b021.s3tc.ctex"]
 
 [params]
 

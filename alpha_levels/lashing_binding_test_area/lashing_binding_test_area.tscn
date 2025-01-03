@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://df0ivw703jsfh"]
+[gd_scene load_steps=14 format=3 uid="uid://df0ivw703jsfh"]
 
 [ext_resource type="Script" path="res://alpha_levels/lashing_binding_test_area/lashing_binding_test_area.gd" id="1_l0wlg"]
 [ext_resource type="PackedScene" uid="uid://dlni0vkfjodkp" path="res://scenes/control.tscn" id="2_t7p85"]
@@ -9,7 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cnl2x6g81er81" path="res://scenes/column.tscn" id="6_ivkto"]
 [ext_resource type="PackedScene" uid="uid://dfllykgtovd4s" path="res://scenes/lashable_object.tscn" id="7_l44cq"]
 [ext_resource type="PackedScene" uid="uid://bbydprljo5a8y" path="res://scenes/floor_switch.tscn" id="8_dsky8"]
-[ext_resource type="PackedScene" uid="uid://c752fad231wv" path="res://resources/lashable_objects/barrel.tscn" id="10_tdr1k"]
+[ext_resource type="PackedScene" path="res://scenes/wooden_lever.tscn" id="10_tbetn"]
+[ext_resource type="PackedScene" uid="uid://dp2tdp7s6desm" path="res://scenes/door.tscn" id="11_krxke"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jypxi"]
 size = Vector3(50, 0.4, 50)
@@ -57,9 +58,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.6267, 3.88159, -12.1756)
 [node name="FloorSwitch" parent="." instance=ExtResource("8_dsky8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.1456, 0.227904, -4.53073)
 
-[node name="Barrel" parent="." instance=ExtResource("10_tdr1k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.4806, 2.67897, -5.21908)
+[node name="WoodenLever" parent="." instance=ExtResource("10_tbetn")]
+transform = Transform3D(2.05, 0, 0, 0, 2.05, 0, 0, 0, 2.05, -42.2608, 0.272276, 4.82249)
 
+[node name="Door" parent="." instance=ExtResource("11_krxke")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.0637, 2.56557, -1.39943)
+
+[connection signal="action_key_pressed" from="Player" to="." method="_on_player_action_key_pressed"]
 [connection signal="control_clicked" from="Player" to="." method="_on_player_control_clicked"]
 [connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
 

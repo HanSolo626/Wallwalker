@@ -1,0 +1,48 @@
+[gd_scene load_steps=11 format=3 uid="uid://dp2tdp7s6desm"]
+
+[ext_resource type="Script" path="res://scripts/platform.gd" id="1_f7epw"]
+[ext_resource type="Texture2D" uid="uid://c6f664t6ylkcv" path="res://materials/wooden_door_mesh/Wood_Door_002_basecolor.jpg" id="2_y6tcw"]
+[ext_resource type="Texture2D" uid="uid://bl6h3yyy47tgd" path="res://materials/wooden_door_mesh/Wood_Door_002_ambientOcclusion.jpg" id="3_p0ia7"]
+[ext_resource type="Texture2D" uid="uid://dtd3v4v3wwwt0" path="res://materials/wooden_door_mesh/Wood_Door_002_height.png" id="4_rvuvw"]
+[ext_resource type="Texture2D" uid="uid://8ghdi3nkb3dq" path="res://materials/wooden_door_mesh/Wood_Door_002_metallic.jpg" id="5_q73xy"]
+[ext_resource type="Texture2D" uid="uid://d311dsk1iuhp3" path="res://materials/wooden_door_mesh/Wood_Door_002_normal.jpg" id="6_47kot"]
+[ext_resource type="Texture2D" uid="uid://cy4ogp1yrkmlh" path="res://materials/wooden_door_mesh/Wood_Door_002_roughness.jpg" id="7_2lr0w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xuar1"]
+size = Vector3(5.5, 5.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dplu0"]
+albedo_texture = ExtResource("2_y6tcw")
+metallic = 1.0
+metallic_texture = ExtResource("5_q73xy")
+roughness_texture = ExtResource("7_2lr0w")
+normal_enabled = true
+normal_texture = ExtResource("6_47kot")
+ao_enabled = true
+ao_light_affect = 0.5
+ao_texture = ExtResource("3_p0ia7")
+heightmap_enabled = true
+heightmap_scale = 4.0
+heightmap_texture = ExtResource("4_rvuvw")
+uv1_scale = Vector3(4.19, 4.19, 4.19)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eb42m"]
+material = SubResource("StandardMaterial3D_dplu0")
+size = Vector3(5.5, 5.5, 0.5)
+
+[node name="Door" type="CharacterBody3D"]
+collision_layer = 16
+collision_mask = 11
+script = ExtResource("1_f7epw")
+metadata/minus_x_lash = true
+metadata/plus_x_lash = true
+metadata/minus_y_lash = false
+metadata/plus_y_lash = false
+metadata/minus_z_lash = true
+metadata/plus_z_lash = true
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_xuar1")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_eb42m")

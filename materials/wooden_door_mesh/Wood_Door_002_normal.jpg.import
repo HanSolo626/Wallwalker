@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgou26huy3xl5"
-path.s3tc="res://.godot/imported/logo.png-cca8726399059c8d4f806e28e356b14d.s3tc.ctex"
+uid="uid://d311dsk1iuhp3"
+path.s3tc="res://.godot/imported/Wood_Door_002_normal.jpg-1c425b498bd2de32351689423a72ed18.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://logo.png"
-dest_files=["res://.godot/imported/logo.png-cca8726399059c8d4f806e28e356b14d.s3tc.ctex"]
+source_file="res://materials/wooden_door_mesh/Wood_Door_002_normal.jpg"
+dest_files=["res://.godot/imported/Wood_Door_002_normal.jpg-1c425b498bd2de32351689423a72ed18.s3tc.ctex"]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

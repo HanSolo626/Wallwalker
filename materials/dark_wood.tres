@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://ymw0mj70xioa"]
+
+[ext_resource type="Texture2D" uid="uid://b0exsu73p52rm" path="res://materials/wood_for_lever/Wood_021_basecolor.jpg" id="1_yyqe5"]
+[ext_resource type="Texture2D" uid="uid://j4hnqkhf3pym" path="res://materials/wood_for_lever/Wood_021_ambientOcclusion.jpg" id="2_1lh2x"]
+[ext_resource type="Texture2D" uid="uid://bg3glhy6spfs7" path="res://materials/wood_for_lever/Wood_021_height.png" id="3_hxhv3"]
+[ext_resource type="Texture2D" uid="uid://qw0416ws0vln" path="res://materials/wood_for_lever/Wood_021_normal.jpg" id="4_lshtk"]
+[ext_resource type="Texture2D" uid="uid://by1f8p1upq54f" path="res://materials/wood_for_lever/Wood_021_roughness.jpg" id="5_2ghdw"]
+
+[resource]
+albedo_texture = ExtResource("1_yyqe5")
+roughness_texture = ExtResource("5_2ghdw")
+normal_enabled = true
+normal_texture = ExtResource("4_lshtk")
+ao_enabled = true
+ao_texture = ExtResource("2_1lh2x")
+heightmap_texture = ExtResource("3_hxhv3")

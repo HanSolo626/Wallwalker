@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var platform_2 = $Platform2
+@onready var wooden_lever = $WoodenLever
 
 
 func load_and_play_track():
@@ -20,3 +21,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_player_action_key_pressed():
+	if wooden_lever.lever_usable():
+		wooden_lever.set_lever_on()
+		#wooden_lever.set_disabled()
+		platform_2.glide_to_position(Vector3(0, 10, 0), 0.1)

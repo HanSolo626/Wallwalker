@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgou26huy3xl5"
-path.s3tc="res://.godot/imported/logo.png-cca8726399059c8d4f806e28e356b14d.s3tc.ctex"
+uid="uid://dtd3v4v3wwwt0"
+path.s3tc="res://.godot/imported/Wood_Door_002_height.png-fddcf0fd4aec8bc8ebe2b8441e14c769.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://logo.png"
-dest_files=["res://.godot/imported/logo.png-cca8726399059c8d4f806e28e356b14d.s3tc.ctex"]
+source_file="res://materials/wooden_door_mesh/Wood_Door_002_height.png"
+dest_files=["res://.godot/imported/Wood_Door_002_height.png-fddcf0fd4aec8bc8ebe2b8441e14c769.s3tc.ctex"]
 
 [params]
 
