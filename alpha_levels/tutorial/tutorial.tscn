@@ -1,42 +1,52 @@
-[gd_scene load_steps=8 format=3 uid="uid://00idyfnhwmrs"]
+[gd_scene load_steps=10 format=3 uid="uid://bedt25o4r1t0t"]
 
-[ext_resource type="Script" path="res://alpha_levels/tutorial/tutorial.gd" id="1_25f1e"]
-[ext_resource type="PackedScene" uid="uid://dlni0vkfjodkp" path="res://scenes/control.tscn" id="2_jiyo4"]
-[ext_resource type="Environment" uid="uid://cecgvgme5tytb" path="res://resources/enviroments/world.tres" id="3_mt0nt"]
-[ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="4_hewsm"]
-[ext_resource type="PackedScene" uid="uid://dpw0va0tvjoeb" path="res://scenes/platform.tscn" id="5_2pdya"]
+[ext_resource type="Script" path="res://alpha_levels/tutorial/tutorial.gd" id="1_o0b18"]
+[ext_resource type="PackedScene" uid="uid://dlni0vkfjodkp" path="res://scenes/control.tscn" id="2_h1uvq"]
+[ext_resource type="Environment" uid="uid://cecgvgme5tytb" path="res://resources/enviroments/world.tres" id="3_g7uon"]
+[ext_resource type="PackedScene" uid="uid://die75m3up6sa4" path="res://scenes/player.tscn" id="4_wadsa"]
+[ext_resource type="PackedScene" uid="uid://dpw0va0tvjoeb" path="res://scenes/platform.tscn" id="5_qrpni"]
+[ext_resource type="Material" uid="uid://bm87sn21ahp7b" path="res://materials/white_platform.tres" id="6_cufqm"]
+[ext_resource type="PackedScene" uid="uid://bbydprljo5a8y" path="res://scenes/floor_switch.tscn" id="9_epgu2"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_slerl"]
-size = Vector3(21.1, 0.4, 33.31)
+[sub_resource type="BoxShape3D" id="BoxShape3D_jypxi"]
+size = Vector3(50, 0.4, 50)
 
-[sub_resource type="BoxMesh" id="BoxMesh_n0pxj"]
-size = Vector3(21.1, 0.4, 33.31)
+[sub_resource type="BoxMesh" id="BoxMesh_5cv2e"]
+material = ExtResource("6_cufqm")
+size = Vector3(50, 0.4, 50)
 
 [node name="World" type="Node3D"]
-script = ExtResource("1_25f1e")
+script = ExtResource("1_o0b18")
 
-[node name="Control" parent="." instance=ExtResource("2_jiyo4")]
+[node name="Control" parent="." instance=ExtResource("2_h1uvq")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("3_mt0nt")
+environment = ExtResource("3_g7uon")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.29404, -0.819275, 0.49227, 0, 0.515038, 0.857167, -0.955793, 0.252042, -0.151442, 0, 0, 0)
+transform = Transform3D(-0.29404, -0.819275, 0.49227, 0, 0.515038, 0.857167, -0.955793, 0.252042, -0.151442, -29.4104, 0, 0)
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("4_hewsm")]
+[node name="Player" parent="." instance=ExtResource("4_wadsa")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2713, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4104, 3.2713, 0)
 
-[node name="Platform" parent="." instance=ExtResource("5_2pdya")]
+[node name="Platform" parent="." instance=ExtResource("5_qrpni")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.290324, 0, -0.642425)
 
 [node name="Collision" parent="Platform" index="0"]
-shape = SubResource("BoxShape3D_slerl")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4104, 0, 0)
+shape = SubResource("BoxShape3D_jypxi")
 
 [node name="Mesh" parent="Platform" index="1"]
-mesh = SubResource("BoxMesh_n0pxj")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4104, 0, 0)
+mesh = SubResource("BoxMesh_5cv2e")
 
+[node name="FloorSwitch" parent="." instance=ExtResource("9_epgu2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.1456, 0.227904, -4.53073)
+
+[connection signal="death_animation_done" from="Control" to="." method="_on_control_death_animation_done"]
+[connection signal="action_key_pressed" from="Player" to="." method="_on_player_action_key_pressed"]
 [connection signal="control_clicked" from="Player" to="." method="_on_player_control_clicked"]
 [connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
 
