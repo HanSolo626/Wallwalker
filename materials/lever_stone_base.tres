@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://doe1fb0wmrd1c"]
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://vc5pgg1s6dlh"]
 
 [ext_resource type="Texture2D" uid="uid://2w57y61hvag4" path="res://materials/lever_stone_base/Concrete_018_BaseColor.jpg" id="1_rcn0f"]
 [ext_resource type="Texture2D" uid="uid://dps7v1phmj1ov" path="res://materials/lever_stone_base/Concrete_018_AmbientOcclusion.jpg" id="2_n6fvp"]
