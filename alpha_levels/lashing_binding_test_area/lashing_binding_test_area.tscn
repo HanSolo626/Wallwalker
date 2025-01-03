@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cnl2x6g81er81" path="res://scenes/column.tscn" id="6_ivkto"]
 [ext_resource type="PackedScene" uid="uid://dfllykgtovd4s" path="res://scenes/lashable_object.tscn" id="7_l44cq"]
 [ext_resource type="PackedScene" uid="uid://bbydprljo5a8y" path="res://scenes/floor_switch.tscn" id="8_dsky8"]
+[ext_resource type="PackedScene" uid="uid://dtdp7r7qge7gs" path="res://scenes/small_spikes.tscn" id="10_fryh8"]
 [ext_resource type="PackedScene" path="res://scenes/wooden_lever.tscn" id="10_tbetn"]
 [ext_resource type="PackedScene" path="res://scenes/door.tscn" id="11_krxke"]
 
@@ -58,6 +59,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.6267, 3.88159, -12.1756)
 [node name="FloorSwitch" parent="." instance=ExtResource("8_dsky8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.1456, 0.227904, -4.53073)
 
+[node name="SmallSpikes" parent="." instance=ExtResource("10_fryh8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.9858, 0.330856, 0.062198)
+
+[connection signal="death_animation_done" from="Control" to="." method="_on_control_death_animation_done"]
 [node name="WoodenLever" parent="." instance=ExtResource("10_tbetn")]
 transform = Transform3D(2.05, 0, 0, 0, 2.05, 0, 0, 0, 2.05, -42.2608, 0.272276, 4.82249)
 

@@ -1,14 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlni0vkfjodkp"]
+[gd_scene load_steps=8 format=3 uid="uid://dlni0vkfjodkp"]
 
 [ext_resource type="Script" path="res://scripts/UserInterface.gd" id="1_cpq4r"]
+[ext_resource type="Script" path="res://scripts/control.gd" id="1_uhqgs"]
 [ext_resource type="Texture2D" uid="uid://bsuutyugehvy7" path="res://materials/sight.png" id="2_x1f3u"]
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="2_ys448"]
+[ext_resource type="Theme" uid="uid://dwyijvx7wroyq" path="res://resources/themes/menu_theme.tres" id="5_tw50m"]
+[ext_resource type="Script" path="res://scripts/victory_menu.gd" id="6_3l50d"]
 
 [sub_resource type="Theme" id="Theme_f5cei"]
 default_font_size = 60
-
-[sub_resource type="Theme" id="Theme_o2i6n"]
-default_font_size = 42
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -23,6 +23,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_uhqgs")
 
 [node name="Pointer" type="Label" parent="."]
 visible = false
@@ -126,6 +127,53 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_x1f3u")
 
+[node name="VictoryMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("5_tw50m")
+script = ExtResource("6_3l50d")
+
+[node name="ColorRect2" type="ColorRect" parent="VictoryMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2263.0
+offset_top = -1606.0
+offset_right = 2125.0
+offset_bottom = 1554.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.494118)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VictoryMenu"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VictoryMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 100
+text = "VICTORY!"
+
+[node name="ReturnToMainMenuButton" type="Button" parent="VictoryMenu/VBoxContainer"]
+layout_mode = 2
+text = "Return to Main Menu"
+
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
 visible = false
@@ -160,17 +208,17 @@ grow_vertical = 2
 
 [node name="ResumeButton" type="Button" parent="PauseMenu/VBoxContainer"]
 layout_mode = 2
-theme = SubResource("Theme_o2i6n")
+theme = ExtResource("5_tw50m")
 text = "Resume"
 
 [node name="ExitToMainMenuButton" type="Button" parent="PauseMenu/VBoxContainer"]
 layout_mode = 2
-theme = SubResource("Theme_o2i6n")
+theme = ExtResource("5_tw50m")
 text = "Exit to Main Menu"
 
 [node name="ExitGameButton" type="Button" parent="PauseMenu/VBoxContainer"]
 layout_mode = 2
-theme = SubResource("Theme_o2i6n")
+theme = ExtResource("5_tw50m")
 text = "Exit Game"
 
 [node name="ColorRect" type="ColorRect" parent="PauseMenu"]
@@ -186,6 +234,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.494118)
 
+[connection signal="death_animation_done" from="UserInterface" to="." method="_on_user_interface_death_animation_done"]
+[connection signal="button_down" from="VictoryMenu/VBoxContainer/ReturnToMainMenuButton" to="VictoryMenu" method="_on_return_to_main_menu_button_button_down"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ExitToMainMenuButton" to="PauseMenu" method="_on_exit_to_main_menu_button_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ExitGameButton" to="PauseMenu" method="_on_exit_game_button_pressed"]
