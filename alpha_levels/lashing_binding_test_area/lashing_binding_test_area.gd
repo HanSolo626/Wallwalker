@@ -10,6 +10,7 @@ func load_and_play_track():
 	var player = AudioStreamPlayer.new()
 	player.stream = track
 	player.autoplay = true
+	player.volume_db = -10
 	add_child(player)
 	
 func end_game():
@@ -40,7 +41,6 @@ func _on_player_player_killed():
 
 func _on_control_death_animation_done():
 	get_tree().reload_current_scene()
-	pass
 
 
 func _on_player_action_key_pressed():
