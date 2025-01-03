@@ -5,8 +5,14 @@ extends CharacterBody3D
 # 2: Bind objects
 var lashing_mode = 1
 
+# lashing count
+var lashing_count = 0
+var max_lashings = 1
+
 var max_lashing_mode_num = 2
 var object_to_bind
+var currently_bound_object
+
 
 const WALKING_SPEED = 8.0
 const WALKING_ACC = 1.0
@@ -205,18 +211,23 @@ func change_gravity(raycast_object: RayCast3D):
 	# x = 0
 	# y = 1
 	# z = 2
+	
+	# TODO fix if/else gates
 	if block.x - face.x < 0 and (current_pull != 0 or positive != false):
 		if lashed_object.has_method("glide_in_loop") and not lashed_object.get_surface_lashable(0):
 			pass
 		else:
 			change_gravity_left()
-		
+			mod_lashing_count(-1)
+			mod_lashing_count(1)
 		
 	elif block.x - face.x > 0 and (current_pull != 0 or positive != true):
 		if lashed_object.has_method("glide_in_loop") and not lashed_object.get_surface_lashable(1):
 			pass
 		else:
 			change_gravity_right()
+			mod_lashing_count(-1)
+			mod_lashing_count(1)
 		
 		
 	elif block.y - face.y < 0 and (current_pull != 1 or positive != false):
@@ -224,6 +235,7 @@ func change_gravity(raycast_object: RayCast3D):
 			pass
 		else:
 			change_gravity_down()
+			mod_lashing_count(-1)
 		
 		
 	elif block.y - face.y > 0 and (current_pull != 1 or positive != true):
@@ -231,21 +243,24 @@ func change_gravity(raycast_object: RayCast3D):
 			pass
 		else:
 			change_gravity_up()
-		
+			mod_lashing_count(-1)
+			mod_lashing_count(1)
 		
 	elif block.z - face.z < 0 and (current_pull != 2 or positive != false):
 		if lashed_object.has_method("glide_in_loop") and not lashed_object.get_surface_lashable(4):
 			pass
 		else:
 			change_gravity_backward()
-		
+			mod_lashing_count(-1)
+			mod_lashing_count(1)
 		
 	elif block.z - face.z > 0 and (current_pull != 2 or positive != true):
 		if lashed_object.has_method("glide_in_loop") and not lashed_object.get_surface_lashable(5):
 			pass
 		else:
 			change_gravity_forward()
-		
+			mod_lashing_count(-1)
+			mod_lashing_count(1)
 		
 		
 		
@@ -380,6 +395,15 @@ func freeze_player():
 		frozen = false
 	else:
 		frozen = true
+		
+func mod_lashing_count(num: int):
+	if lashing_count + num <= max_lashings:
+		lashing_count += num
+		if lashing_count < 0:
+			lashing_count = 0
+	else:
+		lashing_count = max_lashings
+		
 
 
 func _ready(): # setup
@@ -509,22 +533,40 @@ func _physics_process(delta):
 		if lashing_ray_cast.is_colliding() or binding_ray_cast.is_colliding():
 			print(lashing_ray_cast.get_collider())
 			
+			# LASH
 			if Input.is_action_just_pressed("lash") and lashing_ray_cast.get_collider() != null and (lashing_ray_cast.get_collider().has_method("is_block") or lashing_ray_cast.get_collider().has_method("is_platform")) and is_rotating() == false:
+				if lashing_count == max_lashings and currently_bound_object != null:
+					currently_bound_object.lashings_off()
 				change_gravity(lashing_ray_cast)
+			
+			# BIND
 			elif Input.is_action_just_pressed("bind"):
+				# CANCEL BIND
 				if object_to_bind == binding_ray_cast.get_collider():
 					object_to_bind = null
 					user_interface.set_binding_indicator(false)
 					if binding_ray_cast.get_collider().being_lashed:
 						binding_ray_cast.get_collider().lashings_off()
+						mod_lashing_count(-1)
+						currently_bound_object = null
 					green_sphere.show()
 					yellow_sphere.hide()
+					
+				# TARGET BIND
 				elif object_to_bind == null and binding_ray_cast.get_collider().has_method("set_target"):
 					object_to_bind = binding_ray_cast.get_collider()
 					user_interface.set_binding_indicator(true)
 					green_sphere.hide()
 					yellow_sphere.show()
+					
+				# ACTIVATE BIND
 				elif object_to_bind != null:
+					if lashing_count == max_lashings:
+						change_gravity_down()
+						rotation_trigger = true
+						mod_lashing_count(-1)
+						
+					mod_lashing_count(1)
 					
 					# binding to platform
 					if binding_ray_cast.get_collider().has_method("is_platform"):
@@ -535,6 +577,7 @@ func _physics_process(delta):
 						object_to_bind.set_target(binding_ray_cast.get_collider().global_transform.origin)
 					else:
 						object_to_bind.set_target(lashing_ray_cast.get_collision_point())
+					currently_bound_object = object_to_bind
 					object_to_bind = null
 					user_interface.set_binding_indicator(false)
 					green_sphere.show()
