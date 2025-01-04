@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://fgg782g4uuld"
 path.s3tc="res://.godot/imported/Substance_Graph_AmbientOcclusion.jpg-3ff85271d131c6824d02f08319b0ffa1.s3tc.ctex"
+path.etc2="res://.godot/imported/Substance_Graph_AmbientOcclusion.jpg-3ff85271d131c6824d02f08319b0ffa1.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://materials/stone_floor/Substance_Graph_AmbientOcclusion.jpg"
-dest_files=["res://.godot/imported/Substance_Graph_AmbientOcclusion.jpg-3ff85271d131c6824d02f08319b0ffa1.s3tc.ctex"]
+dest_files=["res://.godot/imported/Substance_Graph_AmbientOcclusion.jpg-3ff85271d131c6824d02f08319b0ffa1.s3tc.ctex", "res://.godot/imported/Substance_Graph_AmbientOcclusion.jpg-3ff85271d131c6824d02f08319b0ffa1.etc2.ctex"]
 
 [params]
 

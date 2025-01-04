@@ -618,13 +618,13 @@ func _physics_process(delta):
 		rotation_trigger = true
 				
 	# Handle light
-	if not dead and not frozen and Input.is_action_just_pressed("flashlight"):
-		if light_on:
-			flashlight.visible = false
-			light_on = false
-		else:
-			flashlight.visible = true
-			light_on = true
+	#if not dead and not frozen and Input.is_action_just_pressed("flashlight"):
+	#	if light_on:
+	#		flashlight.visible = false
+	#		light_on = false
+	#	else:
+	#		flashlight.visible = true
+	#		light_on = true
 			
 	# handle tab
 	if not dead and not frozen and Input.is_action_just_pressed("tab"):

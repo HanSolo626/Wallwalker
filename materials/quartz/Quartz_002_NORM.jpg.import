@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d4lkvmj1vfr66"
 path.s3tc="res://.godot/imported/Quartz_002_NORM.jpg-f5f483719f65bb4c0cd7b73a7e553a2c.s3tc.ctex"
+path.etc2="res://.godot/imported/Quartz_002_NORM.jpg-f5f483719f65bb4c0cd7b73a7e553a2c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://materials/quartz/Quartz_002_NORM.jpg"
-dest_files=["res://.godot/imported/Quartz_002_NORM.jpg-f5f483719f65bb4c0cd7b73a7e553a2c.s3tc.ctex"]
+dest_files=["res://.godot/imported/Quartz_002_NORM.jpg-f5f483719f65bb4c0cd7b73a7e553a2c.s3tc.ctex", "res://.godot/imported/Quartz_002_NORM.jpg-f5f483719f65bb4c0cd7b73a7e553a2c.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c766607xoryp5"
 path.s3tc="res://.godot/imported/Substance_Graph_Roughness.jpg-4c0c186fc28d490c7dd42e25be487017.s3tc.ctex"
+path.etc2="res://.godot/imported/Substance_Graph_Roughness.jpg-4c0c186fc28d490c7dd42e25be487017.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://materials/stone_floor/Substance_Graph_Roughness.jpg"
-dest_files=["res://.godot/imported/Substance_Graph_Roughness.jpg-4c0c186fc28d490c7dd42e25be487017.s3tc.ctex"]
+dest_files=["res://.godot/imported/Substance_Graph_Roughness.jpg-4c0c186fc28d490c7dd42e25be487017.s3tc.ctex", "res://.godot/imported/Substance_Graph_Roughness.jpg-4c0c186fc28d490c7dd42e25be487017.etc2.ctex"]
 
 [params]
 

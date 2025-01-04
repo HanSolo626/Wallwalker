@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://2w57y61hvag4"
 path.s3tc="res://.godot/imported/Concrete_018_BaseColor.jpg-5795145dc87eebe37e0ee9125a89c59a.s3tc.ctex"
+path.etc2="res://.godot/imported/Concrete_018_BaseColor.jpg-5795145dc87eebe37e0ee9125a89c59a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://materials/lever_stone_base/Concrete_018_BaseColor.jpg"
-dest_files=["res://.godot/imported/Concrete_018_BaseColor.jpg-5795145dc87eebe37e0ee9125a89c59a.s3tc.ctex"]
+dest_files=["res://.godot/imported/Concrete_018_BaseColor.jpg-5795145dc87eebe37e0ee9125a89c59a.s3tc.ctex", "res://.godot/imported/Concrete_018_BaseColor.jpg-5795145dc87eebe37e0ee9125a89c59a.etc2.ctex"]
 
 [params]
 

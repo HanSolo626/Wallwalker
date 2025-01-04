@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ueg1ba0g7qh1"
 path.s3tc="res://.godot/imported/basic_ceiling_light_Cube Base Color.png-b462af2a9cefa5a22e192ce4c1e8cea3.s3tc.ctex"
+path.etc2="res://.godot/imported/basic_ceiling_light_Cube Base Color.png-b462af2a9cefa5a22e192ce4c1e8cea3.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://resources/lights/basic_ceiling_light_Cube Base Color.png"
-dest_files=["res://.godot/imported/basic_ceiling_light_Cube Base Color.png-b462af2a9cefa5a22e192ce4c1e8cea3.s3tc.ctex"]
+dest_files=["res://.godot/imported/basic_ceiling_light_Cube Base Color.png-b462af2a9cefa5a22e192ce4c1e8cea3.s3tc.ctex", "res://.godot/imported/basic_ceiling_light_Cube Base Color.png-b462af2a9cefa5a22e192ce4c1e8cea3.etc2.ctex"]
 
 [params]
 

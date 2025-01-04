@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://lati5hq2iygs"
 path.s3tc="res://.godot/imported/glowing_sword_unpowered_glowing_sword_off_material.png-b5c67f1ea51273a49acc297425ff8425.s3tc.ctex"
+path.etc2="res://.godot/imported/glowing_sword_unpowered_glowing_sword_off_material.png-b5c67f1ea51273a49acc297425ff8425.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://resources/weapons/glowing_sword_unpowered_glowing_sword_off_material.png"
-dest_files=["res://.godot/imported/glowing_sword_unpowered_glowing_sword_off_material.png-b5c67f1ea51273a49acc297425ff8425.s3tc.ctex"]
+dest_files=["res://.godot/imported/glowing_sword_unpowered_glowing_sword_off_material.png-b5c67f1ea51273a49acc297425ff8425.s3tc.ctex", "res://.godot/imported/glowing_sword_unpowered_glowing_sword_off_material.png-b5c67f1ea51273a49acc297425ff8425.etc2.ctex"]
 
 [params]
 

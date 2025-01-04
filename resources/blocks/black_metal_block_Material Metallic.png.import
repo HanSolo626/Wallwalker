@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://blmlqc4hr223o"
 path.s3tc="res://.godot/imported/black_metal_block_Material Metallic.png-8b01ed6d668f82dc022ae583c42267f4.s3tc.ctex"
+path.etc2="res://.godot/imported/black_metal_block_Material Metallic.png-8b01ed6d668f82dc022ae583c42267f4.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://resources/blocks/black_metal_block_Material Metallic.png"
-dest_files=["res://.godot/imported/black_metal_block_Material Metallic.png-8b01ed6d668f82dc022ae583c42267f4.s3tc.ctex"]
+dest_files=["res://.godot/imported/black_metal_block_Material Metallic.png-8b01ed6d668f82dc022ae583c42267f4.s3tc.ctex", "res://.godot/imported/black_metal_block_Material Metallic.png-8b01ed6d668f82dc022ae583c42267f4.etc2.ctex"]
 
 [params]
 

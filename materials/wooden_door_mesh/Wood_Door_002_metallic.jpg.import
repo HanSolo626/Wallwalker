@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://8ghdi3nkb3dq"
 path.s3tc="res://.godot/imported/Wood_Door_002_metallic.jpg-37abf3dcf0296cf29f422e084bace829.s3tc.ctex"
+path.etc2="res://.godot/imported/Wood_Door_002_metallic.jpg-37abf3dcf0296cf29f422e084bace829.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://materials/wooden_door_mesh/Wood_Door_002_metallic.jpg"
-dest_files=["res://.godot/imported/Wood_Door_002_metallic.jpg-37abf3dcf0296cf29f422e084bace829.s3tc.ctex"]
+dest_files=["res://.godot/imported/Wood_Door_002_metallic.jpg-37abf3dcf0296cf29f422e084bace829.s3tc.ctex", "res://.godot/imported/Wood_Door_002_metallic.jpg-37abf3dcf0296cf29f422e084bace829.etc2.ctex"]
 
 [params]
 

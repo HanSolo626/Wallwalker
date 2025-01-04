@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://qw0416ws0vln"
 path.s3tc="res://.godot/imported/Wood_021_normal.jpg-fde33c96df3fe5530e546533e92dc008.s3tc.ctex"
+path.etc2="res://.godot/imported/Wood_021_normal.jpg-fde33c96df3fe5530e546533e92dc008.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://materials/wood_for_lever/Wood_021_normal.jpg"
-dest_files=["res://.godot/imported/Wood_021_normal.jpg-fde33c96df3fe5530e546533e92dc008.s3tc.ctex"]
+dest_files=["res://.godot/imported/Wood_021_normal.jpg-fde33c96df3fe5530e546533e92dc008.s3tc.ctex", "res://.godot/imported/Wood_021_normal.jpg-fde33c96df3fe5530e546533e92dc008.etc2.ctex"]
 
 [params]
 

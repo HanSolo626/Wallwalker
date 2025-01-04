@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://lyy75od8lg54"
 path.s3tc="res://.godot/imported/diamond brick2_block _material.png-820686c6207d0a0b7b7dc1e3f8721fec.s3tc.ctex"
+path.etc2="res://.godot/imported/diamond brick2_block _material.png-820686c6207d0a0b7b7dc1e3f8721fec.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://resources/test_blocks/diamond brick2_block _material.png"
-dest_files=["res://.godot/imported/diamond brick2_block _material.png-820686c6207d0a0b7b7dc1e3f8721fec.s3tc.ctex"]
+dest_files=["res://.godot/imported/diamond brick2_block _material.png-820686c6207d0a0b7b7dc1e3f8721fec.s3tc.ctex", "res://.godot/imported/diamond brick2_block _material.png-820686c6207d0a0b7b7dc1e3f8721fec.etc2.ctex"]
 
 [params]
 

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://m3embj200vla"
 path.s3tc="res://.godot/imported/grey_block_grey.png-c90ed0cc573ab492ab0ae8f20a1bdc86.s3tc.ctex"
+path.etc2="res://.godot/imported/grey_block_grey.png-c90ed0cc573ab492ab0ae8f20a1bdc86.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://resources/blocks/grey_block_grey.png"
-dest_files=["res://.godot/imported/grey_block_grey.png-c90ed0cc573ab492ab0ae8f20a1bdc86.s3tc.ctex"]
+dest_files=["res://.godot/imported/grey_block_grey.png-c90ed0cc573ab492ab0ae8f20a1bdc86.s3tc.ctex", "res://.godot/imported/grey_block_grey.png-c90ed0cc573ab492ab0ae8f20a1bdc86.etc2.ctex"]
 
 [params]
 

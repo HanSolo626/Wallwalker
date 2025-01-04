@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cy4ogp1yrkmlh"
 path.s3tc="res://.godot/imported/Wood_Door_002_roughness.jpg-6a3e8ed5f9d98c9e70a64be9cc42095c.s3tc.ctex"
+path.etc2="res://.godot/imported/Wood_Door_002_roughness.jpg-6a3e8ed5f9d98c9e70a64be9cc42095c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://materials/wooden_door_mesh/Wood_Door_002_roughness.jpg"
-dest_files=["res://.godot/imported/Wood_Door_002_roughness.jpg-6a3e8ed5f9d98c9e70a64be9cc42095c.s3tc.ctex"]
+dest_files=["res://.godot/imported/Wood_Door_002_roughness.jpg-6a3e8ed5f9d98c9e70a64be9cc42095c.s3tc.ctex", "res://.godot/imported/Wood_Door_002_roughness.jpg-6a3e8ed5f9d98c9e70a64be9cc42095c.etc2.ctex"]
 
 [params]
 
