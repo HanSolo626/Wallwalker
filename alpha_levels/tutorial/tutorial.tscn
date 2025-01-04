@@ -252,7 +252,7 @@ text = "You have completed the tutorial and now
 possess all the knowledge you will ever
 need. Seek the Eye!
 
-Oh, and watch out for the Death Spren. He doesn't like you."
+Oh, and watch out for the Death Spren. They doesn't like you."
 font_size = 45
 
 [node name="Door3" parent="." instance=ExtResource("8_5gmh0")]
