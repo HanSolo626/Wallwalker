@@ -576,15 +576,6 @@ func _physics_process(delta):
 					
 				# ACTIVATE BIND
 				elif object_to_bind != null:
-					if lashing_count == max_lashings:
-						change_gravity_down()
-						rotation_trigger = true
-						if currently_bound_object != null:
-							currently_bound_object.lashings_off()
-							currently_bound_object = null
-						mod_lashing_count(-1)
-						
-					mod_lashing_count(1)
 					
 					# binding to platform
 					if binding_ray_cast.get_collider().has_method("is_platform"):
@@ -597,7 +588,17 @@ func _physics_process(delta):
 						object_to_bind.set_target(binding_ray_cast.get_collider().global_transform.origin)
 					else:
 						object_to_bind.set_target(lashing_ray_cast.get_collision_point())
+						
 					if resolve_binding:
+						if lashing_count == max_lashings:
+							change_gravity_down()
+							rotation_trigger = true
+							if currently_bound_object != null and currently_bound_object != object_to_bind:
+								currently_bound_object.lashings_off()
+								currently_bound_object = null
+							mod_lashing_count(-1)
+							
+						mod_lashing_count(1)
 						currently_bound_object = object_to_bind
 						object_to_bind = null
 						user_interface.set_binding_indicator(false)
@@ -606,6 +607,7 @@ func _physics_process(delta):
 						binding_sound.play()
 					else:
 						resolve_binding = true
+						
 					
 	if not dead and not frozen and Input.is_action_just_pressed("left click"):
 		if control_ray_cast.is_colliding():

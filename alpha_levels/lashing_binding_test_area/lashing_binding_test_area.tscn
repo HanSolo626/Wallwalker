@@ -70,12 +70,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.06
 
 [node name="Platform3" parent="." instance=ExtResource("5_wlm11")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -28.2587, 3.43119, 16.5015)
-metadata/minus_x_lash = false
-metadata/plus_x_lash = false
-metadata/minus_y_lash = false
-metadata/plus_y_lash = false
-metadata/minus_z_lash = false
-metadata/plus_z_lash = false
 metadata/bindable = false
 
 [connection signal="death_animation_done" from="Control" to="." method="_on_control_death_animation_done"]
