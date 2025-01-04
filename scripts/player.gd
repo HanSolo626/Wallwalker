@@ -47,6 +47,9 @@ var y_updates = 0
 var z_updates = 0
 
 
+var resolve_binding = true
+
+
 # Camera angle data
 const CAMERA_ANGLES = {
 	"floor":{
@@ -585,19 +588,24 @@ func _physics_process(delta):
 					
 					# binding to platform
 					if binding_ray_cast.get_collider().has_method("is_platform"):
-						object_to_bind.set_target_platform(binding_ray_cast.get_collision_point(), binding_ray_cast.get_collider())
-						
+						if binding_ray_cast.get_collider().bindable:
+							object_to_bind.set_target_platform(binding_ray_cast.get_collision_point(), binding_ray_cast.get_collider())
+						else:
+							resolve_binding = false
 					# binding to objects
 					elif binding_ray_cast.get_collider().has_method("is_lashable_object"):
 						object_to_bind.set_target(binding_ray_cast.get_collider().global_transform.origin)
 					else:
 						object_to_bind.set_target(lashing_ray_cast.get_collision_point())
-					currently_bound_object = object_to_bind
-					object_to_bind = null
-					user_interface.set_binding_indicator(false)
-					green_sphere.show()
-					yellow_sphere.hide()
-					binding_sound.play()
+					if resolve_binding:
+						currently_bound_object = object_to_bind
+						object_to_bind = null
+						user_interface.set_binding_indicator(false)
+						green_sphere.show()
+						yellow_sphere.hide()
+						binding_sound.play()
+					else:
+						resolve_binding = true
 					
 	if not dead and not frozen and Input.is_action_just_pressed("left click"):
 		if control_ray_cast.is_colliding():

@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bbydprljo5a8y" path="res://scenes/floor_switch.tscn" id="8_dsky8"]
 [ext_resource type="PackedScene" uid="uid://dtdp7r7qge7gs" path="res://scenes/small_spikes.tscn" id="10_fryh8"]
 [ext_resource type="PackedScene" path="res://scenes/wooden_lever.tscn" id="10_tbetn"]
-[ext_resource type="PackedScene" path="res://scenes/door.tscn" id="11_krxke"]
+[ext_resource type="PackedScene" uid="uid://ceurwkiwlsyvw" path="res://scenes/door.tscn" id="11_krxke"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jypxi"]
 size = Vector3(50, 0.4, 50)
@@ -67,6 +67,16 @@ transform = Transform3D(2.05, 0, 0, 0, 2.05, 0, 0, 0, 2.05, -42.2608, 0.272276, 
 
 [node name="Door" parent="." instance=ExtResource("11_krxke")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.0637, 2.56557, -1.39943)
+
+[node name="Platform3" parent="." instance=ExtResource("5_wlm11")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -28.2587, 3.43119, 16.5015)
+metadata/minus_x_lash = false
+metadata/plus_x_lash = false
+metadata/minus_y_lash = false
+metadata/plus_y_lash = false
+metadata/minus_z_lash = false
+metadata/plus_z_lash = false
+metadata/bindable = false
 
 [connection signal="death_animation_done" from="Control" to="." method="_on_control_death_animation_done"]
 [connection signal="action_key_pressed" from="Player" to="." method="_on_player_action_key_pressed"]

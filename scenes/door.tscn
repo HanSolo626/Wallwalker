@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dp2tdp7s6desm"]
+[gd_scene load_steps=11 format=3 uid="uid://ceurwkiwlsyvw"]
 
 [ext_resource type="Script" path="res://scripts/platform.gd" id="1_f7epw"]
 [ext_resource type="Texture2D" uid="uid://c6f664t6ylkcv" path="res://materials/wooden_door_mesh/Wood_Door_002_basecolor.jpg" id="2_y6tcw"]
@@ -40,6 +40,7 @@ metadata/minus_y_lash = false
 metadata/plus_y_lash = false
 metadata/minus_z_lash = true
 metadata/plus_z_lash = true
+metadata/bindable = false
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_xuar1")

@@ -36,6 +36,7 @@ metadata/minus_y_lash = true
 metadata/plus_y_lash = true
 metadata/minus_z_lash = true
 metadata/plus_z_lash = true
+metadata/bindable = true
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_xuar1")
