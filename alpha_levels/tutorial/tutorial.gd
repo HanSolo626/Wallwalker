@@ -61,7 +61,7 @@ func _on_player_action_key_pressed():
 
 
 func _on_floor_switch_activated():
-	door_3.glide_to_position(Vector3(-69.388, 7.903, -11.875), 0.05)
+	door_3.glide_to_position(Vector3(-69.388, 7.903, -11.875), 0.1)
 
 func _on_floor_switch_deactivated():
-	door_3.glide_to_position(Vector3(-69.388, 2.903, -11.875), 0.05)
+	door_3.glide_to_position(Vector3(-69.388, 2.803, -11.875), 0.1)
