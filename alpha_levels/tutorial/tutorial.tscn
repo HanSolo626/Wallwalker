@@ -216,6 +216,45 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.566, 0.273326, -4.02856)
 [node name="Barrel" parent="." instance=ExtResource("16_1pmhd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.6978, 2.65239, -21.8799)
 
+[node name="HelperTitle" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -39.1238, 6.95606, 0)
+text = "Welcome to the Wallwalker Prototype!"
+font_size = 130
+
+[node name="HelperText1" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -39.1238, 4.52307, 0)
+text = "You hold in your hands two powerful spheres. They enable the weilder to defy the laws of gravity and do impossible feats. 
+Your task is simple. Seek the Eye. Good luck!"
+font_size = 45
+
+[node name="HelperText2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.8537, 5.037, -30.0806)
+text = "The blue sphere allows you to walk on walls. To use it, aim at a surface and left-click. This is called LASHING.
+You can only lash to white bricked surfaces. Black bricked surfaces will not respond to your lashings."
+font_size = 45
+
+[node name="HelperText3" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.7432, 6.00079, -27.1733)
+text = "Congrats! You found the first Eye! Alas, it is sadly not THE Eye, which is
+your ultimate goal, but it should be useful anyway.
+
+The green sphere is used to manipulate the gravity of other objects. This is called BINDING.
+Binding an object will cause it to be pulled towards the point to which you bound it
+to. Simply right-click on the object, then right-click on a lashable surface to bind it.
+
+Important: You cannot use both spheres at the same time! Binding an object will cause
+your lashing to vanish, and vice versa. You also can't bind two objects at the same time."
+font_size = 45
+
+[node name="HelperText4" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -81.2459, 5.86621, -12.0024)
+text = "You have completed the tutorial and now
+possess all the knowledge you will ever
+need. Seek the Eye!
+
+Oh, and watch out for the Death Spren. He doesn't like you."
+font_size = 45
+
 [node name="Door3" parent="." instance=ExtResource("8_5gmh0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -69.3884, 2.90275, -11.8753)
 
