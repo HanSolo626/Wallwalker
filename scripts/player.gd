@@ -48,6 +48,7 @@ var z_updates = 0
 
 
 var resolve_binding = true
+var rotation_printout = false
 
 
 # Camera angle data
@@ -202,8 +203,8 @@ func arm_rotation_change(data):
 		z_updates = CAMERA_ROTATION_SPEED
 		
 		
-	
-	print("X: "+str(x_to_set)+" Y: "+str(y_to_set)+" Z: "+str(z_to_set))
+	if rotation_printout:
+		print("X: "+str(x_to_set)+" Y: "+str(y_to_set)+" Z: "+str(z_to_set))
 	
 
 
@@ -325,7 +326,7 @@ func change_gravity_forward():
 		arm_rotation_change(CAMERA_ANGLES[dir_str]["forward"])
 		dir_str = "forward wall"
 		up_direction = Vector3.FORWARD
-		check_crouch_needed(Vector3.BACK)
+		check_crouch_needed(Vector3.FORWARD)
 
 func change_gravity_backward():
 	if CAMERA_ANGLES[dir_str]["backward"]:
@@ -336,11 +337,13 @@ func change_gravity_backward():
 		arm_rotation_change(CAMERA_ANGLES[dir_str]["backward"])
 		dir_str = "backward wall"
 		up_direction = Vector3.BACK
-		check_crouch_needed(Vector3.FORWARD)
+		check_crouch_needed(Vector3.BACK)
 	
 		
 func check_crouch_needed(direction: Vector3):
+	return
 	if check_ceiling(direction):
+		print(direction)
 		enable_crouching()
 		
 
@@ -544,7 +547,7 @@ func _physics_process(delta):
 	# handle mouse clicks
 	if not dead and not frozen and (Input.is_action_just_pressed("lash") or Input.is_action_just_pressed("bind")):
 		if lashing_ray_cast.is_colliding() or binding_ray_cast.is_colliding():
-			print(lashing_ray_cast.get_collider())
+			#print(lashing_ray_cast.get_collider())
 			
 			# LASH
 			if Input.is_action_just_pressed("lash") and lashing_ray_cast.get_collider() != null and (lashing_ray_cast.get_collider().has_method("is_block") or lashing_ray_cast.get_collider().has_method("is_platform")) and is_rotating() == false:
@@ -659,5 +662,4 @@ func _on_exit_game_button_pressed():
 
 func _on_death_detection_area_entered(area):
 	player_killed.emit()
-	print("your dead")
 	dead = true
