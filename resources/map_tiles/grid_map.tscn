@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cre125ah8sybk"]
+
+[node name="GridMap" type="GridMap"]
+data = {
+"cells": PackedInt32Array(2, 65532, 1, 2, 65533, 1, 2, 65534, 1, 1, 65534, 1, 0, 65534, 1)
+}
