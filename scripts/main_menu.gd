@@ -4,9 +4,6 @@ extends Control
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-func _process(delta):
-	print(InputEventMouseButton.new().pressed)
-
 
 func _on_exit_pressed():
 	get_tree().quit()

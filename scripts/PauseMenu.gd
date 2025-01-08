@@ -13,7 +13,6 @@ func _process(delta):
 			get_tree().paused = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			show()
-			print(has_focus())
 		
 
 

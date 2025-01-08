@@ -6,7 +6,6 @@ func activate():
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	show()
-	print(has_focus())
 
 func _on_return_to_main_menu_button_button_down():
 	get_tree().paused = false
