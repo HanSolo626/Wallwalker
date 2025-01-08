@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://byu2041j02li1"]
+
+[ext_resource type="PackedScene" uid="uid://cw3rum6u4f4os" path="res://resources/map_tiles/wooden_floor_tile/wood_floor.glb" id="1_tuc8c"]
+
+[node name="wood_floor" instance=ExtResource("1_tuc8c")]

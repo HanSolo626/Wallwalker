@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cre125ah8sybk"]
+[gd_scene load_steps=3 format=3 uid="uid://cre125ah8sybk"]
 
 [ext_resource type="MeshLibrary" uid="uid://dop2v4k0r6cff" path="res://resources/MeshLibraries/planks.tres" id="1_41edd"]
+[ext_resource type="Script" path="res://resources/map_tiles/grid_map.gd" id="2_yl6wv"]
 
 [node name="GridMap" type="GridMap"]
 mesh_library = ExtResource("1_41edd")
@@ -10,4 +11,5 @@ collision_mask = 9
 data = {
 "cells": PackedInt32Array(2, 65532, 1, 2, 65533, 1, 2, 65534, 0, 1, 65534, 0, 0, 65534, 0, 3, 2, 2, 3, 0, 2, 5, 0, 2, 5, 2, 2, 1, 0, 0, 1, 65535, 0, 4, 65535, 2, 4, 0, 2, 5, 65535, 2, 0, 65535, 0, 65535, 65535, 0, 65535, 65534, 0, 0, 0, 0, 65535, 0, 0, 65534, 0, 0, 65534, 65535, 0, 2, 65535, 0, 2, 0, 0, 2, 1, 0, 1, 1, 0, 0, 1, 0, 65535, 1, 0, 65534, 1, 0, 65533, 1, 0, 65533, 0, 0, 65534, 65534, 0, 65533, 65535, 0, 65533, 65534, 0, 0, 2, 0, 65535, 2, 0)
 }
+script = ExtResource("2_yl6wv")
 metadata/_editor_floor_ = Vector3(0, 0, 0)
