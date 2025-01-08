@@ -1,32 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://curus4u6tum0q"]
+[gd_scene load_steps=2 format=3 uid="uid://curus4u6tum0q"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_mf1ar"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_lmn0w"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxMesh" id="BoxMesh_5ngai"]
-size = Vector3(2, 2, 4)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ldvc1"]
-size = Vector3(2, 2, 4)
+[ext_resource type="PackedScene" uid="uid://dbcx3c88akin5" path="res://resources/map_tiles/wooden_floor_tile/wood_floor_planking.tscn" id="1_yonly"]
 
 [node name="MapTiles" type="Node3D"]
 
-[node name="Cube" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_mf1ar")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D"]
-shape = SubResource("BoxShape3D_lmn0w")
-
-[node name="Rectangle" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-mesh = SubResource("BoxMesh_5ngai")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Rectangle"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Rectangle/StaticBody3D"]
-shape = SubResource("BoxShape3D_ldvc1")
+[node name="WoodFloorPlanking" parent="." instance=ExtResource("1_yonly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
