@@ -3,6 +3,7 @@ extends Control
 @onready var v_box_container = $VScrollBar/VBoxContainer
 
 var banned_levels = ["lashing_binding_test_area", "level_1", "level_template"]
+var ban_levels = false
 
 func dir_contents(path):
 	var level_list = []
@@ -19,10 +20,11 @@ func dir_contents(path):
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
-		
-	for level in level_list:
-		if level in banned_levels:
-			level_list.erase(level)
+	
+	if ban_levels:
+		for level in level_list:
+			if level in banned_levels:
+				level_list.erase(level)
 	return level_list
 
 

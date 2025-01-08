@@ -1,0 +1,35 @@
+[gd_scene load_steps=9 format=3 uid="uid://d8cvq4vrmd0l"]
+
+[ext_resource type="Texture2D" uid="uid://4opcod7jjrur" path="res://resources/map_tiles/stone_wall_tile/Stone_wall_006_COLOR.jpg" id="1_lipix"]
+[ext_resource type="Texture2D" uid="uid://bm8elylak8f67" path="res://resources/map_tiles/stone_wall_tile/Stone_wall_006_OCC.jpg" id="2_5n4c7"]
+[ext_resource type="Texture2D" uid="uid://b6bcyjdme136u" path="res://resources/map_tiles/stone_wall_tile/Stone_wall_006_DISP.png" id="3_0qdod"]
+[ext_resource type="Texture2D" uid="uid://bj2crblhor3" path="res://resources/map_tiles/stone_wall_tile/Stone_wall_006_NORM.jpg" id="4_w018v"]
+[ext_resource type="Texture2D" uid="uid://bdcxi2h0tn6sx" path="res://resources/map_tiles/stone_wall_tile/Stone_wall_006_ROUGH.jpg" id="5_dvpp4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6yv81"]
+albedo_texture = ExtResource("1_lipix")
+metallic_specular = 0.0
+roughness_texture = ExtResource("5_dvpp4")
+normal_enabled = true
+normal_texture = ExtResource("4_w018v")
+ao_enabled = true
+ao_texture = ExtResource("2_5n4c7")
+heightmap_enabled = true
+heightmap_scale = 1.47
+heightmap_texture = ExtResource("3_0qdod")
+uv1_scale = Vector3(2, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ldf8v"]
+material = SubResource("StandardMaterial3D_6yv81")
+size = Vector3(4, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ihafq"]
+size = Vector3(4, 4, 4)
+
+[node name="StoneWall" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_ldf8v")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_ihafq")

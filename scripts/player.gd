@@ -550,7 +550,7 @@ func _physics_process(delta):
 			#print(lashing_ray_cast.get_collider())
 			
 			# LASH
-			if Input.is_action_just_pressed("lash") and lashing_ray_cast.get_collider() != null and (lashing_ray_cast.get_collider().has_method("is_block") or lashing_ray_cast.get_collider().has_method("is_platform")) and is_rotating() == false:
+			if Input.is_action_just_pressed("lash") and lashing_ray_cast.get_collider() != null and (lashing_ray_cast.get_collider().has_method("is_grid_map") or lashing_ray_cast.get_collider().has_method("is_platform")) and is_rotating() == false:
 				if lashing_count == max_lashings and currently_bound_object != null:
 					currently_bound_object.lashings_off()
 				change_gravity(lashing_ray_cast)

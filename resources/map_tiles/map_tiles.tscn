@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://curus4u6tum0q"]
+
+[ext_resource type="PackedScene" uid="uid://dbcx3c88akin5" path="res://resources/map_tiles/wooden_floor_tile/wood_floor_planking.tscn" id="1_yonly"]
+[ext_resource type="PackedScene" uid="uid://d8cvq4vrmd0l" path="res://resources/map_tiles/stone_wall_tile/stone_wall.tscn" id="2_rfiu3"]
+
+[node name="MapTiles" type="Node3D"]
+
+[node name="WoodFloorPlanking" parent="." instance=ExtResource("1_yonly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="StoneWall" parent="." instance=ExtResource("2_rfiu3")]
