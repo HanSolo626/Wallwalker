@@ -78,7 +78,7 @@ metadata/bindable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.6303, 0, -30.3711)
 
 [node name="torch" parent="." instance=ExtResource("14_nmbdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.1092, 1.98992, -10.364)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -41.2317, 4.27979, -37.4858)
 
 [connection signal="death_animation_done" from="Control" to="." method="_on_control_death_animation_done"]
 [connection signal="action_key_pressed" from="Player" to="." method="_on_player_action_key_pressed"]

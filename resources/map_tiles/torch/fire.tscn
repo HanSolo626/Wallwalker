@@ -49,7 +49,7 @@ damping_max = 1.0
 scale_min = 0.75
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_g40q8")
-color = Color(4, 1.99216, 0.6, 0.8)
+color = Color(4, 1.992, 0.6, 0.8)
 
 [sub_resource type="QuadMesh" id="QuadMesh_u5vpr"]
 
@@ -97,6 +97,7 @@ turbulence_influence_max = 0.3
 [node name="Fire" type="Node3D"]
 
 [node name="StaticFlame" type="GPUParticles3D" parent="."]
+layers = 2
 material_override = SubResource("ShaderMaterial_xci5g")
 amount = 1
 lifetime = 5.0
@@ -104,6 +105,7 @@ process_material = SubResource("ParticleProcessMaterial_opgqm")
 draw_pass_1 = SubResource("QuadMesh_we1e5")
 
 [node name="Flames" type="GPUParticles3D" parent="."]
+layers = 2
 material_override = SubResource("ShaderMaterial_kpyr3")
 amount = 20
 lifetime = 1.2
@@ -111,6 +113,7 @@ process_material = SubResource("ParticleProcessMaterial_c1x0y")
 draw_pass_1 = SubResource("QuadMesh_u5vpr")
 
 [node name="Smoke" type="GPUParticles3D" parent="."]
+layers = 2
 sorting_offset = -1.0
 material_override = SubResource("ShaderMaterial_kpyr3")
 amount = 20
@@ -119,6 +122,7 @@ process_material = SubResource("ParticleProcessMaterial_nmm11")
 draw_pass_1 = SubResource("QuadMesh_u5vpr")
 
 [node name="ParticlesFloating" type="GPUParticles3D" parent="."]
+layers = 2
 sorting_offset = 1.0
 material_override = SubResource("ShaderMaterial_62plk")
 amount = 50
