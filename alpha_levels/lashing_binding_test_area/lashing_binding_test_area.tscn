@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://df0ivw703jsfh"]
+[gd_scene load_steps=17 format=3 uid="uid://df0ivw703jsfh"]
 
 [ext_resource type="Script" path="res://alpha_levels/lashing_binding_test_area/lashing_binding_test_area.gd" id="1_l0wlg"]
 [ext_resource type="PackedScene" uid="uid://dlni0vkfjodkp" path="res://scenes/control.tscn" id="2_t7p85"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://qbadlqjemld3" path="res://scenes/wooden_lever.tscn" id="10_tbetn"]
 [ext_resource type="PackedScene" uid="uid://ceurwkiwlsyvw" path="res://scenes/door.tscn" id="11_krxke"]
 [ext_resource type="PackedScene" uid="uid://cre125ah8sybk" path="res://resources/map_tiles/grid_map.tscn" id="13_mdvm3"]
+[ext_resource type="PackedScene" uid="uid://calxc75w177iv" path="res://resources/map_tiles/torch/torch.tscn" id="14_nmbdr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jypxi"]
 size = Vector3(50, 0.4, 50)
@@ -75,6 +76,9 @@ metadata/bindable = false
 
 [node name="GridMap" parent="." instance=ExtResource("13_mdvm3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.6303, 0, -30.3711)
+
+[node name="torch" parent="." instance=ExtResource("14_nmbdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.1092, 1.98992, -10.364)
 
 [connection signal="death_animation_done" from="Control" to="." method="_on_control_death_animation_done"]
 [connection signal="action_key_pressed" from="Player" to="." method="_on_player_action_key_pressed"]
