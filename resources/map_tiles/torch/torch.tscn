@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://calxc75w177iv"]
+[gd_scene load_steps=7 format=4 uid="uid://calxc75w177iv"]
 
 [ext_resource type="PackedScene" uid="uid://ccx3j5tle0x62" path="res://resources/map_tiles/torch/torch.glb" id="1_kau8r"]
 [ext_resource type="PackedScene" uid="uid://b5duldyybca0r" path="res://resources/map_tiles/torch/fire.tscn" id="2_4evct"]
@@ -44,6 +44,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_f4reg")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_n38u3"]
+size = Vector3(0.687218, 2.29333, 1.58887)
+
 [node name="torch" instance=ExtResource("1_kau8r")]
 
 [node name="Torch" parent="." index="0"]
@@ -69,3 +72,11 @@ light_energy = 0.1
 distance_fade_enabled = true
 omni_range = 6.861
 omni_attenuation = 2.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="4"]
+collision_layer = 2
+collision_mask = 9
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00244522, 0.154964, -1.26918)
+shape = SubResource("BoxShape3D_n38u3")
