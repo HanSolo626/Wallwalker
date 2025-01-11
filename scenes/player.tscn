@@ -34,7 +34,7 @@ height = 3.9
 [sub_resource type="BoxMesh" id="BoxMesh_yyh1i"]
 
 [node name="Player" type="CharacterBody3D"]
-collision_mask = 415
+collision_mask = 1439
 script = ExtResource("1_4q30t")
 
 [node name="NormalCollision" type="CollisionShape3D" parent="."]

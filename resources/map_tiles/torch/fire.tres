@@ -174,7 +174,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-495.993, 187.843)
 nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_jewq2")
 nodes/vertex/2/position = Vector2(-480, 820)
 nodes/vertex/connections = PackedInt32Array(2, 0, 0, 10)

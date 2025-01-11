@@ -54,10 +54,10 @@ transform = Transform3D(-0.18, 0, -1.57361e-08, 0, 0.18, 0, 1.57361e-08, 0, -0.1
 mesh = SubResource("ArrayMesh_68p7x")
 
 [node name="Fire" parent="." index="1" instance=ExtResource("2_4evct")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.24968, -1)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.24968, -0.813853)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="2"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.17465, -1)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.17465, -0.813853)
 light_color = Color(1, 0.635294, 0, 1)
 light_energy = 2.0
 light_cull_mask = 4294967293
@@ -66,7 +66,7 @@ omni_range = 6.861
 omni_attenuation = 2.0
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="." index="3"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.17465, -1)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.17465, -0.813853)
 light_color = Color(1, 0.635294, 0, 1)
 light_energy = 0.1
 distance_fade_enabled = true
@@ -74,7 +74,7 @@ omni_range = 6.861
 omni_attenuation = 2.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="4"]
-collision_layer = 2
+collision_layer = 1024
 collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]

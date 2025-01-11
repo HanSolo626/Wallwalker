@@ -126,6 +126,7 @@ action={
 3d_physics/layer_8="area_switches"
 3d_physics/layer_9="manual_switches"
 3d_physics/layer_10="levers"
+3d_physics/layer_11="dungeon_props"
 
 [physics]
 
