@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://wrmo4h5d2cds"]
+[gd_scene load_steps=6 format=3 uid="uid://wnd72620wk1a"]
 
 [ext_resource type="Script" path="res://scripts/lashing_effect.gd" id="1_kktwb"]
 [ext_resource type="Texture2D" uid="uid://dyrrylq7iouig" path="res://resources/particles/particle_50x50.png" id="1_kpx1b"]
@@ -37,3 +37,8 @@ direction = Vector3(0, 0, 0)
 spread = 180.0
 gravity = Vector3(0, 0, 0)
 scale_amount_curve = SubResource("Curve_o2gmp")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0, 0.678431, 1, 1)
+light_energy = 2.162
+omni_range = 8.195
