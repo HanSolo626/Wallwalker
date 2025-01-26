@@ -38,6 +38,8 @@ var current_pull = 1
 var positive = false
 var dir_str = "floor"
 var rotation_trigger = true
+var lash_hold = false
+var previous_lash_state
 
 var x_to_set = 0.0
 var y_to_set = 0.0
@@ -275,6 +277,7 @@ func change_gravity(raycast_object: RayCast3D):
 		
 func change_gravity_left():
 	if CAMERA_ANGLES[dir_str]["left"] != null:
+		capture_lash_state(current_pull, positive, dir_str, up_direction)
 		lashing_sound.play()
 		print("left")
 		current_pull = 0
@@ -286,6 +289,7 @@ func change_gravity_left():
 	
 func change_gravity_right():
 	if CAMERA_ANGLES[dir_str]["right"] != null:
+		capture_lash_state(current_pull, positive, dir_str, up_direction)
 		lashing_sound.play()
 		print("right")
 		current_pull = 0
@@ -297,6 +301,7 @@ func change_gravity_right():
 	
 func change_gravity_down():
 	if CAMERA_ANGLES[dir_str]["down"]:
+		capture_lash_state(current_pull, positive, dir_str, up_direction)
 		cancel_lashing_sound.play()
 		print("down")
 		current_pull = 1
@@ -308,6 +313,7 @@ func change_gravity_down():
 	
 func change_gravity_up():
 	if CAMERA_ANGLES[dir_str]["up"] != null:
+		capture_lash_state(current_pull, positive, dir_str, up_direction)
 		lashing_sound.play()
 		print("up")
 		current_pull = 1
@@ -319,6 +325,7 @@ func change_gravity_up():
 	
 func change_gravity_forward():
 	if CAMERA_ANGLES[dir_str]["forward"]:
+		capture_lash_state(current_pull, positive, dir_str, up_direction)
 		lashing_sound.play()
 		print("forward")
 		current_pull = 2
@@ -330,6 +337,7 @@ func change_gravity_forward():
 
 func change_gravity_backward():
 	if CAMERA_ANGLES[dir_str]["backward"]:
+		capture_lash_state(current_pull, positive, dir_str, up_direction)
 		lashing_sound.play()
 		print("backward")
 		current_pull = 2
@@ -420,6 +428,14 @@ func mod_lashing_count(num: int):
 	else:
 		lashing_count = max_lashings
 		
+func capture_lash_state(CurrentPull: int, Positive: int, Dir_Str: String, Up_Dir):
+	previous_lash_state = {
+		"current_pull":CurrentPull,
+	 	"positive":Positive, 
+		"dir_str":Dir_Str, 
+		"up_direction":Up_Dir
+	}
+	
 
 
 func _ready(): # setup
@@ -554,6 +570,7 @@ func _physics_process(delta):
 				if lashing_count == max_lashings and currently_bound_object != null:
 					currently_bound_object.lashings_off()
 				change_gravity(lashing_ray_cast)
+				lash_hold = true
 				
 			
 			# BIND
@@ -618,6 +635,7 @@ func _physics_process(delta):
 				
 				
 	if not dead and not frozen and Input.is_action_just_released("lash"):
+		lash_hold = false
 		rotation_trigger = true
 				
 	# Handle light
@@ -646,6 +664,16 @@ func _physics_process(delta):
 	# handle action key
 	if not dead and not frozen and Input.is_action_just_pressed("action"):
 		action_key_pressed.emit()
+		
+	# handle cancel lashing 
+	if not dead and not frozen and Input.is_action_just_pressed("cancel_lashing"):
+		if is_rotating():
+			if lash_hold:
+				pass
+		else:
+			change_gravity_down()
+			mod_lashing_count(-1)
+			rotation_trigger = true
 		
 
 				
