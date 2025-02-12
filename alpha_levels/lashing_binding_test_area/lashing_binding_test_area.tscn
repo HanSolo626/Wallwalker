@@ -55,7 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.7724, 8.70489, 13.2084)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.8532, 5.95862, -14.7837)
 
 [node name="LashableObject" parent="." instance=ExtResource("7_l44cq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.6267, 3.88159, -12.1756)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.6267, 3.88159, 11.6867)
 
 [node name="FloorSwitch" parent="." instance=ExtResource("8_dsky8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.1456, 0.227904, -4.53073)

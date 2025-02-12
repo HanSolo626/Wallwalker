@@ -28,7 +28,6 @@ var platform_target_reference
 var inital_platform_reference
 var inital_target_position
 
-var lashing_effect
 
 
 
@@ -117,7 +116,7 @@ func set_glow(value: bool):
 		#body.mesh.material.albedo_color.b = 5
 		#body.mesh.material.albedo_color.r = 1.5
 		#body.mesh.material.albedo_color.g = 1.5
-		add_child(preload("res://scenes/lashing_effect.tscn").instantiate())
+		#add_child(preload("res://scenes/lashing_effect.tscn").instantiate())
 		glowing = true
 		
 	elif not value and glowing:

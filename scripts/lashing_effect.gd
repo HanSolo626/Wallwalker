@@ -1,8 +1,14 @@
 extends Node3D
 
 var multiplyer = 0.725
+var target_object
+var speed = 4
+var returning = false
 
 @onready var cpu_particles_3d = $CPUParticles3D
+
+func set_target(target):
+	target_object = target
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,3 +31,14 @@ func _ready():
 		scale.x = t
 		scale.y = t
 		scale.z = t
+		
+func _physics_process(delta):
+	if target_object != null:
+		var distance = get_parent().global_position - global_position
+		if returning:
+			distance = target_object.global_position - global_position
+			transform = transform.translated(distance * speed * delta)
+		else:
+			transform = transform.translated(distance * speed * delta)
+	if returning and global_position.is_equal_approx(target_object.global_position):
+		queue_free()

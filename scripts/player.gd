@@ -577,6 +577,23 @@ func _physics_process(delta):
 			elif Input.is_action_just_pressed("bind"):
 				# CANCEL BIND
 				if object_to_bind == binding_ray_cast.get_collider():
+					# handle effect
+					object_to_bind.get_child(-1).set_target(self)
+					object_to_bind.get_child(-1).returning = true
+					var t = object_to_bind.get_child(-1)
+					
+					t.global_position = Vector3(0,0,0)
+					print(object_to_bind.global_position)
+					print(t.global_position)
+					t.position = to_local(object_to_bind.get_child(-1).position)
+					print(t.position)
+					object_to_bind.remove_child(t)
+					#add_child(t)
+					add_sibling(t)
+					#print(get_child(-1).position)
+					#print(t.global_position)
+					
+					
 					object_to_bind = null
 					user_interface.set_binding_indicator(false)
 					if binding_ray_cast.get_collider().being_lashed:
@@ -585,6 +602,7 @@ func _physics_process(delta):
 						currently_bound_object = null
 					green_sphere.show()
 					yellow_sphere.hide()
+					
 					cancel_lashing_sound.play()
 					
 				# TARGET BIND
@@ -593,6 +611,13 @@ func _physics_process(delta):
 					user_interface.set_binding_indicator(true)
 					green_sphere.hide()
 					yellow_sphere.show()
+					
+					# add effect
+					if object_to_bind.glowing == false:
+						var lashing_effect = preload("res://scenes/lashing_effect.tscn").instantiate()
+						lashing_effect.set_target(object_to_bind)
+						object_to_bind.add_child(lashing_effect)
+						lashing_effect.global_position = global_position
 					
 				# ACTIVATE BIND
 				elif object_to_bind != null:
