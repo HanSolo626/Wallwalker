@@ -14,13 +14,13 @@ var object_to_bind
 var currently_bound_object
 
 
-const WALKING_SPEED = 7.0
+const WALKING_SPEED = 8.0
 const WALKING_ACC = 4.0
 const AIR_SPEED = 1.0
 const AIR_ACC = 0.5
 const SPRINT_SPEED = 15.0
 const CROUCH_SPEED = 3.0
-const SPRINT_ACC = 7.0
+const SPRINT_ACC = 2.0
 const JUMP_VELOCITY = 12
 const SLOWDOWN_CHANGE = 1.0
 # the smaller this value, the faster it goes
