@@ -14,11 +14,13 @@ var object_to_bind
 var currently_bound_object
 
 
-const WALKING_SPEED = 8.0
-const WALKING_ACC = 1.0
+const WALKING_SPEED = 7.0
+const WALKING_ACC = 4.0
+const AIR_SPEED = 1.0
+const AIR_ACC = 0.5
 const SPRINT_SPEED = 15.0
 const CROUCH_SPEED = 3.0
-const SPRINT_ACC = 1.5
+const SPRINT_ACC = 7.0
 const JUMP_VELOCITY = 12
 const SLOWDOWN_CHANGE = 1.0
 # the smaller this value, the faster it goes
@@ -388,6 +390,8 @@ func disable_crouching():
 		fps_hands.translate_object_local((Vector3(0, -1.5, 0)))
 		
 func slow_down_player(value):
+	if not is_on_floor():
+		return value
 	if value > 0:
 		if value > SLOWDOWN_CHANGE:
 			value -= SLOWDOWN_CHANGE
@@ -401,6 +405,16 @@ func slow_down_player(value):
 	return value
 	
 func speed_up_player(value, dir, acc, max_speed):
+	
+	if not is_on_floor():
+		acc = AIR_ACC
+	if abs(value) < abs(dir * max_speed):
+		value += dir * acc
+	else:
+		value = dir * max_speed
+		
+	return value
+		
 	if dir > 0:
 		if value < dir * max_speed:
 			value += acc
@@ -524,9 +538,16 @@ func _physics_process(delta):
 	var multiplyer
 	var acceleration
 	
+	var target_velocity := Vector3.ZERO
+	if direction:
+		target_velocity = direction
+	
 	if crouching:
 		multiplyer = CROUCH_SPEED
 		acceleration = WALKING_ACC
+	if not is_on_floor():
+		multiplyer = AIR_SPEED
+		acceleration = SPRINT_ACC
 	elif Input.is_action_pressed("shift_key"):
 		multiplyer = SPRINT_SPEED
 		acceleration = SPRINT_ACC
@@ -536,14 +557,14 @@ func _physics_process(delta):
 		
 	if not dead and not frozen and direction:
 		if current_pull == 0: # X
-			velocity.y = speed_up_player(velocity.y, direction.y, acceleration, multiplyer)
-			velocity.z = speed_up_player(velocity.z, direction.z, acceleration, multiplyer)
+			velocity.y = move_toward(velocity.y, target_velocity.y * multiplyer, multiplyer * acceleration * delta)
+			velocity.z = move_toward(velocity.z, target_velocity.z * multiplyer, multiplyer * acceleration * delta)
 		elif current_pull == 1: # Y
-			velocity.x = speed_up_player(velocity.x, direction.x, acceleration, multiplyer)
-			velocity.z = speed_up_player(velocity.z, direction.z, acceleration, multiplyer)
+			velocity.x = move_toward(velocity.x, target_velocity.x * multiplyer, multiplyer * acceleration * delta)
+			velocity.z = move_toward(velocity.z, target_velocity.z * multiplyer, multiplyer * acceleration * delta)
 		elif current_pull == 2: # Z
-			velocity.y = speed_up_player(velocity.y, direction.y, acceleration, multiplyer)
-			velocity.x = speed_up_player(velocity.x, direction.x, acceleration, multiplyer)
+			velocity.y = move_toward(velocity.y, target_velocity.y * multiplyer, multiplyer * acceleration * delta)
+			velocity.x = move_toward(velocity.x, target_velocity.x * multiplyer, multiplyer * acceleration * delta)
 	else:
 		if current_pull == 0 and (is_on_floor()): # X
 			velocity.y = slow_down_player(velocity.y)
