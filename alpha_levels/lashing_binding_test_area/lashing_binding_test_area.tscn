@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://df0ivw703jsfh"]
+[gd_scene load_steps=18 format=3 uid="uid://df0ivw703jsfh"]
 
 [ext_resource type="Script" path="res://alpha_levels/lashing_binding_test_area/lashing_binding_test_area.gd" id="1_l0wlg"]
 [ext_resource type="PackedScene" uid="uid://dlni0vkfjodkp" path="res://scenes/control.tscn" id="2_t7p85"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://qbadlqjemld3" path="res://scenes/wooden_lever.tscn" id="10_tbetn"]
 [ext_resource type="PackedScene" uid="uid://ceurwkiwlsyvw" path="res://scenes/door.tscn" id="11_krxke"]
 [ext_resource type="PackedScene" uid="uid://cre125ah8sybk" path="res://resources/map_tiles/grid_map.tscn" id="13_mdvm3"]
+[ext_resource type="PackedScene" uid="uid://o7f7wbksrd01" path="res://scenes/gemstone.tscn" id="14_r6n08"]
+[ext_resource type="PackedScene" uid="uid://dmje8ajd8hmb6" path="res://materials/gem.tscn" id="15_pdkwm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jypxi"]
 size = Vector3(50, 0.4, 50)
@@ -78,6 +80,15 @@ data = {
 "cells": PackedInt32Array(5, 0, 1, 5, 65535, 1, 5, 65534, 1, 5, 65533, 1, 4, 65533, 1, 4, 65534, 1, 4, 65535, 1, 4, 0, 1, 3, 0, 1, 3, 65535, 1, 3, 65534, 1, 3, 65533, 1, 3, 65532, 2, 4, 65532, 2, 5, 65532, 2, 65539, 65532, 2, 65540, 65532, 2, 65541, 65532, 2, 131076, 65532, 2, 131077, 65532, 2, 131075, 65532, 2, 2, 65534, 1, 1, 65534, 1, 0, 65534, 1, 65535, 65534, 1, 6, 65533, 2, 6, 65534, 2, 6, 65535, 2, 6, 0, 2, 5, 1, 2, 2, 65533, 2, 2, 65535, 2, 2, 0, 2, 3, 1, 2, 4, 1, 2, 65538, 65533, 2, 65538, 65535, 2, 65538, 0, 2, 65539, 1, 2, 65540, 1, 2, 65541, 1, 2, 65542, 65533, 2, 65542, 65534, 2, 65542, 65535, 2, 65542, 0, 2, 131078, 65533, 2, 131078, 65534, 2, 131078, 65535, 2, 131078, 0, 2, 131074, 65533, 2, 131074, 65535, 2, 131074, 0, 2, 131075, 1, 2, 131076, 1, 2, 131077, 1, 2, 131074, 65534, 2, 65538, 65534, 2, 196610, 65533, 2, 196611, 65533, 2, 196612, 65533, 2, 196613, 65533, 2, 196615, 65535, 2, 196610, 65534, 2, 196610, 65535, 2, 196610, 0, 2, 196611, 65534, 2, 196611, 65535, 2, 196611, 0, 2, 196612, 65534, 2, 196612, 65535, 2, 196612, 0, 2, 196613, 65534, 2, 196613, 65535, 2, 196613, 0, 2, 131066, 65532, 1441794, 131066, 65533, 0, 131065, 65532, 1441792, 131067, 65532, 1048576, 131066, 65531, 655360, 65540, 0, 655360, 65539, 65535, 1048576, 65540, 65533, 0, 65541, 65534, 1441792)
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="Gemstone" parent="." instance=ExtResource("14_r6n08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8867, 3.45825, -9.11979)
+
+[node name="Gemstone2" parent="." instance=ExtResource("14_r6n08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4325, 3.45825, -9.11979)
+
+[node name="gem" parent="." instance=ExtResource("15_pdkwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.645, 3.97682, -4.46022)
 
 [connection signal="death_animation_done" from="Control" to="." method="_on_control_death_animation_done"]
 [connection signal="action_key_pressed" from="Player" to="." method="_on_player_action_key_pressed"]
