@@ -18,22 +18,26 @@ material = SubResource("StandardMaterial3D_0go3y")
 radius = 1.0
 height = 2.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_34332"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_76uts"]
 material = ExtResource("2_u7m6i")
-size = Vector3(0.31, 0.86, 1)
+radius = 0.4
+height = 1.2
+radial_segments = 4
+rings = 0
 
 [node name="Gemstone" type="Node3D"]
 script = ExtResource("1_ysfsd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("SphereMesh_2lnfe")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("BoxMesh_34332")
+mesh = SubResource("CapsuleMesh_76uts")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-light_color = Color(0.901961, 0.784314, 0, 1)
+light_color = Color(0.276413, 0.866148, 1, 1)
 
 [node name="gem" parent="." instance=ExtResource("3_qqlhx")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+visible = false
