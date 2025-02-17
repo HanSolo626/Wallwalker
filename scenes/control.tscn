@@ -1,14 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlni0vkfjodkp"]
+[gd_scene load_steps=13 format=3 uid="uid://dlni0vkfjodkp"]
 
 [ext_resource type="Script" path="res://scripts/UserInterface.gd" id="1_cpq4r"]
 [ext_resource type="Script" path="res://scripts/control.gd" id="1_uhqgs"]
 [ext_resource type="Texture2D" uid="uid://bsuutyugehvy7" path="res://materials/sight.png" id="2_x1f3u"]
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="2_ys448"]
+[ext_resource type="Texture2D" uid="uid://bh2dt1f7lu2kf" path="res://resources/materials/highlighter.png" id="4_6f76t"]
 [ext_resource type="Theme" uid="uid://dwyijvx7wroyq" path="res://resources/themes/menu_theme.tres" id="5_tw50m"]
 [ext_resource type="Script" path="res://scripts/victory_menu.gd" id="6_3l50d"]
 
 [sub_resource type="Theme" id="Theme_f5cei"]
 default_font_size = 60
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5sisd"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yl0yv"]
+load_path = "res://.godot/imported/highlighter.png-9079bef6624fded57bd7b578e47d7106.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t1f1q"]
+load_path = "res://.godot/imported/highlighter.png-9079bef6624fded57bd7b578e47d7106.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_myq6w"]
+load_path = "res://.godot/imported/highlighter.png-9079bef6624fded57bd7b578e47d7106.ctex"
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -126,6 +138,84 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_x1f3u")
+
+[node name="AreaHighlighter" type="Control" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left" type="TextureRect" parent="UserInterface/AreaHighlighter"]
+modulate = Color(0, 0.647059, 9.9451, 0)
+material = SubResource("ShaderMaterial_5sisd")
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 585.0
+offset_top = -951.0
+offset_right = 2505.0
+offset_bottom = 129.0
+grow_vertical = 2
+rotation = 1.5708
+texture = ExtResource("4_6f76t")
+
+[node name="Right" type="TextureRect" parent="UserInterface/AreaHighlighter"]
+modulate = Color(0, 0.647059, 9.9451, 0)
+material = SubResource("ShaderMaterial_5sisd")
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 448.0
+offset_top = -941.0
+offset_right = 2368.0
+offset_bottom = 139.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 1.5708
+texture = SubResource("CompressedTexture2D_yl0yv")
+
+[node name="Top" type="TextureRect" parent="UserInterface/AreaHighlighter"]
+modulate = Color(0, 0.647059, 9.9451, 0)
+material = SubResource("ShaderMaterial_5sisd")
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1698.5
+offset_top = -670.0
+offset_right = 1698.5
+offset_bottom = 693.0
+grow_horizontal = 2
+texture = SubResource("CompressedTexture2D_t1f1q")
+
+[node name="Bottom" type="TextureRect" parent="UserInterface/AreaHighlighter"]
+modulate = Color(0, 0.647059, 9.9451, 0)
+material = SubResource("ShaderMaterial_5sisd")
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1698.5
+offset_top = -593.0
+offset_right = 1698.5
+offset_bottom = 770.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("CompressedTexture2D_myq6w")
 
 [node name="VictoryMenu" type="Control" parent="."]
 visible = false

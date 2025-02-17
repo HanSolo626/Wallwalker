@@ -9,6 +9,10 @@ var lashing_mode = 1
 var lashing_count = 0
 var max_lashings = 1
 
+# INVESTITURE
+var investiture_beu_count = 50000.0
+const HIGHLIGHT_RATE = 0.001
+
 var max_lashing_mode_num = 2
 var object_to_bind
 var currently_bound_object
@@ -496,6 +500,13 @@ func _input(event):
 
 
 func _physics_process(delta):
+	
+	# Handle hightlighter
+	if investiture_beu_count*HIGHLIGHT_RATE > 1:
+		user_interface.set_highlighter_alpha_all(0.2)
+	else:
+		user_interface.set_highlighter_alpha_all(investiture_beu_count*HIGHLIGHT_RATE)
+	print(investiture_beu_count*HIGHLIGHT_RATE)
 	
 		
 	# Add the gravity.
