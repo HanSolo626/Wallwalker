@@ -10,8 +10,9 @@ var lashing_count = 0
 var max_lashings = 1
 
 # INVESTITURE
-var investiture_beu_count = 50000.0
+var investiture_beu_count = 500.0
 const HIGHLIGHT_RATE = 0.001
+const LEAK_RATE = 50
 
 var max_lashing_mode_num = 2
 var object_to_bind
@@ -501,9 +502,15 @@ func _input(event):
 
 func _physics_process(delta):
 	
+	# Handle investiture
+	if investiture_beu_count > 0:
+		investiture_beu_count -= LEAK_RATE * delta
+	else:
+		investiture_beu_count = 0.0
+	
 	# Handle hightlighter
 	if investiture_beu_count*HIGHLIGHT_RATE > 1:
-		user_interface.set_highlighter_alpha_all(0.2)
+		user_interface.set_highlighter_alpha_all(1.0)
 	else:
 		user_interface.set_highlighter_alpha_all(investiture_beu_count*HIGHLIGHT_RATE)
 	print(investiture_beu_count*HIGHLIGHT_RATE)
