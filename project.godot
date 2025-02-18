@@ -133,6 +133,7 @@ cancel_lashing={
 3d_physics/layer_9="manual_switches"
 3d_physics/layer_10="levers"
 3d_physics/layer_11="dungeon_props"
+3d_physics/layer_12="gemstones"
 
 [physics]
 

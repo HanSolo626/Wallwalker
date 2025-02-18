@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://qbadlqjemld3" path="res://scenes/wooden_lever.tscn" id="10_tbetn"]
 [ext_resource type="PackedScene" uid="uid://ceurwkiwlsyvw" path="res://scenes/door.tscn" id="11_krxke"]
 [ext_resource type="PackedScene" uid="uid://cre125ah8sybk" path="res://resources/map_tiles/grid_map.tscn" id="13_mdvm3"]
-[ext_resource type="PackedScene" uid="uid://o7f7wbksrd01" path="res://scenes/gemstone.tscn" id="14_r6n08"]
-[ext_resource type="PackedScene" uid="uid://dmje8ajd8hmb6" path="res://materials/gem.tscn" id="15_pdkwm"]
+[ext_resource type="PackedScene" uid="uid://b1vevmbvhh2j5" path="res://scenes/gemstone.tscn" id="14_r6n08"]
+[ext_resource type="PackedScene" path="res://materials/gem.tscn" id="15_pdkwm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jypxi"]
 size = Vector3(50, 0.4, 50)
@@ -83,6 +83,18 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Gemstone" parent="." instance=ExtResource("14_r6n08")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8867, 3.45825, -9.11979)
+
+[node name="Gemstone3" parent="." instance=ExtResource("14_r6n08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.8753, 3.45825, -9.11979)
+
+[node name="Gemstone4" parent="." instance=ExtResource("14_r6n08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.8753, 3.45825, 3.24101)
+
+[node name="Gemstone5" parent="." instance=ExtResource("14_r6n08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.7167, 3.45825, 3.24101)
+
+[node name="Gemstone6" parent="." instance=ExtResource("14_r6n08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1063, 3.45825, 3.24101)
 
 [node name="Gemstone2" parent="." instance=ExtResource("14_r6n08")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4325, 3.45825, -9.11979)

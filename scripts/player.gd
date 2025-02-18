@@ -10,7 +10,7 @@ var lashing_count = 0
 var max_lashings = 1
 
 # INVESTITURE
-var investiture_beu_count = 500.0
+var investiture_beu_count = 100.0
 const HIGHLIGHT_RATE = 0.001
 const LEAK_RATE = 50
 
@@ -730,3 +730,7 @@ func _on_exit_game_button_pressed():
 func _on_death_detection_area_entered(area):
 	player_killed.emit()
 	dead = true
+
+
+func _on_gemstone_detection_area_entered(area):
+	investiture_beu_count += 200

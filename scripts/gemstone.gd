@@ -9,3 +9,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	rotate_y(deg_to_rad(30 * delta))
+
+
+func _on_area_3d_area_entered(area):
+	queue_free()
