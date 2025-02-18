@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://o7f7wbksrd01"]
+
+[ext_resource type="Script" path="res://scripts/gemstone.gd" id="1_ysfsd"]
+[ext_resource type="Material" uid="uid://biobd3ypl5g0w" path="res://materials/gemstone.tres" id="2_u7m6i"]
+[ext_resource type="PackedScene" uid="uid://dmje8ajd8hmb6" path="res://materials/gem.tscn" id="3_qqlhx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0go3y"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.603922)
+metallic = 0.4
+roughness = 0.1
+subsurf_scatter_enabled = true
+refraction_enabled = true
+refraction_scale = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_2lnfe"]
+material = SubResource("StandardMaterial3D_0go3y")
+radius = 1.0
+height = 2.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_76uts"]
+material = ExtResource("2_u7m6i")
+radius = 0.4
+height = 1.2
+radial_segments = 4
+rings = 0
+
+[node name="Gemstone" type="Node3D"]
+script = ExtResource("1_ysfsd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("SphereMesh_2lnfe")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_76uts")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.276413, 0.866148, 1, 1)
+
+[node name="gem" parent="." instance=ExtResource("3_qqlhx")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+visible = false

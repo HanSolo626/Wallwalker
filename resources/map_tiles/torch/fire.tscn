@@ -27,7 +27,7 @@ render_priority = 0
 shader = ExtResource("1_obqo6")
 shader_parameter/DissolveTiling = Vector2(1, 1)
 shader_parameter/DissolveSpeed = Vector2(0, 0)
-shader_parameter/DissolveAmount = 0.0
+shader_parameter/DissolveAmount = 0.184
 shader_parameter/MainTex = ExtResource("4_h3p4p")
 shader_parameter/DissolveTexture = ExtResource("2_gkct8")
 
