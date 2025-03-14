@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://df0ivw703jsfh"]
+[gd_scene load_steps=19 format=3 uid="uid://df0ivw703jsfh"]
 
 [ext_resource type="Script" path="res://alpha_levels/lashing_binding_test_area/lashing_binding_test_area.gd" id="1_l0wlg"]
 [ext_resource type="PackedScene" uid="uid://dlni0vkfjodkp" path="res://scenes/control.tscn" id="2_t7p85"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cre125ah8sybk" path="res://resources/map_tiles/grid_map.tscn" id="13_mdvm3"]
 [ext_resource type="PackedScene" uid="uid://b1vevmbvhh2j5" path="res://scenes/gemstone.tscn" id="14_r6n08"]
 [ext_resource type="PackedScene" path="res://materials/gem.tscn" id="15_pdkwm"]
+[ext_resource type="PackedScene" uid="uid://jybrok82uhbj" path="res://materials/lava_floor/lava_floor.tscn" id="16_kvmcc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jypxi"]
 size = Vector3(50, 0.4, 50)
@@ -101,6 +102,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4325, 3.45825, -9.11979)
 
 [node name="gem" parent="." instance=ExtResource("15_pdkwm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.645, 3.97682, -4.46022)
+
+[node name="LavaFloor" parent="." instance=ExtResource("16_kvmcc")]
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, -23.0427, -5.23455, -45.827)
 
 [connection signal="death_animation_done" from="Control" to="." method="_on_control_death_animation_done"]
 [connection signal="action_key_pressed" from="Player" to="." method="_on_player_action_key_pressed"]
