@@ -1,0 +1,126 @@
+[gd_scene load_steps=19 format=3 uid="uid://b7fjan2eud5ww"]
+
+[ext_resource type="Script" path="res://resources/map_tiles/window/window.gd" id="1_7y3oq"]
+[ext_resource type="Material" uid="uid://cchfobptjo0i1" path="res://resources/map_tiles/window/rusty_iron_frame.tres" id="1_npxmy"]
+[ext_resource type="Texture2D" uid="uid://decjslkw0cbmh" path="res://materials/metal_rusted_010/Metal_Rusted_010_basecolor.jpg" id="2_728et"]
+[ext_resource type="Texture2D" uid="uid://clc2vkw3xhph4" path="res://materials/metal_rusted_010/Metal_Rusted_010_ambientOcclusion.jpg" id="3_8pvwe"]
+[ext_resource type="Texture2D" uid="uid://8tjbap4rgppn" path="res://materials/metal_rusted_010/Metal_Rusted_010_height.png" id="4_2lohv"]
+[ext_resource type="Texture2D" uid="uid://fsvkpj7y6aed" path="res://materials/metal_rusted_010/Metal_Rusted_010_metallic.jpg" id="5_e2ur4"]
+[ext_resource type="Texture2D" uid="uid://cj3h1e3iao87y" path="res://materials/metal_rusted_010/Metal_Rusted_010_normal.jpg" id="6_7sqnt"]
+[ext_resource type="Texture2D" uid="uid://bh3xosq22fnah" path="res://materials/metal_rusted_010/Metal_Rusted_010_roughness.jpg" id="7_xs8th"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_d8ta8"]
+material = ExtResource("1_npxmy")
+inner_radius = 1.8
+outer_radius = 2.0
+rings = 40
+ring_segments = 4
+
+[sub_resource type="BoxMesh" id="BoxMesh_jmg35"]
+material = ExtResource("1_npxmy")
+size = Vector3(3.48, 0.13, 0.13)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iqt33"]
+albedo_texture = ExtResource("2_728et")
+metallic = 1.0
+metallic_texture = ExtResource("5_e2ur4")
+roughness_texture = ExtResource("7_xs8th")
+normal_enabled = true
+normal_texture = ExtResource("6_7sqnt")
+ao_enabled = true
+ao_texture = ExtResource("3_8pvwe")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_2lohv")
+uv1_scale = Vector3(0.08, 3.11, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3dmwq"]
+material = SubResource("StandardMaterial3D_iqt33")
+top_radius = 0.06
+bottom_radius = 0.06
+height = 3.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xipgd"]
+albedo_texture = ExtResource("2_728et")
+metallic = 1.0
+metallic_texture = ExtResource("5_e2ur4")
+roughness_texture = ExtResource("7_xs8th")
+normal_enabled = true
+normal_texture = ExtResource("6_7sqnt")
+ao_enabled = true
+ao_texture = ExtResource("3_8pvwe")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_2lohv")
+uv1_scale = Vector3(0.17, 3.32, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_is2ll"]
+material = SubResource("StandardMaterial3D_xipgd")
+top_radius = 0.06
+bottom_radius = 0.06
+height = 3.237
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hqjub"]
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_f2xen"]
+material = SubResource("StandardMaterial3D_hqjub")
+top_radius = 1.9
+bottom_radius = 1.9
+height = 0.001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2j5r8"]
+disable_receive_shadows = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_4guit"]
+material = SubResource("StandardMaterial3D_2j5r8")
+
+[node name="Window" type="Node3D"]
+script = ExtResource("1_7y3oq")
+
+[node name="IronWorkMeshes" type="Node3D" parent="."]
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="IronWorkMeshes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("TorusMesh_d8ta8")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IronWorkMeshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("BoxMesh_jmg35")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="IronWorkMeshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+mesh = SubResource("BoxMesh_jmg35")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="IronWorkMeshes"]
+mesh = SubResource("CylinderMesh_3dmwq")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="IronWorkMeshes"]
+transform = Transform3D(0.186541, 0, -0.982447, 0, 1, 0, 0.982447, 0, 0.186541, 1, 0, 0)
+mesh = SubResource("CylinderMesh_is2ll")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="IronWorkMeshes"]
+transform = Transform3D(-1, 8.74228e-08, 0, 8.74228e-08, 1, 8.74228e-08, 7.64274e-15, 8.74228e-08, -1, -1, 0, 0)
+mesh = SubResource("CylinderMesh_is2ll")
+
+[node name="Background" type="Node3D" parent="."]
+
+[node name="Background" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.0431889)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_f2xen")
+
+[node name="Marker" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.139566)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_4guit")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.58636)
+light_color = Color(3, 3, 3, 1)
+light_energy = 0.0
+shadow_enabled = true
+spot_range = 49.5121
+spot_angle = 37.3445

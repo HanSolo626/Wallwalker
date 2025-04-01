@@ -43,7 +43,7 @@ func set_highlighter_alpha_all(alpha_value: float):
 		right.modulate.a = alpha_value
 		top.modulate.a = alpha_value
 		bottom.modulate.a = alpha_value
-		print(left_m.a)
+		
 
 func set_highlighter_color_all(color_value: Color):
 	left_m = color_value

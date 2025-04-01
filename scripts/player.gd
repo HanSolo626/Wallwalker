@@ -358,7 +358,7 @@ func change_gravity_backward():
 func check_crouch_needed(direction: Vector3):
 	return
 	if check_ceiling(direction):
-		print(direction)
+		#print(direction)
 		enable_crouching()
 		
 
@@ -513,7 +513,7 @@ func _physics_process(delta):
 		user_interface.set_highlighter_alpha_all(1.0)
 	else:
 		user_interface.set_highlighter_alpha_all(investiture_beu_count*HIGHLIGHT_RATE)
-	print(investiture_beu_count*HIGHLIGHT_RATE)
+	#print(investiture_beu_count*HIGHLIGHT_RATE)
 	
 		
 	# Add the gravity.

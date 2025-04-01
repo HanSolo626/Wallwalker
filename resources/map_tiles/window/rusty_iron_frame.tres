@@ -1,0 +1,22 @@
+[gd_resource type="StandardMaterial3D" load_steps=7 format=3 uid="uid://cchfobptjo0i1"]
+
+[ext_resource type="Texture2D" uid="uid://decjslkw0cbmh" path="res://materials/metal_rusted_010/Metal_Rusted_010_basecolor.jpg" id="1_0saga"]
+[ext_resource type="Texture2D" uid="uid://clc2vkw3xhph4" path="res://materials/metal_rusted_010/Metal_Rusted_010_ambientOcclusion.jpg" id="2_v3c3t"]
+[ext_resource type="Texture2D" uid="uid://8tjbap4rgppn" path="res://materials/metal_rusted_010/Metal_Rusted_010_height.png" id="3_3cx7r"]
+[ext_resource type="Texture2D" uid="uid://fsvkpj7y6aed" path="res://materials/metal_rusted_010/Metal_Rusted_010_metallic.jpg" id="4_72d1s"]
+[ext_resource type="Texture2D" uid="uid://cj3h1e3iao87y" path="res://materials/metal_rusted_010/Metal_Rusted_010_normal.jpg" id="5_c4tiu"]
+[ext_resource type="Texture2D" uid="uid://bh3xosq22fnah" path="res://materials/metal_rusted_010/Metal_Rusted_010_roughness.jpg" id="6_gew8h"]
+
+[resource]
+albedo_texture = ExtResource("1_0saga")
+metallic = 1.0
+metallic_texture = ExtResource("4_72d1s")
+roughness_texture = ExtResource("6_gew8h")
+normal_enabled = true
+normal_texture = ExtResource("5_c4tiu")
+ao_enabled = true
+ao_texture = ExtResource("2_v3c3t")
+heightmap_enabled = true
+heightmap_scale = 0.429
+heightmap_texture = ExtResource("3_3cx7r")
+uv1_scale = Vector3(6.23, 0.2, 1)
