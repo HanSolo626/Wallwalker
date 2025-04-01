@@ -19,7 +19,7 @@ func enable_flash():
 	#background.mesh.material.albedo_color = Color(flash_value, flash_value, flash_value, 1)
 	flash_on = true
 	#spot_light_3d.show()
-	current_lightning_strike = [ [0, 3, 9], [0.35, 3, 9], [0.5, 3, 3] ]
+	current_lightning_strike = [ [0, 5, 9], [0.35, 5, 9], [0.5, 5, 3] ]
 	current_light = current_lightning_strike[0]
 	light_index = 0
 	time = 0
@@ -49,7 +49,7 @@ func update_flash(delta):
 		print("hhhh")
 	if flash_value >= 0:
 		background.mesh.material.albedo_color = Color(flash_value, flash_value, flash_value, 1)
-		spot_light_3d.light_energy = flash_value * 5
+		spot_light_3d.light_energy = flash_value * 3
 	else:
 		background.mesh.material.albedo_color = Color(0, 0, 0, 1)
 		spot_light_3d.light_energy = 0

@@ -35,3 +35,4 @@ mesh = SubResource("SphereMesh_b7avk")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(1, 1, 0, 1)
+light_cull_mask = 4294967291

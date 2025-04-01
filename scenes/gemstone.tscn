@@ -39,6 +39,7 @@ mesh = SubResource("CapsuleMesh_76uts")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(0.276413, 0.866148, 1, 1)
+light_cull_mask = 4294967291
 
 [node name="gem" parent="." instance=ExtResource("3_qqlhx")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
