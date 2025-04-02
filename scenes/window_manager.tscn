@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxfdyvejecpg1"]
+
+[ext_resource type="Script" path="res://scripts/window_manager.gd" id="1_aayxh"]
+[ext_resource type="AudioStream" uid="uid://bho2hhclmwr2a" path="res://resources/sound_fx/big-thunder-rumble-321631.mp3" id="2_mbmbw"]
+[ext_resource type="AudioStream" uid="uid://uafvg574511t" path="res://resources/sound_fx/loud-thunder-192165.mp3" id="3_ipv5i"]
+[ext_resource type="AudioStream" uid="uid://b1t0c6gbuc0o5" path="res://resources/sound_fx/peals-of-thunder-191992.mp3" id="4_4vl84"]
+[ext_resource type="AudioStream" uid="uid://bwaxe4bf0ql5p" path="res://resources/sound_fx/thunder-124463.mp3" id="5_uulyd"]
+
+[node name="WindowManager" type="Node"]
+script = ExtResource("1_aayxh")
+
+[node name="ThunderEffects" type="Node" parent="."]
+
+[node name="BigThunderRumble" type="AudioStreamPlayer" parent="ThunderEffects"]
+stream = ExtResource("2_mbmbw")
+
+[node name="LoudThunder" type="AudioStreamPlayer" parent="ThunderEffects"]
+stream = ExtResource("3_ipv5i")
+
+[node name="PealsOfThunder" type="AudioStreamPlayer" parent="ThunderEffects"]
+stream = ExtResource("4_4vl84")
+
+[node name="Thunder" type="AudioStreamPlayer" parent="ThunderEffects"]
+stream = ExtResource("5_uulyd")

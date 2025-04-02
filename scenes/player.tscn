@@ -89,6 +89,7 @@ spot_angle = 24.11
 
 [node name="fps-hands" parent="Camera3D" instance=ExtResource("3_eqapl")]
 transform = Transform3D(-0.4, 0, -6.03983e-08, 0, 0.4, 0, 6.03983e-08, 0, -0.4, 0.0222014, -6.0246, 0.107342)
+visible = false
 
 [node name="YellowSphere" parent="Camera3D/fps-hands" instance=ExtResource("5_l3c3j")]
 transform = Transform3D(-2.5, 0, 3.77489e-07, 0, 2.5, 0, -3.77489e-07, 0, -2.5, -2.94105, 12.8956, 4.51495)

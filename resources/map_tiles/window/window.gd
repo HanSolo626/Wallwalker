@@ -12,14 +12,22 @@ var current_light
 var time = 0
 var light_index = 0
 
-# [ [time mark, intensity, fade_rate_per_second] ]
+# [ [time mark, intensity (5 max), fade_rate_per_second] ]
 
 
-func enable_flash():
+const LIGHTING_STRIKES = {
+	"BigThunderRumble": [ [0.5, 2, 7], [1, 5, 5], [2, 4, 6], [6.7, 4, 9], [8, 3, 9], [8.5, 5, 6], [10.5, 3, 7], ],
+	"Thunder": [ [0, 3, 11], [0.4, 5, 8], [1.3, 4, 7], [2, 3, 7], ],
+	"PealsOfThunder": [ [0.5, 3.5, 9], [0.65, 3, 7], [1.7, 2.5, 8] ],
+	"LoudThunder": [ [0.1, 5, 8], [0.5, 4, 5], [2.5, 2, 5] ], 
+}
+
+
+func enable_flash(thunder_name: String):
 	#background.mesh.material.albedo_color = Color(flash_value, flash_value, flash_value, 1)
 	flash_on = true
 	#spot_light_3d.show()
-	current_lightning_strike = [ [0, 5, 9], [0.35, 5, 9], [0.5, 5, 3] ]
+	current_lightning_strike = LIGHTING_STRIKES[thunder_name]
 	current_light = current_lightning_strike[0]
 	light_index = 0
 	time = 0
@@ -28,7 +36,7 @@ func disable_flash():
 	background.mesh.material.albedo_color = dark_values
 	flash_on = false
 	counter = 0
-	print("test_disable")
+	
 	#spot_light_3d.hide()
 	
 func update_flash(delta):
@@ -46,7 +54,6 @@ func update_flash(delta):
 		flash_value = 0
 		time = 0
 		disable_flash()
-		print("hhhh")
 	if flash_value >= 0:
 		background.mesh.material.albedo_color = Color(flash_value, flash_value, flash_value, 1)
 		spot_light_3d.light_energy = flash_value * 3
@@ -60,10 +67,8 @@ func _ready():
 	
 
 func _process(delta):
-	if counter >= 5 and not flash_on:
-		enable_flash()
+	
 	if flash_on:
 		update_flash(delta)
-	else:
-		counter += delta
+	
 	
