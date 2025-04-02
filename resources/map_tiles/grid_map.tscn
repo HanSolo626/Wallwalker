@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://cre125ah8sybk"]
 
-[ext_resource type="MeshLibrary" uid="uid://c0q4s7y3ym870" path="res://resources/MeshLibraries/torch_markers.tres" id="1_4ujr8"]
+[ext_resource type="MeshLibrary" uid="uid://jex8immmb3ep" path="res://resources/MeshLibraries/windows.tres" id="1_1kbsu"]
 [ext_resource type="Script" path="res://resources/map_tiles/grid_map.gd" id="2_yl6wv"]
 
 [node name="GridMap" type="GridMap"]
-mesh_library = ExtResource("1_4ujr8")
+mesh_library = ExtResource("1_1kbsu")
 cell_size = Vector3(4, 4, 4)
 collision_layer = 2
 collision_mask = 9

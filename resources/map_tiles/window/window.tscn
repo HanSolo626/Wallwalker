@@ -78,6 +78,7 @@ material = SubResource("StandardMaterial3D_2j5r8")
 script = ExtResource("1_7y3oq")
 
 [node name="IronWorkMeshes" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1.92)
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="IronWorkMeshes"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -106,6 +107,7 @@ transform = Transform3D(-1, 8.74228e-08, 0, 8.74228e-08, 1, 8.74228e-08, 7.64274
 mesh = SubResource("CylinderMesh_is2ll")
 
 [node name="Background" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1.92)
 
 [node name="Background" type="MeshInstance3D" parent="Background"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.0431889)
