@@ -11,6 +11,7 @@ var current_lightning_strike
 var current_light
 var time = 0
 var light_index = 0
+var weight = 1.5
 
 # [ [time mark, intensity (5 max), fade_rate_per_second] ]
 
@@ -55,8 +56,8 @@ func update_flash(delta):
 		time = 0
 		disable_flash()
 	if flash_value >= 0:
-		background.mesh.material.albedo_color = Color(flash_value, flash_value, flash_value, 1)
-		spot_light_3d.light_energy = flash_value * 3
+		background.mesh.material.albedo_color = Color(flash_value*weight, flash_value*weight, flash_value*weight, 1)
+		spot_light_3d.light_energy = (flash_value*weight) * 3
 	else:
 		background.mesh.material.albedo_color = Color(0, 0, 0, 1)
 		spot_light_3d.light_energy = 0

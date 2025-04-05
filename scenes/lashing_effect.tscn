@@ -41,4 +41,5 @@ scale_amount_curve = SubResource("Curve_o2gmp")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(0, 0.678431, 1, 1)
 light_energy = 2.162
+light_cull_mask = 4294967291
 omni_range = 8.195

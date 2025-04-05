@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://b6blco7vay48e"]
+
+[ext_resource type="Texture2D" uid="uid://4opcod7jjrur" path="res://resources/map_tiles/stone_wall_tile/Stone_wall_006_COLOR.jpg" id="1_t4k45"]
+[ext_resource type="Texture2D" uid="uid://bm8elylak8f67" path="res://resources/map_tiles/stone_wall_tile/Stone_wall_006_OCC.jpg" id="2_4qajl"]
+[ext_resource type="Texture2D" uid="uid://b6bcyjdme136u" path="res://resources/map_tiles/stone_wall_tile/Stone_wall_006_DISP.png" id="3_ng7y0"]
+[ext_resource type="Texture2D" uid="uid://bj2crblhor3" path="res://resources/map_tiles/stone_wall_tile/Stone_wall_006_NORM.jpg" id="4_xpbxt"]
+[ext_resource type="Texture2D" uid="uid://bdcxi2h0tn6sx" path="res://resources/map_tiles/stone_wall_tile/Stone_wall_006_ROUGH.jpg" id="5_vewex"]
+
+[resource]
+albedo_texture = ExtResource("1_t4k45")
+metallic_specular = 0.0
+roughness_texture = ExtResource("5_vewex")
+normal_enabled = true
+normal_texture = ExtResource("4_xpbxt")
+ao_enabled = true
+ao_texture = ExtResource("2_4qajl")
+heightmap_enabled = true
+heightmap_scale = 1.47
+heightmap_texture = ExtResource("3_ng7y0")
+uv1_scale = Vector3(2, 2, 2)

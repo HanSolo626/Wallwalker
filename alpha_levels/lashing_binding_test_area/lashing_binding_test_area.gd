@@ -21,7 +21,7 @@ func end_game():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	load_and_play_track()
+	#load_and_play_track()
 	platform_2.glide_in_loop(
 		[Vector3(-6.362, 8.705, -15.221), Vector3(-6.362, 8.705, 13.208)], 0.1, 0
 		)
